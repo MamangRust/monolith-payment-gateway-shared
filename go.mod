@@ -3,6 +3,7 @@ module github.com/MamangRust/monolith-payment-gateway-shared
 go 1.23.4
 
 require (
+	github.com/MamangRust/monolith-payment-gateway-pkg v1.0.1
 	github.com/go-playground/validator/v10 v10.26.0
 	github.com/labstack/echo/v4 v4.13.3
 	google.golang.org/grpc v1.72.0
@@ -10,7 +11,6 @@ require (
 )
 
 require (
-	github.com/MamangRust/monolith-payment-gateway-pkg v1.0.1 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.9 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
