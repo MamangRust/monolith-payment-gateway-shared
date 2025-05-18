@@ -1,8 +1,8 @@
 package recordmapper
 
 import (
-	db "github.com/MamangRust/payment-gateway-monolith-grpc/pkg/database/schema"
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/domain/record"
+	db "github.com/MamangRust/monolith-payment-gateway-pkg/database/schema"
+	"github.com/MamangRust/monolith-payment-gateway-shared/domain/record"
 )
 
 type resetTokenRecordMapper struct {

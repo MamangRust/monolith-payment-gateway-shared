@@ -3,7 +3,7 @@ package role_errors
 import (
 	"net/http"
 
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/domain/response"
+	"github.com/MamangRust/monolith-payment-gateway-shared/domain/response"
 	"github.com/labstack/echo/v4"
 )
 

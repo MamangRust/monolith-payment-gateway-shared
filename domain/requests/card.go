@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	methodtopup "github.com/MamangRust/payment-gateway-monolith-grpc/pkg/method_topup"
+	methodtopup "github.com/MamangRust/monolith-payment-gateway-pkg/method_topup"
 	"github.com/go-playground/validator/v10"
 )
 

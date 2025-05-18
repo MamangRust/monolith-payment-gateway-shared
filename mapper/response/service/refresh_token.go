@@ -1,8 +1,8 @@
 package responseservice
 
 import (
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/domain/record"
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/domain/response"
+	"github.com/MamangRust/monolith-payment-gateway-shared/domain/record"
+	"github.com/MamangRust/monolith-payment-gateway-shared/domain/response"
 )
 
 type refreshTokenResponseMapper struct {

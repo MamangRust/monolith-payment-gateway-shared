@@ -3,7 +3,7 @@ package errors
 import (
 	"encoding/json"
 
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/pb"
+	"github.com/MamangRust/monolith-payment-gateway-shared/pb"
 )
 
 func GrpcErrorToJson(err *pb.ErrorResponse) string {

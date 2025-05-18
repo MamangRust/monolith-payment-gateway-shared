@@ -1,8 +1,8 @@
 package response
 
 import (
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/errors"
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/pb"
+	"github.com/MamangRust/monolith-payment-gateway-shared/errors"
+	"github.com/MamangRust/monolith-payment-gateway-shared/pb"
 	"github.com/labstack/echo/v4"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

@@ -1,9 +1,9 @@
 package protomapper
 
 import (
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/domain/response"
+	"github.com/MamangRust/monolith-payment-gateway-shared/domain/response"
 
-	"github.com/MamangRust/payment-gateway-monolith-grpc/shared/pb"
+	"github.com/MamangRust/monolith-payment-gateway-shared/pb"
 )
 
 type authProtoMapper struct {
