@@ -1,6 +1,14 @@
 package requests
 
-import "github.com/go-playground/validator/v10"
+import (
+	"github.com/go-playground/validator/v10"
+)
+
+type RoleRequestPayload struct {
+	UserID        int    `json:"user_id"`
+	CorrelationID string `json:"correlation_id"`
+	ReplyTopic    string `json:"reply_topic"`
+}
 
 type FindAllRoles struct {
 	Search   string `json:"search" validate:"required"`

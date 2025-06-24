@@ -2,6 +2,12 @@ package requests
 
 import "github.com/go-playground/validator/v10"
 
+type MerchantRequestPayload struct {
+	ApiKey        string `json:"api_key"`
+	CorrelationID string `json:"correlation_id"`
+	ReplyTopic    string `json:"reply_topic"`
+}
+
 type MonthYearPaymentMethodApiKey struct {
 	Apikey string `json:"api_key" validate:"required,min=1"`
 	Year   int    `json:"year" validate:"required"`

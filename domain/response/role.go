@@ -1,5 +1,11 @@
 package response
 
+type RoleResponsePayload struct {
+	CorrelationID string   `json:"correlation_id"`
+	Valid         bool     `json:"valid"`
+	RoleNames     []string `json:"role_names"`
+}
+
 type RoleResponse struct {
 	ID        int    `json:"id"`
 	Name      string `json:"name"`

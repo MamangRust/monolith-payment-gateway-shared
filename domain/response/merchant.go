@@ -1,5 +1,11 @@
 package response
 
+type MerchantResponsePayload struct {
+	CorrelationID string `json:"correlation_id"`
+	Valid         bool   `json:"valid"`
+	MerchantID    int64  `json:"merchant_id,omitempty"`
+}
+
 type MerchantResponse struct {
 	ID        int    `json:"id"`
 	Name      string `json:"name"`
