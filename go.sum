@@ -1,3 +1,5 @@
+github.com/MamangRust/monolith-payment-gateway-pb v0.0.1 h1:hpzbO0knzKtaUSA/2gQ/jPgwLRl/uN1SDaPRZc/Zq2g=
+github.com/MamangRust/monolith-payment-gateway-pb v0.0.1/go.mod h1:2Osv39N0iBiU0DEF2rvF/FAIk9UwRmByUIGTZWju54Y=
 github.com/MamangRust/monolith-payment-gateway-pkg v1.0.7 h1:lqtO4fIliNS+Y1zFX9YkNpmO2aQgE1Wi2b9jB5BicqM=
 github.com/MamangRust/monolith-payment-gateway-pkg v1.0.7/go.mod h1:w5JoFvujGyjK8NTx5c39mSLr2aXdtg291aAPRTtaFkk=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=

@@ -5,13 +5,23 @@ import (
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/record"
 )
 
+// userRoleRecordMapper provides methods to map UserRole database rows to UserRoleRecord domain models.
 type userRoleRecordMapper struct {
 }
 
+// NewUserRoleRecordMapper creates a new UserRoleRecordMapper instance.
 func NewUserRoleRecordMapper() *userRoleRecordMapper {
 	return &userRoleRecordMapper{}
 }
 
+// ToUserRoleRecord maps a UserRole database row to a UserRoleRecord domain model.
+//
+// Args:
+//   - user: A pointer to a UserRole representing the database row.
+//
+// Returns:
+//   - A pointer to a UserRoleRecord containing the mapped data, including
+//     UserRoleID, UserID, RoleID, CreatedAt, and UpdatedAt.
 func (t *userRoleRecordMapper) ToUserRoleRecord(userRole *db.UserRole) *record.UserRoleRecord {
 	return &record.UserRoleRecord{
 		UserRoleID: int32(userRole.UserRoleID),

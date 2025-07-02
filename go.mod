@@ -1,8 +1,9 @@
 module github.com/MamangRust/monolith-payment-gateway-shared
 
-go 1.23.4
+go 1.24.3
 
 require (
+	github.com/MamangRust/monolith-payment-gateway-pb v0.0.1
 	github.com/MamangRust/monolith-payment-gateway-pkg v1.0.7
 	github.com/go-playground/validator/v10 v10.26.0
 	github.com/labstack/echo/v4 v4.13.4

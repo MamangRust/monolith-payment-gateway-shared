@@ -1,17 +1,21 @@
 package protomapper
 
 import (
+	pb "github.com/MamangRust/monolith-payment-gateway-pb"
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/response"
-	"github.com/MamangRust/monolith-payment-gateway-shared/pb"
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
 type cardProtoMapper struct{}
 
+// NewCardProtoMapper creates a new instance of cardProtoMapper.
 func NewCardProtoMapper() *cardProtoMapper {
 	return &cardProtoMapper{}
 }
 
+// ToProtoResponseCard maps a *response.CardResponse to a *pb.ApiResponseCard proto response.
+//
+// It is used to generate the response for the CardService.GetCard rpc method.
 func (s *cardProtoMapper) ToProtoResponseCard(status string, message string, card *response.CardResponse) *pb.ApiResponseCard {
 	return &pb.ApiResponseCard{
 		Status:  status,
@@ -20,6 +24,10 @@ func (s *cardProtoMapper) ToProtoResponseCard(status string, message string, car
 	}
 }
 
+// ToProtoResponsePaginationCard maps a pagination meta, status, message and a list of *response.CardResponse
+// to a *pb.ApiResponsePaginationCard proto response.
+//
+// It is used to generate the response for the CardService.ListCard rpc method.
 func (s *cardProtoMapper) ToProtoResponsePaginationCard(pagination *pb.PaginationMeta, status string, message string, cards []*response.CardResponse) *pb.ApiResponsePaginationCard {
 	return &pb.ApiResponsePaginationCard{
 		Status:     status,
@@ -29,6 +37,9 @@ func (s *cardProtoMapper) ToProtoResponsePaginationCard(pagination *pb.Paginatio
 	}
 }
 
+// ToProtoResponseCardDeleteAt maps a status and message to a *pb.ApiResponseCardDelete proto response.
+//
+// It is used to generate the response for the CardService.DeleteCard rpc method.
 func (s *cardProtoMapper) ToProtoResponseCardDeleteAt(status string, message string) *pb.ApiResponseCardDelete {
 	return &pb.ApiResponseCardDelete{
 		Status:  status,
@@ -36,6 +47,9 @@ func (s *cardProtoMapper) ToProtoResponseCardDeleteAt(status string, message str
 	}
 }
 
+// ToProtoResponseCardAll maps a status and message to a *pb.ApiResponseCardAll proto response.
+//
+// It is used to generate the response for the CardService.GetAllCard rpc method.
 func (s *cardProtoMapper) ToProtoResponseCardAll(status string, message string) *pb.ApiResponseCardAll {
 	return &pb.ApiResponseCardAll{
 		Status:  status,
@@ -43,6 +57,10 @@ func (s *cardProtoMapper) ToProtoResponseCardAll(status string, message string) 
 	}
 }
 
+// ToProtoResponsePaginationCardDeletedAt maps a pagination meta, status, message and a list of *response.CardResponseDeleteAt
+// to a *pb.ApiResponsePaginationCardDeleteAt proto response.
+//
+// It is used to generate the response for the CardService.ListDeletedCard rpc method.
 func (s *cardProtoMapper) ToProtoResponsePaginationCardDeletedAt(pagination *pb.PaginationMeta, status string, message string, cards []*response.CardResponseDeleteAt) *pb.ApiResponsePaginationCardDeleteAt {
 	return &pb.ApiResponsePaginationCardDeleteAt{
 		Status:     status,
@@ -52,6 +70,9 @@ func (s *cardProtoMapper) ToProtoResponsePaginationCardDeletedAt(pagination *pb.
 	}
 }
 
+// ToProtoResponseDashboardCard maps a status, message and a *response.DashboardCard to a *pb.ApiResponseDashboardCard proto response.
+//
+// It is used to generate the response for the CardService.GetDashboardCard rpc method.
 func (s *cardProtoMapper) ToProtoResponseDashboardCard(status string, message string, dash *response.DashboardCard) *pb.ApiResponseDashboardCard {
 	return &pb.ApiResponseDashboardCard{
 		Status:  status,
@@ -60,6 +81,10 @@ func (s *cardProtoMapper) ToProtoResponseDashboardCard(status string, message st
 	}
 }
 
+// ToProtoResponseDashboardCardCardNumber maps a status, message, and a *response.DashboardCardCardNumber
+// to a *pb.ApiResponseDashboardCardNumber proto response.
+//
+// It is used to generate the response for the CardService.GetDashboardCardCardNumber rpc method.
 func (s *cardProtoMapper) ToProtoResponseDashboardCardCardNumber(status string, message string, dash *response.DashboardCardCardNumber) *pb.ApiResponseDashboardCardNumber {
 	return &pb.ApiResponseDashboardCardNumber{
 		Status:  status,
@@ -68,6 +93,10 @@ func (s *cardProtoMapper) ToProtoResponseDashboardCardCardNumber(status string, 
 	}
 }
 
+// ToProtoResponseMonthlyBalances maps a status, message and a list of *response.CardResponseMonthBalance
+// to a *pb.ApiResponseMonthlyBalance proto response.
+//
+// It is used to generate the response for the CardService.GetMonthlyBalance rpc method.
 func (s *cardProtoMapper) ToProtoResponseMonthlyBalances(status string, message string, cards []*response.CardResponseMonthBalance) *pb.ApiResponseMonthlyBalance {
 
 	return &pb.ApiResponseMonthlyBalance{
@@ -77,6 +106,10 @@ func (s *cardProtoMapper) ToProtoResponseMonthlyBalances(status string, message 
 	}
 }
 
+// ToProtoResponseYearlyBalances maps a status, message and a list of *response.CardResponseYearlyBalance
+// to a *pb.ApiResponseYearlyBalance proto response.
+//
+// It is used to generate the response for the CardService.GetYearlyBalance rpc method.
 func (s *cardProtoMapper) ToProtoResponseYearlyBalances(status string, message string, cards []*response.CardResponseYearlyBalance) *pb.ApiResponseYearlyBalance {
 
 	return &pb.ApiResponseYearlyBalance{
@@ -86,6 +119,10 @@ func (s *cardProtoMapper) ToProtoResponseYearlyBalances(status string, message s
 	}
 }
 
+// ToProtoResponseMonthlyAmounts maps a status, message and a list of *response.CardResponseMonthAmount
+// to a *pb.ApiResponseMonthlyAmount proto response.
+//
+// It is used to generate the response for the CardService.GetMonthlyAmount rpc method.
 func (s *cardProtoMapper) ToProtoResponseMonthlyAmounts(status string, message string, cards []*response.CardResponseMonthAmount) *pb.ApiResponseMonthlyAmount {
 
 	return &pb.ApiResponseMonthlyAmount{
@@ -95,6 +132,10 @@ func (s *cardProtoMapper) ToProtoResponseMonthlyAmounts(status string, message s
 	}
 }
 
+// ToProtoResponseYearlyAmounts maps a status, message and a list of *response.CardResponseYearAmount
+// to a *pb.ApiResponseYearlyAmount proto response.
+//
+// It is used to generate the response for the CardService.GetYearlyAmount rpc method.
 func (s *cardProtoMapper) ToProtoResponseYearlyAmounts(status string, message string, cards []*response.CardResponseYearAmount) *pb.ApiResponseYearlyAmount {
 	return &pb.ApiResponseYearlyAmount{
 		Status:  status,
@@ -103,6 +144,9 @@ func (s *cardProtoMapper) ToProtoResponseYearlyAmounts(status string, message st
 	}
 }
 
+// mapCardResponse maps a *response.CardResponse to a *pb.CardResponse proto response.
+//
+// It is used to generate the response for the CardService.GetCard rpc method.
 func (s *cardProtoMapper) mapCardResponse(card *response.CardResponse) *pb.CardResponse {
 	return &pb.CardResponse{
 		Id:           int32(card.ID),
@@ -117,6 +161,10 @@ func (s *cardProtoMapper) mapCardResponse(card *response.CardResponse) *pb.CardR
 	}
 }
 
+// mapCardResponses maps a list of *response.CardResponse to a list of *pb.CardResponse
+// proto response.
+//
+// It is used to generate the response for the CardService.ListCard rpc method.
 func (s *cardProtoMapper) mapCardResponses(roles []*response.CardResponse) []*pb.CardResponse {
 	var responseRoles []*pb.CardResponse
 
@@ -127,6 +175,10 @@ func (s *cardProtoMapper) mapCardResponses(roles []*response.CardResponse) []*pb
 	return responseRoles
 }
 
+// mapCardResponseDeleteAt maps a *response.CardResponseDeleteAt to a *pb.CardResponseDeleteAt proto response.
+//
+// This function converts a CardResponseDeleteAt, which includes deletion information, into its protobuf
+// representation. It handles the conversion of all fields including a nullable DeletedAt field.
 func (s *cardProtoMapper) mapCardResponseDeleteAt(card *response.CardResponseDeleteAt) *pb.CardResponseDeleteAt {
 	var deletedAt *wrapperspb.StringValue
 	if card.DeletedAt != nil {
@@ -147,6 +199,10 @@ func (s *cardProtoMapper) mapCardResponseDeleteAt(card *response.CardResponseDel
 	}
 }
 
+// mapCardResponsesDeleteAt maps a list of *response.CardResponseDeleteAt to a list of
+// *pb.CardResponseDeleteAt proto response.
+//
+// It is used to generate the response for the CardService.ListDeletedCard rpc method.
 func (s *cardProtoMapper) mapCardResponsesDeleteAt(roles []*response.CardResponseDeleteAt) []*pb.CardResponseDeleteAt {
 	var responseRoles []*pb.CardResponseDeleteAt
 
@@ -157,6 +213,10 @@ func (s *cardProtoMapper) mapCardResponsesDeleteAt(roles []*response.CardRespons
 	return responseRoles
 }
 
+// mapDashboardCard maps a *response.DashboardCard to a *pb.CardResponseDashboard proto response.
+//
+// This function converts a DashboardCard from the response domain model to its protobuf
+// representation, handling the mapping of all financial metrics fields.
 func (s *cardProtoMapper) mapDashboardCard(dash *response.DashboardCard) *pb.CardResponseDashboard {
 	return &pb.CardResponseDashboard{
 		TotalBalance:     *dash.TotalBalance,
@@ -167,6 +227,10 @@ func (s *cardProtoMapper) mapDashboardCard(dash *response.DashboardCard) *pb.Car
 	}
 }
 
+// mapDashboardCardCardNumber maps a *response.DashboardCardCardNumber to a *pb.CardResponseDashboardCardNumber proto response.
+//
+// This function converts a DashboardCardCardNumber from the response domain model to its protobuf
+// representation, handling the mapping of all financial metrics fields for a specific card.
 func (s *cardProtoMapper) mapDashboardCardCardNumber(dash *response.DashboardCardCardNumber) *pb.CardResponseDashboardCardNumber {
 	return &pb.CardResponseDashboardCardNumber{
 		TotalBalance:          *dash.TotalBalance,
@@ -178,6 +242,10 @@ func (s *cardProtoMapper) mapDashboardCardCardNumber(dash *response.DashboardCar
 	}
 }
 
+// mapMonthlyBalance maps a *response.CardResponseMonthBalance to a *pb.CardResponseMonthlyBalance
+// proto response.
+//
+// It is used to generate the response for the CardService.GetMonthlyBalance rpc method.
 func (s *cardProtoMapper) mapMonthlyBalance(card *response.CardResponseMonthBalance) *pb.CardResponseMonthlyBalance {
 	return &pb.CardResponseMonthlyBalance{
 		Month:        card.Month,
@@ -185,6 +253,12 @@ func (s *cardProtoMapper) mapMonthlyBalance(card *response.CardResponseMonthBala
 	}
 }
 
+// mapMonthlyBalances maps a list of *response.CardResponseMonthBalance to a list of
+// *pb.CardResponseMonthlyBalance proto responses.
+//
+// It iterates over each CardResponseMonthBalance in the input slice, converting
+// them to their protobuf equivalent using the mapMonthlyBalance function. This
+// function is used to generate the response data for monthly balance RPC methods.
 func (s *cardProtoMapper) mapMonthlyBalances(roles []*response.CardResponseMonthBalance) []*pb.CardResponseMonthlyBalance {
 	var responseRoles []*pb.CardResponseMonthlyBalance
 
@@ -195,6 +269,10 @@ func (s *cardProtoMapper) mapMonthlyBalances(roles []*response.CardResponseMonth
 	return responseRoles
 }
 
+// mapYearlyBalance maps a *response.CardResponseYearlyBalance to a *pb.CardResponseYearlyBalance proto response.
+//
+// This function takes a CardResponseYearlyBalance from the response domain model and converts it
+// into its protobuf representation, ensuring that the year and total balance fields are accurately mapped.
 func (s *cardProtoMapper) mapYearlyBalance(card *response.CardResponseYearlyBalance) *pb.CardResponseYearlyBalance {
 	return &pb.CardResponseYearlyBalance{
 		Year:         card.Year,
@@ -202,6 +280,12 @@ func (s *cardProtoMapper) mapYearlyBalance(card *response.CardResponseYearlyBala
 	}
 }
 
+// mapYearlyBalances maps a list of *response.CardResponseYearlyBalance to a list of
+// *pb.CardResponseYearlyBalance proto responses.
+//
+// It iterates over each CardResponseYearlyBalance in the input slice, converting
+// them to their protobuf equivalent using the mapYearlyBalance function. This
+// function is used to generate the response data for yearly balance RPC methods.
 func (s *cardProtoMapper) mapYearlyBalances(roles []*response.CardResponseYearlyBalance) []*pb.CardResponseYearlyBalance {
 	var responseRoles []*pb.CardResponseYearlyBalance
 
@@ -212,6 +296,9 @@ func (s *cardProtoMapper) mapYearlyBalances(roles []*response.CardResponseYearly
 	return responseRoles
 }
 
+// mapMonthlyAmount maps a *response.CardResponseMonthAmount to a *pb.CardResponseMonthlyAmount proto response.
+//
+// It is used to generate the response for the CardService.GetMonthlyAmount rpc method.
 func (s *cardProtoMapper) mapMonthlyAmount(card *response.CardResponseMonthAmount) *pb.CardResponseMonthlyAmount {
 	return &pb.CardResponseMonthlyAmount{
 		Month:       card.Month,
@@ -219,6 +306,12 @@ func (s *cardProtoMapper) mapMonthlyAmount(card *response.CardResponseMonthAmoun
 	}
 }
 
+// mapMonthlyAmounts maps a list of *response.CardResponseMonthAmount to a list of
+// *pb.CardResponseMonthlyAmount proto responses.
+//
+// It iterates over each CardResponseMonthAmount in the input slice, converting
+// them to their protobuf equivalent using the mapMonthlyAmount function. This
+// function is used to generate the response data for monthly amount RPC methods.
 func (s *cardProtoMapper) mapMonthlyAmounts(roles []*response.CardResponseMonthAmount) []*pb.CardResponseMonthlyAmount {
 	var responseRoles []*pb.CardResponseMonthlyAmount
 
@@ -229,6 +322,10 @@ func (s *cardProtoMapper) mapMonthlyAmounts(roles []*response.CardResponseMonthA
 	return responseRoles
 }
 
+// mapYearlyAmount maps a *response.CardResponseYearAmount to a *pb.CardResponseYearlyAmount proto response.
+//
+// This function takes a CardResponseYearAmount from the response domain model and converts it
+// into its protobuf representation, ensuring that the year and total amount fields are accurately mapped.
 func (s *cardProtoMapper) mapYearlyAmount(card *response.CardResponseYearAmount) *pb.CardResponseYearlyAmount {
 	return &pb.CardResponseYearlyAmount{
 		Year:        card.Year,
@@ -236,6 +333,12 @@ func (s *cardProtoMapper) mapYearlyAmount(card *response.CardResponseYearAmount)
 	}
 }
 
+// mapYearlyAmounts maps a list of *response.CardResponseYearAmount to a list of
+// *pb.CardResponseYearlyAmount proto responses.
+//
+// It iterates over each CardResponseYearAmount in the input slice, converting
+// them to their protobuf equivalent using the mapYearlyAmount function. This
+// function is used to generate the response data for yearly amount RPC methods.
 func (s *cardProtoMapper) mapYearlyAmounts(roles []*response.CardResponseYearAmount) []*pb.CardResponseYearlyAmount {
 	var responseRoles []*pb.CardResponseYearlyAmount
 

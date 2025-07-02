@@ -1,16 +1,26 @@
 package apimapper
 
 import (
+	pb "github.com/MamangRust/monolith-payment-gateway-pb"
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/response"
-	"github.com/MamangRust/monolith-payment-gateway-shared/pb"
 )
 
+// cardResponseMapper maps between card related response messages and domain response objects.
 type cardResponseMapper struct{}
 
+// NewCardResponseMapper returns a new cardResponseMapper.
 func NewCardResponseMapper() *cardResponseMapper {
 	return &cardResponseMapper{}
 }
 
+// ToApiResponseCard maps the ApiResponseCard from the domain to the ApiResponseCard of the api.
+//
+// Args:
+//   - card: A pointer to a pb.ApiResponseCard representing the ApiResponseCard from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseCard containing the mapped data, including status, message,
+//     and data.
 func (s *cardResponseMapper) ToApiResponseCard(card *pb.ApiResponseCard) *response.ApiResponseCard {
 	return &response.ApiResponseCard{
 		Status:  card.Status,
@@ -19,6 +29,13 @@ func (s *cardResponseMapper) ToApiResponseCard(card *pb.ApiResponseCard) *respon
 	}
 }
 
+// ToApiResponsesCard maps the ApiResponsePaginationCard from the domain to the ApiResponsePaginationCard of the api.
+//
+// Args:
+//   - cards: A pointer to a pb.ApiResponsePaginationCard representing the ApiResponsePaginationCard from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponsePaginationCard containing the mapped data, including status, message, data, and pagination details.
 func (s *cardResponseMapper) ToApiResponsesCard(cards *pb.ApiResponsePaginationCard) *response.ApiResponsePaginationCard {
 	return &response.ApiResponsePaginationCard{
 		Status:     cards.Status,
@@ -29,6 +46,13 @@ func (s *cardResponseMapper) ToApiResponsesCard(cards *pb.ApiResponsePaginationC
 
 }
 
+// ToApiResponseCardDeleteAt maps the ApiResponseCardDelete from the domain to the ApiResponseCardDelete of the api.
+//
+// Args:
+//   - card: A pointer to a pb.ApiResponseCardDelete representing the ApiResponseCardDelete from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseCardDelete containing the mapped data, including status and message.
 func (s *cardResponseMapper) ToApiResponseCardDeleteAt(card *pb.ApiResponseCardDelete) *response.ApiResponseCardDelete {
 	return &response.ApiResponseCardDelete{
 		Status:  card.Status,
@@ -36,6 +60,13 @@ func (s *cardResponseMapper) ToApiResponseCardDeleteAt(card *pb.ApiResponseCardD
 	}
 }
 
+// ToApiResponseCardAll maps the ApiResponseCardAll from the domain to the ApiResponseCardAll of the api.
+//
+// Args:
+//   - card: A pointer to a pb.ApiResponseCardAll representing the ApiResponseCardAll from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseCardAll containing the mapped data, including status and message.
 func (s *cardResponseMapper) ToApiResponseCardAll(card *pb.ApiResponseCardAll) *response.ApiResponseCardAll {
 	return &response.ApiResponseCardAll{
 		Status:  card.Status,
@@ -43,6 +74,14 @@ func (s *cardResponseMapper) ToApiResponseCardAll(card *pb.ApiResponseCardAll) *
 	}
 }
 
+// ToApiResponsesCardDeletedAt maps the ApiResponsePaginationCardDeleteAt from the domain to the
+// ApiResponsePaginationCardDeleteAt of the api.
+//
+// Args:
+//   - cards: A pointer to a pb.ApiResponsePaginationCardDeleteAt representing the ApiResponsePaginationCardDeleteAt from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponsePaginationCardDeleteAt containing the mapped data, including status, message, data, and pagination details.
 func (s *cardResponseMapper) ToApiResponsesCardDeletedAt(cards *pb.ApiResponsePaginationCardDeleteAt) *response.ApiResponsePaginationCardDeleteAt {
 	return &response.ApiResponsePaginationCardDeleteAt{
 		Status:     cards.Status,
@@ -52,6 +91,13 @@ func (s *cardResponseMapper) ToApiResponsesCardDeletedAt(cards *pb.ApiResponsePa
 	}
 }
 
+// ToApiResponseDashboardCard maps the ApiResponseDashboardCard from the domain to the ApiResponseDashboardCard of the api.
+//
+// Args:
+//   - dash: A pointer to a pb.ApiResponseDashboardCard representing the ApiResponseDashboardCard from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseDashboardCard containing the mapped data, including status, message, and data.
 func (s *cardResponseMapper) ToApiResponseDashboardCard(dash *pb.ApiResponseDashboardCard) *response.ApiResponseDashboardCard {
 	return &response.ApiResponseDashboardCard{
 		Status:  dash.Status,
@@ -60,6 +106,13 @@ func (s *cardResponseMapper) ToApiResponseDashboardCard(dash *pb.ApiResponseDash
 	}
 }
 
+// ToApiResponseDashboardCardCardNumber maps the ApiResponseDashboardCardNumber from the domain to the ApiResponseDashboardCardNumber of the api.
+//
+// Args:
+//   - dash: A pointer to a pb.ApiResponseDashboardCardNumber representing the ApiResponseDashboardCardNumber from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseDashboardCardNumber containing the mapped data, including status, message, and data.
 func (s *cardResponseMapper) ToApiResponseDashboardCardCardNumber(dash *pb.ApiResponseDashboardCardNumber) *response.ApiResponseDashboardCardNumber {
 	return &response.ApiResponseDashboardCardNumber{
 		Status:  dash.Status,
@@ -68,6 +121,13 @@ func (s *cardResponseMapper) ToApiResponseDashboardCardCardNumber(dash *pb.ApiRe
 	}
 }
 
+// ToApiResponseMonthlyBalances maps the ApiResponseMonthlyBalance from the domain to the ApiResponseMonthlyBalance of the api.
+//
+// Args:
+//   - cards: A pointer to a pb.ApiResponseMonthlyBalance representing the ApiResponseMonthlyBalance from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseMonthlyBalance containing the mapped data, including status, message, and data.
 func (s *cardResponseMapper) ToApiResponseMonthlyBalances(cards *pb.ApiResponseMonthlyBalance) *response.ApiResponseMonthlyBalance {
 	return &response.ApiResponseMonthlyBalance{
 		Status:  cards.Status,
@@ -76,6 +136,13 @@ func (s *cardResponseMapper) ToApiResponseMonthlyBalances(cards *pb.ApiResponseM
 	}
 }
 
+// ToApiResponseYearlyBalances maps the ApiResponseYearlyBalance from the domain to the ApiResponseYearlyBalance of the api.
+//
+// Args:
+//   - cards: A pointer to a pb.ApiResponseYearlyBalance representing the ApiResponseYearlyBalance from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseYearlyBalance containing the mapped data, including status, message, and data.
 func (s *cardResponseMapper) ToApiResponseYearlyBalances(cards *pb.ApiResponseYearlyBalance) *response.ApiResponseYearlyBalance {
 	return &response.ApiResponseYearlyBalance{
 		Status:  cards.Status,
@@ -84,6 +151,13 @@ func (s *cardResponseMapper) ToApiResponseYearlyBalances(cards *pb.ApiResponseYe
 	}
 }
 
+// ToApiResponseMonthlyAmounts maps the ApiResponseMonthlyAmount from the domain to the ApiResponseMonthlyAmount of the api.
+//
+// Args:
+//   - cards: A pointer to a pb.ApiResponseMonthlyAmount representing the ApiResponseMonthlyAmount from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseMonthlyAmount containing the mapped data, including status, message, and data.
 func (s *cardResponseMapper) ToApiResponseMonthlyAmounts(cards *pb.ApiResponseMonthlyAmount) *response.ApiResponseMonthlyAmount {
 	return &response.ApiResponseMonthlyAmount{
 		Status:  cards.Status,
@@ -92,6 +166,13 @@ func (s *cardResponseMapper) ToApiResponseMonthlyAmounts(cards *pb.ApiResponseMo
 	}
 }
 
+// ToApiResponseYearlyAmounts maps the ApiResponseYearlyAmount from the domain to the ApiResponseYearlyAmount of the api.
+//
+// Args:
+//   - cards: A pointer to a pb.ApiResponseYearlyAmount representing the ApiResponseYearlyAmount from the domain.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseYearlyAmount containing the mapped data, including status, message, and data.
 func (s *cardResponseMapper) ToApiResponseYearlyAmounts(cards *pb.ApiResponseYearlyAmount) *response.ApiResponseYearlyAmount {
 	return &response.ApiResponseYearlyAmount{
 		Status:  cards.Status,
@@ -100,6 +181,14 @@ func (s *cardResponseMapper) ToApiResponseYearlyAmounts(cards *pb.ApiResponseYea
 	}
 }
 
+// mapCardResponse maps a CardResponse from the domain representation to the API response representation.
+//
+// Args:
+//   - card: A pointer to a pb.CardResponse representing the domain CardResponse object.
+//
+// Returns:
+//   - A pointer to a response.CardResponse containing the mapped data, including ID, UserID,
+//     CardNumber, CardType, ExpireDate, CVV, CardProvider, CreatedAt, and UpdatedAt.
 func (s *cardResponseMapper) mapCardResponse(card *pb.CardResponse) *response.CardResponse {
 	return &response.CardResponse{
 		ID:           int(card.Id),
@@ -114,6 +203,14 @@ func (s *cardResponseMapper) mapCardResponse(card *pb.CardResponse) *response.Ca
 	}
 }
 
+// mapCardResponses maps a slice of CardResponse from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A pointer to a slice of pb.CardResponse representing the domain CardResponse objects.
+//
+// Returns:
+//   - A pointer to a slice of response.CardResponse containing the mapped data, including ID, UserID,
+//     CardNumber, CardType, ExpireDate, CVV, CardProvider, CreatedAt, and UpdatedAt.
 func (s *cardResponseMapper) mapCardResponses(cards []*pb.CardResponse) []*response.CardResponse {
 	var responseCards []*response.CardResponse
 
@@ -124,6 +221,14 @@ func (s *cardResponseMapper) mapCardResponses(cards []*pb.CardResponse) []*respo
 	return responseCards
 }
 
+// mapCardResponseDeleteAt maps a CardResponseDeleteAt from the domain representation to the API response representation.
+//
+// Args:
+//   - card: A pointer to a pb.CardResponseDeleteAt representing the domain CardResponseDeleteAt object.
+//
+// Returns:
+//   - A pointer to a response.CardResponseDeleteAt containing the mapped data, including ID, UserID,
+//     CardNumber, CardType, ExpireDate, CVV, CardProvider, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *cardResponseMapper) mapCardResponseDeleteAt(card *pb.CardResponseDeleteAt) *response.CardResponseDeleteAt {
 	var deletedAt string
 	if card.DeletedAt != nil {
@@ -144,6 +249,14 @@ func (s *cardResponseMapper) mapCardResponseDeleteAt(card *pb.CardResponseDelete
 	}
 }
 
+// mapCardResponsesDeleteAt maps a slice of CardResponseDeleteAt from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A pointer to a slice of pb.CardResponseDeleteAt representing the domain CardResponseDeleteAt objects.
+//
+// Returns:
+//   - A pointer to a slice of response.CardResponseDeleteAt containing the mapped data, including ID, UserID,
+//     CardNumber, CardType, ExpireDate, CVV, CardProvider, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *cardResponseMapper) mapCardResponsesDeleteAt(cards []*pb.CardResponseDeleteAt) []*response.CardResponseDeleteAt {
 	var responseCards []*response.CardResponseDeleteAt
 
@@ -154,6 +267,14 @@ func (s *cardResponseMapper) mapCardResponsesDeleteAt(cards []*pb.CardResponseDe
 	return responseCards
 }
 
+// mapDashboardCard maps a CardResponseDashboard from the domain representation to the API response representation.
+//
+// Args:
+//   - dash: A pointer to a pb.CardResponseDashboard representing the domain CardResponseDashboard object.
+//
+// Returns:
+//   - A pointer to a response.DashboardCard containing the mapped data, including total balance,
+//     total withdraw, total topup, total transfer, and total transaction.
 func (s *cardResponseMapper) mapDashboardCard(dash *pb.CardResponseDashboard) *response.DashboardCard {
 	return &response.DashboardCard{
 		TotalBalance:     &dash.TotalBalance,
@@ -164,6 +285,14 @@ func (s *cardResponseMapper) mapDashboardCard(dash *pb.CardResponseDashboard) *r
 	}
 }
 
+// mapDashboardCardCardNumber maps a CardResponseDashboardCardNumber from the domain representation to the API response representation.
+//
+// Args:
+//   - dash: A pointer to a pb.CardResponseDashboardCardNumber representing the domain CardResponseDashboardCardNumber object.
+//
+// Returns:
+//   - A pointer to a response.DashboardCardCardNumber containing the mapped data, including total balance,
+//     total withdraw, total topup, total transfer send, total transfer receiver, and total transaction.
 func (s *cardResponseMapper) mapDashboardCardCardNumber(dash *pb.CardResponseDashboardCardNumber) *response.DashboardCardCardNumber {
 	return &response.DashboardCardCardNumber{
 		TotalBalance:          &dash.TotalBalance,
@@ -175,6 +304,13 @@ func (s *cardResponseMapper) mapDashboardCardCardNumber(dash *pb.CardResponseDas
 	}
 }
 
+// mapMonthlyBalance maps a CardResponseMonthlyBalance from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A pointer to a pb.CardResponseMonthlyBalance representing the domain CardResponseMonthlyBalance object.
+//
+// Returns:
+//   - A pointer to a response.CardResponseMonthBalance containing the mapped data, including month and total balance.
 func (s *cardResponseMapper) mapMonthlyBalance(cards *pb.CardResponseMonthlyBalance) *response.CardResponseMonthBalance {
 	return &response.CardResponseMonthBalance{
 		Month:        cards.Month,
@@ -182,6 +318,13 @@ func (s *cardResponseMapper) mapMonthlyBalance(cards *pb.CardResponseMonthlyBala
 	}
 }
 
+// mapMonthlyBalances maps a slice of CardResponseMonthlyBalance from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A slice of pointers to pb.CardResponseMonthlyBalance representing the domain CardResponseMonthlyBalance objects.
+//
+// Returns:
+//   - A slice of pointers to response.CardResponseMonthBalance containing the mapped data, including month and total balance.
 func (s *cardResponseMapper) mapMonthlyBalances(cards []*pb.CardResponseMonthlyBalance) []*response.CardResponseMonthBalance {
 	var responseCards []*response.CardResponseMonthBalance
 
@@ -192,6 +335,13 @@ func (s *cardResponseMapper) mapMonthlyBalances(cards []*pb.CardResponseMonthlyB
 	return responseCards
 }
 
+// mapYearlyBalance maps a CardResponseYearlyBalance from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A pointer to a pb.CardResponseYearlyBalance representing the domain CardResponseYearlyBalance object.
+//
+// Returns:
+//   - A pointer to a response.CardResponseYearlyBalance containing the mapped data, including year and total balance.
 func (s *cardResponseMapper) mapYearlyBalance(cards *pb.CardResponseYearlyBalance) *response.CardResponseYearlyBalance {
 	return &response.CardResponseYearlyBalance{
 		Year:         cards.Year,
@@ -199,6 +349,13 @@ func (s *cardResponseMapper) mapYearlyBalance(cards *pb.CardResponseYearlyBalanc
 	}
 }
 
+// mapYearlyBalances maps a slice of CardResponseYearlyBalance from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A slice of pointers to pb.CardResponseYearlyBalance representing the domain CardResponseYearlyBalance objects.
+//
+// Returns:
+//   - A slice of pointers to response.CardResponseYearlyBalance containing the mapped data, including year and total balance.
 func (s *cardResponseMapper) mapYearlyBalances(cards []*pb.CardResponseYearlyBalance) []*response.CardResponseYearlyBalance {
 	var responseCards []*response.CardResponseYearlyBalance
 
@@ -209,6 +366,13 @@ func (s *cardResponseMapper) mapYearlyBalances(cards []*pb.CardResponseYearlyBal
 	return responseCards
 }
 
+// mapMonthlyAmount maps a CardResponseMonthlyAmount from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A pointer to a pb.CardResponseMonthlyAmount representing the domain CardResponseMonthlyAmount object.
+//
+// Returns:
+//   - A pointer to a response.CardResponseMonthAmount containing the mapped data, including month and total amount.
 func (s *cardResponseMapper) mapMonthlyAmount(cards *pb.CardResponseMonthlyAmount) *response.CardResponseMonthAmount {
 	return &response.CardResponseMonthAmount{
 		Month:       cards.Month,
@@ -216,6 +380,13 @@ func (s *cardResponseMapper) mapMonthlyAmount(cards *pb.CardResponseMonthlyAmoun
 	}
 }
 
+// mapMonthlyAmounts maps a slice of CardResponseMonthlyAmount from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A slice of pointers to pb.CardResponseMonthlyAmount representing the domain CardResponseMonthlyAmount objects.
+//
+// Returns:
+//   - A slice of pointers to response.CardResponseMonthAmount containing the mapped data, including month and total amount.
 func (s *cardResponseMapper) mapMonthlyAmounts(cards []*pb.CardResponseMonthlyAmount) []*response.CardResponseMonthAmount {
 	var responseCards []*response.CardResponseMonthAmount
 
@@ -226,6 +397,13 @@ func (s *cardResponseMapper) mapMonthlyAmounts(cards []*pb.CardResponseMonthlyAm
 	return responseCards
 }
 
+// mapYearlyAmount maps a CardResponseYearlyAmount from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A pointer to a pb.CardResponseYearlyAmount representing the domain CardResponseYearlyAmount object.
+//
+// Returns:
+//   - A pointer to a response.CardResponseYearAmount containing the mapped data, including year and total amount.
 func (s *cardResponseMapper) mapYearlyAmount(cards *pb.CardResponseYearlyAmount) *response.CardResponseYearAmount {
 	return &response.CardResponseYearAmount{
 		Year:        cards.Year,
@@ -233,6 +411,13 @@ func (s *cardResponseMapper) mapYearlyAmount(cards *pb.CardResponseYearlyAmount)
 	}
 }
 
+// mapYearlyAmounts maps a slice of CardResponseYearlyAmount from the domain representation to the API response representation.
+//
+// Args:
+//   - cards: A slice of pointers to pb.CardResponseYearlyAmount representing the domain CardResponseYearlyAmount objects.
+//
+// Returns:
+//   - A slice of pointers to response.CardResponseYearAmount containing the mapped data, including year and total amount.
 func (s *cardResponseMapper) mapYearlyAmounts(cards []*pb.CardResponseYearlyAmount) []*response.CardResponseYearAmount {
 	var responseCards []*response.CardResponseYearAmount
 

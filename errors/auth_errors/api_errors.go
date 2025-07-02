@@ -7,80 +7,97 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-var (
-	ErrApiVerifyCode = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "failed to verify code", http.StatusBadRequest)
-	}
+// ErrApiVerifyCode returns an API error response when code verification fails.
+var ErrApiVerifyCode = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "failed to verify code", http.StatusBadRequest)
+}
 
-	ErrApiForgotPassword = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "failed to forgot password", http.StatusBadRequest)
-	}
+// ErrApiForgotPassword returns an API error response when forgot password request fails.
+var ErrApiForgotPassword = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "failed to forgot password", http.StatusBadRequest)
+}
 
-	ErrApiResetPassword = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "failed to reset password", http.StatusBadRequest)
-	}
+// ErrApiResetPassword returns an API error response when reset password request fails.
+var ErrApiResetPassword = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "failed to reset password", http.StatusBadRequest)
+}
 
-	ErrApiLogin = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "login failed: invalid argument provided", http.StatusBadRequest)
-	}
+// ErrApiLogin returns an API error response when login fails due to invalid arguments.
+var ErrApiLogin = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "login failed: invalid argument provided", http.StatusBadRequest)
+}
 
-	ErrApiRefreshToken = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "refresh-token failed: invalid access token", http.StatusBadRequest)
-	}
+// ErrApiRefreshToken returns an API error response when access token is invalid during refresh token flow.
+var ErrApiRefreshToken = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "refresh-token failed: invalid access token", http.StatusBadRequest)
+}
 
-	ErrApiGetMe = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "get user info failed: unauthenticated", http.StatusUnauthorized)
-	}
+// ErrApiGetMe returns an API error response when unauthenticated user tries to access their info.
+var ErrApiGetMe = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "get user info failed: unauthenticated", http.StatusUnauthorized)
+}
 
-	ErrValidateLogin = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "validation failed: invalid login request", http.StatusBadRequest)
-	}
+// ErrValidateLogin returns an API error response for invalid login request validation.
+var ErrValidateLogin = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "validation failed: invalid login request", http.StatusBadRequest)
+}
 
-	ErrValidateRegister = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "validation failed: invalid register request", http.StatusBadRequest)
-	}
+// ErrValidateRegister returns an API error response for invalid register request validation.
+var ErrValidateRegister = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "validation failed: invalid register request", http.StatusBadRequest)
+}
 
-	ErrValidateRefreshToken = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "validation failed: invalid refresh-token request", http.StatusBadRequest)
-	}
+// ErrValidateRefreshToken returns an API error response for invalid refresh token request validation.
+var ErrValidateRefreshToken = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "validation failed: invalid refresh-token request", http.StatusBadRequest)
+}
 
-	ErrValidateForgotPassword = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "validation failed: invalid forgot-password request", http.StatusBadRequest)
-	}
+// ErrValidateForgotPassword returns an API error response for invalid forgot password request validation.
+var ErrValidateForgotPassword = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "validation failed: invalid forgot-password request", http.StatusBadRequest)
+}
 
-	ErrValidateResetPassword = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "validation failed: invalid reset-password request", http.StatusBadRequest)
-	}
+// ErrValidateResetPassword returns an API error response for invalid reset password request validation.
+var ErrValidateResetPassword = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "validation failed: invalid reset-password request", http.StatusBadRequest)
+}
 
-	ErrBindForgotPassword = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "binding failed: invalid forgot password request payload", http.StatusBadRequest)
-	}
+// ErrBindForgotPassword returns an API error response for binding failure on forgot password request payload.
+var ErrBindForgotPassword = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "binding failed: invalid forgot password request payload", http.StatusBadRequest)
+}
 
-	ErrBindResetPassword = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "binding failed: invalid reset password request payload", http.StatusBadRequest)
-	}
+// ErrBindResetPassword returns an API error response for binding failure on reset password request payload.
+var ErrBindResetPassword = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "binding failed: invalid reset password request payload", http.StatusBadRequest)
+}
 
-	ErrBindLogin = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "binding failed: invalid login request payload", http.StatusBadRequest)
-	}
+// ErrBindLogin returns an API error response for binding failure on login request payload.
+var ErrBindLogin = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "binding failed: invalid login request payload", http.StatusBadRequest)
+}
 
-	ErrBindRefreshToken = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "binding failed: invalid refresh token request payload", http.StatusBadRequest)
-	}
+// ErrBindRefreshToken returns an API error response for binding failure on refresh token request payload.
+var ErrBindRefreshToken = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "binding failed: invalid refresh token request payload", http.StatusBadRequest)
+}
 
-	ErrBindRegister = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "binding failed: invalid register request payload", http.StatusBadRequest)
-	}
+// ErrBindRegister returns an API error response for binding failure on register request payload.
+var ErrBindRegister = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "binding failed: invalid register request payload", http.StatusBadRequest)
+}
 
-	ErrInvalidLogin = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "invalid email or password", http.StatusUnauthorized)
-	}
+// ErrInvalidLogin returns an API error response for incorrect email or password.
+var ErrInvalidLogin = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "invalid email or password", http.StatusUnauthorized)
+}
 
-	ErrInvalidAccessToken = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "invalid access token", http.StatusInternalServerError)
-	}
+// ErrInvalidAccessToken returns an API error response for an invalid access token.
+var ErrInvalidAccessToken = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "invalid access token", http.StatusInternalServerError)
+}
 
-	ErrApiRegister = func(c echo.Context) error {
-		return response.NewApiErrorResponse(c, "error", "register failed: invalid argument", http.StatusBadRequest)
-	}
-)
+// ErrApiRegister returns an API error response when register request fails due to invalid arguments.
+var ErrApiRegister = func(c echo.Context) error {
+	return response.NewApiErrorResponse(c, "error", "register failed: invalid argument", http.StatusBadRequest)
+}

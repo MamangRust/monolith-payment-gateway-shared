@@ -5,13 +5,23 @@ import (
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/record"
 )
 
+// roleRecordMapper provides methods to map Role database rows to RoleRecord domain models.
 type roleRecordMapper struct {
 }
 
+// NewRoleRecordMapper returns a new instance of roleRecordMapper which provides methods to map Role database rows to RoleRecord domain models.
 func NewRoleRecordMapper() *roleRecordMapper {
 	return &roleRecordMapper{}
 }
 
+// ToRoleRecord maps a Role database row to a RoleRecord domain model.
+//
+// Args:
+//   - role: A pointer to a Role representing the database row.
+//
+// Returns:
+//   - A pointer to a RoleRecord containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *roleRecordMapper) ToRoleRecord(role *db.Role) *record.RoleRecord {
 	deletedAt := role.DeletedAt.Time.Format("2006-01-02 15:04:05.000")
 
@@ -24,6 +34,14 @@ func (s *roleRecordMapper) ToRoleRecord(role *db.Role) *record.RoleRecord {
 	}
 }
 
+// ToRolesRecord maps a slice of Role database rows to a slice of RoleRecord domain models.
+//
+// Args:
+//   - roles: A slice of pointers to Role structs representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to RoleRecord structs containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *roleRecordMapper) ToRolesRecord(roles []*db.Role) []*record.RoleRecord {
 	var result []*record.RoleRecord
 
@@ -34,6 +52,14 @@ func (s *roleRecordMapper) ToRolesRecord(roles []*db.Role) []*record.RoleRecord 
 	return result
 }
 
+// ToRoleRecordAll maps a GetRolesRow to a RoleRecord domain model.
+//
+// Args:
+//   - role: A pointer to a GetRolesRow representing the database row.
+//
+// Returns:
+//   - A pointer to a RoleRecord containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *roleRecordMapper) ToRoleRecordAll(role *db.GetRolesRow) *record.RoleRecord {
 	deletedAt := role.DeletedAt.Time.Format("2006-01-02 15:04:05.000")
 
@@ -46,6 +72,14 @@ func (s *roleRecordMapper) ToRoleRecordAll(role *db.GetRolesRow) *record.RoleRec
 	}
 }
 
+// ToRolesRecordAll maps a slice of GetRolesRow to a slice of RoleRecord domain models.
+//
+// Args:
+//   - roles: A slice of pointers to GetRolesRow structs representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to RoleRecord structs containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *roleRecordMapper) ToRolesRecordAll(roles []*db.GetRolesRow) []*record.RoleRecord {
 	var result []*record.RoleRecord
 
@@ -56,6 +90,14 @@ func (s *roleRecordMapper) ToRolesRecordAll(roles []*db.GetRolesRow) []*record.R
 	return result
 }
 
+// ToRoleRecordActive maps a GetActiveRolesRow to a RoleRecord domain model.
+//
+// Args:
+//   - role: A pointer to a GetActiveRolesRow representing the database row.
+//
+// Returns:
+//   - A pointer to a RoleRecord containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *roleRecordMapper) ToRoleRecordActive(role *db.GetActiveRolesRow) *record.RoleRecord {
 	deletedAt := role.DeletedAt.Time.Format("2006-01-02 15:04:05.000")
 
@@ -68,6 +110,14 @@ func (s *roleRecordMapper) ToRoleRecordActive(role *db.GetActiveRolesRow) *recor
 	}
 }
 
+// ToRolesRecordActive maps a slice of GetActiveRolesRow to a slice of RoleRecord domain models.
+//
+// Args:
+//   - roles: A slice of pointers to GetActiveRolesRow structs representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to RoleRecord structs containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *roleRecordMapper) ToRolesRecordActive(roles []*db.GetActiveRolesRow) []*record.RoleRecord {
 	var result []*record.RoleRecord
 
@@ -78,6 +128,14 @@ func (s *roleRecordMapper) ToRolesRecordActive(roles []*db.GetActiveRolesRow) []
 	return result
 }
 
+// ToRoleRecordTrashed maps a GetTrashedRolesRow to a RoleRecord domain model.
+//
+// Args:
+//   - role: A pointer to a GetTrashedRolesRow representing the database row.
+//
+// Returns:
+//   - A pointer to a RoleRecord containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *roleRecordMapper) ToRoleRecordTrashed(role *db.GetTrashedRolesRow) *record.RoleRecord {
 	deletedAt := role.DeletedAt.Time.Format("2006-01-02 15:04:05.000")
 
@@ -90,6 +148,14 @@ func (s *roleRecordMapper) ToRoleRecordTrashed(role *db.GetTrashedRolesRow) *rec
 	}
 }
 
+// ToRolesRecordTrashed maps a slice of GetTrashedRolesRow to a slice of RoleRecord domain models.
+//
+// Args:
+//   - roles: A slice of pointers to GetTrashedRolesRow structs representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to RoleRecord structs containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *roleRecordMapper) ToRolesRecordTrashed(roles []*db.GetTrashedRolesRow) []*record.RoleRecord {
 	var result []*record.RoleRecord
 

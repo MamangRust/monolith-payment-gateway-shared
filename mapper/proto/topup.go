@@ -1,19 +1,32 @@
 package protomapper
 
 import (
+	pb "github.com/MamangRust/monolith-payment-gateway-pb"
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/response"
-	"github.com/MamangRust/monolith-payment-gateway-shared/pb"
 
 	"google.golang.org/protobuf/types/known/wrapperspb"
 )
 
+// topupProtoMapper is responsible for mapping Topup responses to their corresponding protobuf representations.
 type topupProtoMapper struct {
 }
 
+// NewTopupProtoMapper returns a new instance of topupProtoMapper.
 func NewTopupProtoMapper() *topupProtoMapper {
 	return &topupProtoMapper{}
 }
 
+// ToProtoResponsePaginationTopup maps paginated top-up records to a protobuf response.
+//
+// Args:
+//   - pagination: The pagination metadata for the response.
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupResponse that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponsePaginationTopup containing the status, message, top-up data, and pagination data.
 func (t *topupProtoMapper) ToProtoResponsePaginationTopup(pagination *pb.PaginationMeta, status string, message string, s []*response.TopupResponse) *pb.ApiResponsePaginationTopup {
 	return &pb.ApiResponsePaginationTopup{
 		Status:     status,
@@ -23,6 +36,17 @@ func (t *topupProtoMapper) ToProtoResponsePaginationTopup(pagination *pb.Paginat
 	}
 }
 
+// ToProtoResponsePaginationTopupDeleteAt maps paginated soft-deleted top-up records to a protobuf response.
+//
+// Args:
+//   - pagination: The pagination metadata for the response.
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupResponseDeleteAt that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponsePaginationTopupDeleteAt containing the status, message, top-up data, and pagination data.
 func (t *topupProtoMapper) ToProtoResponsePaginationTopupDeleteAt(pagination *pb.PaginationMeta, status string, message string, s []*response.TopupResponseDeleteAt) *pb.ApiResponsePaginationTopupDeleteAt {
 	return &pb.ApiResponsePaginationTopupDeleteAt{
 		Status:     status,
@@ -32,6 +56,16 @@ func (t *topupProtoMapper) ToProtoResponsePaginationTopupDeleteAt(pagination *pb
 	}
 }
 
+// ToProtoResponseTopupMonthStatusSuccess maps monthly successful top-ups to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupResponseMonthStatusSuccess that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponseTopupMonthStatusSuccess containing the status, message, and top-up data.
 func (t *topupProtoMapper) ToProtoResponseTopupMonthStatusSuccess(status string, message string, s []*response.TopupResponseMonthStatusSuccess) *pb.ApiResponseTopupMonthStatusSuccess {
 	return &pb.ApiResponseTopupMonthStatusSuccess{
 		Status:  status,
@@ -40,6 +74,16 @@ func (t *topupProtoMapper) ToProtoResponseTopupMonthStatusSuccess(status string,
 	}
 }
 
+// ToProtoResponseTopupYearStatusSuccess maps yearly successful top-ups to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupResponseYearStatusSuccess that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponseTopupYearStatusSuccess containing the status, message, and top-up data.
 func (t *topupProtoMapper) ToProtoResponseTopupYearStatusSuccess(status string, message string, s []*response.TopupResponseYearStatusSuccess) *pb.ApiResponseTopupYearStatusSuccess {
 	return &pb.ApiResponseTopupYearStatusSuccess{
 		Status:  status,
@@ -48,6 +92,16 @@ func (t *topupProtoMapper) ToProtoResponseTopupYearStatusSuccess(status string, 
 	}
 }
 
+// ToProtoResponseTopupMonthStatusFailed maps monthly failed top-ups to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupResponseMonthStatusFailed that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponseTopupMonthStatusFailed containing the status, message, and top-up data.
 func (t *topupProtoMapper) ToProtoResponseTopupMonthStatusFailed(status string, message string, s []*response.TopupResponseMonthStatusFailed) *pb.ApiResponseTopupMonthStatusFailed {
 	return &pb.ApiResponseTopupMonthStatusFailed{
 		Status:  status,
@@ -56,6 +110,16 @@ func (t *topupProtoMapper) ToProtoResponseTopupMonthStatusFailed(status string, 
 	}
 }
 
+// ToProtoResponseTopupYearStatusFailed maps yearly failed top-ups to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupResponseYearStatusFailed that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponseTopupYearStatusFailed containing the status, message, and top-up data.
 func (t *topupProtoMapper) ToProtoResponseTopupYearStatusFailed(status string, message string, s []*response.TopupResponseYearStatusFailed) *pb.ApiResponseTopupYearStatusFailed {
 	return &pb.ApiResponseTopupYearStatusFailed{
 		Status:  status,
@@ -64,6 +128,16 @@ func (t *topupProtoMapper) ToProtoResponseTopupYearStatusFailed(status string, m
 	}
 }
 
+// ToProtoResponseTopupMonthMethod maps monthly top-up methods to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupMonthMethodResponse that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponseTopupMonthMethod containing the status, message, and top-up data.
 func (t *topupProtoMapper) ToProtoResponseTopupMonthMethod(status string, message string, s []*response.TopupMonthMethodResponse) *pb.ApiResponseTopupMonthMethod {
 	return &pb.ApiResponseTopupMonthMethod{
 		Status:  status,
@@ -72,6 +146,16 @@ func (t *topupProtoMapper) ToProtoResponseTopupMonthMethod(status string, messag
 	}
 }
 
+// ToProtoResponseTopupYearMethod maps yearly top-up methods to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupYearlyMethodResponse that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponseTopupYearMethod containing the status, message, and top-up data.
 func (t *topupProtoMapper) ToProtoResponseTopupYearMethod(status string, message string, s []*response.TopupYearlyMethodResponse) *pb.ApiResponseTopupYearMethod {
 	return &pb.ApiResponseTopupYearMethod{
 		Status:  status,
@@ -80,6 +164,15 @@ func (t *topupProtoMapper) ToProtoResponseTopupYearMethod(status string, message
 	}
 }
 
+// ToProtoResponseTopupMonthAmount maps monthly top-up amounts to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupMonthAmountResponse that needs to be converted.
+//
+// Returns:
+//   - A pointer to ApiResponseTopupMonthAmount containing the status, message, and mapped top-up amount data.
 func (t *topupProtoMapper) ToProtoResponseTopupMonthAmount(status string, message string, s []*response.TopupMonthAmountResponse) *pb.ApiResponseTopupMonthAmount {
 	return &pb.ApiResponseTopupMonthAmount{
 		Status:  status,
@@ -88,6 +181,15 @@ func (t *topupProtoMapper) ToProtoResponseTopupMonthAmount(status string, messag
 	}
 }
 
+// ToProtoResponseTopupYearAmount maps yearly top-up amounts to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A slice of TopupYearlyAmountResponse that needs to be converted.
+//
+// Returns:
+//   - A pointer to ApiResponseTopupYearAmount containing the status, message, and mapped top-up amount data.
 func (t *topupProtoMapper) ToProtoResponseTopupYearAmount(status string, message string, s []*response.TopupYearlyAmountResponse) *pb.ApiResponseTopupYearAmount {
 	return &pb.ApiResponseTopupYearAmount{
 		Status:  status,
@@ -96,6 +198,16 @@ func (t *topupProtoMapper) ToProtoResponseTopupYearAmount(status string, message
 	}
 }
 
+// ToProtoResponseTopup maps a single top-up record to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A pointer to TopupResponse that needs to be converted.
+//
+// Returns:
+//
+//	A pointer to ApiResponseTopup containing the status, message, and top-up data.
 func (t *topupProtoMapper) ToProtoResponseTopup(status string, message string, s *response.TopupResponse) *pb.ApiResponseTopup {
 	return &pb.ApiResponseTopup{
 		Status:  status,
@@ -104,6 +216,15 @@ func (t *topupProtoMapper) ToProtoResponseTopup(status string, message string, s
 	}
 }
 
+// ToProtoResponseTopupDeletAt maps a soft-deleted top-up record to a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//   - s: A pointer to TopupResponseDeleteAt that needs to be converted.
+//
+// Returns:
+//   - A pointer to ApiResponseTopupDeleteAt containing the status, message, and mapped top-up data.
 func (t *topupProtoMapper) ToProtoResponseTopupDeletAt(status string, message string, s *response.TopupResponseDeleteAt) *pb.ApiResponseTopupDeleteAt {
 	return &pb.ApiResponseTopupDeleteAt{
 		Status:  status,
@@ -112,6 +233,15 @@ func (t *topupProtoMapper) ToProtoResponseTopupDeletAt(status string, message st
 	}
 }
 
+// ToProtoResponseTopupDelete returns a response indicating a top-up record has been deleted.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//
+// Returns:
+//
+//	A pointer to ApiResponseTopupDelete containing the status and message.
 func (t topupProtoMapper) ToProtoResponseTopupDelete(status string, message string) *pb.ApiResponseTopupDelete {
 	return &pb.ApiResponseTopupDelete{
 		Status:  status,
@@ -119,6 +249,14 @@ func (t topupProtoMapper) ToProtoResponseTopupDelete(status string, message stri
 	}
 }
 
+// ToProtoResponseTopupAll returns all top-up records in a protobuf response.
+//
+// Args:
+//   - status: The status of the API response.
+//   - message: A descriptive message of the API response.
+//
+// Returns:
+//   - A pointer to ApiResponseTopupAll containing the status and message.
 func (t topupProtoMapper) ToProtoResponseTopupAll(status string, message string) *pb.ApiResponseTopupAll {
 	return &pb.ApiResponseTopupAll{
 		Status:  status,
@@ -126,6 +264,13 @@ func (t topupProtoMapper) ToProtoResponseTopupAll(status string, message string)
 	}
 }
 
+// mapResponseTopup maps a single TopupResponse to its corresponding protobuf response.
+//
+// Args:
+//   - topup: A pointer to TopupResponse that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupResponse containing the mapped top-up data.
 func (t *topupProtoMapper) mapResponseTopup(topup *response.TopupResponse) *pb.TopupResponse {
 	return &pb.TopupResponse{
 		Id:          int32(topup.ID),
@@ -139,6 +284,13 @@ func (t *topupProtoMapper) mapResponseTopup(topup *response.TopupResponse) *pb.T
 	}
 }
 
+// mapResponsesTopup maps a slice of TopupResponse to a slice of TopupResponse.
+//
+// Args:
+//   - topups: A slice of TopupResponse that needs to be converted.
+//
+// Returns:
+//   - A slice of TopupResponse containing the mapped top-up data.
 func (t *topupProtoMapper) mapResponsesTopup(topups []*response.TopupResponse) []*pb.TopupResponse {
 	var responses []*pb.TopupResponse
 
@@ -149,6 +301,13 @@ func (t *topupProtoMapper) mapResponsesTopup(topups []*response.TopupResponse) [
 	return responses
 }
 
+// mapResponseTopupDeleteAt maps a single TopupResponseDeleteAt to its corresponding protobuf response.
+//
+// Args:
+//   - topup: A pointer to TopupResponseDeleteAt that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupResponseDeleteAt containing the mapped top-up data.
 func (t *topupProtoMapper) mapResponseTopupDeleteAt(topup *response.TopupResponseDeleteAt) *pb.TopupResponseDeleteAt {
 	var deletedAt *wrapperspb.StringValue
 	if topup.DeletedAt != nil {
@@ -168,6 +327,13 @@ func (t *topupProtoMapper) mapResponseTopupDeleteAt(topup *response.TopupRespons
 	}
 }
 
+// mapResponsesTopupDeleteAt maps a slice of TopupResponseDeleteAt to a slice of TopupResponseDeleteAt.
+//
+// Args:
+//   - topups: A slice of TopupResponseDeleteAt that needs to be converted.
+//
+// Returns:
+//   - A slice of TopupResponseDeleteAt containing the mapped top-up data.
 func (t *topupProtoMapper) mapResponsesTopupDeleteAt(topups []*response.TopupResponseDeleteAt) []*pb.TopupResponseDeleteAt {
 	var responses []*pb.TopupResponseDeleteAt
 
@@ -178,6 +344,13 @@ func (t *topupProtoMapper) mapResponsesTopupDeleteAt(topups []*response.TopupRes
 	return responses
 }
 
+// mapResponseTopupMonthStatusSuccess maps a TopupResponseMonthStatusSuccess to a TopupMonthStatusSuccessResponse.
+//
+// Args:
+//   - s: A pointer to TopupResponseMonthStatusSuccess that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupMonthStatusSuccessResponse containing the mapped top-up data.
 func (t *topupProtoMapper) mapResponseTopupMonthStatusSuccess(s *response.TopupResponseMonthStatusSuccess) *pb.TopupMonthStatusSuccessResponse {
 	return &pb.TopupMonthStatusSuccessResponse{
 		Year:         s.Year,
@@ -187,6 +360,14 @@ func (t *topupProtoMapper) mapResponseTopupMonthStatusSuccess(s *response.TopupR
 	}
 }
 
+// mapResponsesTopupMonthStatusSuccess maps a slice of TopupResponseMonthStatusSuccess to a slice of
+// TopupMonthStatusSuccessResponse protobuf messages.
+//
+// Args:
+//   - topups: A slice of TopupResponseMonthStatusSuccess that needs to be converted.
+//
+// Returns:
+//   - A slice of TopupMonthStatusSuccessResponse containing the mapped monthly top-up success data.
 func (t *topupProtoMapper) mapResponsesTopupMonthStatusSuccess(topups []*response.TopupResponseMonthStatusSuccess) []*pb.TopupMonthStatusSuccessResponse {
 	var topupRecords []*pb.TopupMonthStatusSuccessResponse
 
@@ -197,6 +378,13 @@ func (t *topupProtoMapper) mapResponsesTopupMonthStatusSuccess(topups []*respons
 	return topupRecords
 }
 
+// mapTopupResponseYearStatusSuccess maps a TopupResponseYearStatusSuccess to a TopupYearStatusSuccessResponse.
+//
+// Args:
+//   - s: A pointer to TopupResponseYearStatusSuccess that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupYearStatusSuccessResponse containing the mapped yearly top-up success data.
 func (t *topupProtoMapper) mapTopupResponseYearStatusSuccess(s *response.TopupResponseYearStatusSuccess) *pb.TopupYearStatusSuccessResponse {
 	return &pb.TopupYearStatusSuccessResponse{
 		Year:         s.Year,
@@ -205,6 +393,14 @@ func (t *topupProtoMapper) mapTopupResponseYearStatusSuccess(s *response.TopupRe
 	}
 }
 
+// mapTopupResponsesYearStatusSuccess maps a slice of TopupResponseYearStatusSuccess to a slice of
+// TopupYearStatusSuccessResponse protobuf messages.
+//
+// Args:
+//   - topups: A slice of TopupResponseYearStatusSuccess that needs to be converted.
+//
+// Returns:
+//   - A slice of TopupYearStatusSuccessResponse containing the mapped yearly top-up success data.
 func (t *topupProtoMapper) mapTopupResponsesYearStatusSuccess(topups []*response.TopupResponseYearStatusSuccess) []*pb.TopupYearStatusSuccessResponse {
 	var topupRecords []*pb.TopupYearStatusSuccessResponse
 
@@ -215,6 +411,13 @@ func (t *topupProtoMapper) mapTopupResponsesYearStatusSuccess(topups []*response
 	return topupRecords
 }
 
+// mapResponseTopupMonthStatusFailed maps a TopupResponseMonthStatusFailed to a TopupMonthStatusFailedResponse protobuf message.
+//
+// Args:
+//   - s: A pointer to TopupResponseMonthStatusFailed that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupMonthStatusFailedResponse containing the mapped monthly top-up failure data.
 func (t *topupProtoMapper) mapResponseTopupMonthStatusFailed(s *response.TopupResponseMonthStatusFailed) *pb.TopupMonthStatusFailedResponse {
 	return &pb.TopupMonthStatusFailedResponse{
 		Year:        s.Year,
@@ -224,6 +427,15 @@ func (t *topupProtoMapper) mapResponseTopupMonthStatusFailed(s *response.TopupRe
 	}
 }
 
+// mapResponsesTopupMonthStatusFailed converts a slice of TopupResponseMonthStatusFailed
+// into a slice of TopupMonthStatusFailedResponse protobuf messages.
+//
+// Args:
+//   - topups: A slice of TopupResponseMonthStatusFailed to be converted.
+//
+// Returns:
+//   - A slice of TopupMonthStatusFailedResponse containing the mapped data
+//     for each monthly top-up failure entry.
 func (t *topupProtoMapper) mapResponsesTopupMonthStatusFailed(topups []*response.TopupResponseMonthStatusFailed) []*pb.TopupMonthStatusFailedResponse {
 	var topupRecords []*pb.TopupMonthStatusFailedResponse
 
@@ -234,6 +446,13 @@ func (t *topupProtoMapper) mapResponsesTopupMonthStatusFailed(topups []*response
 	return topupRecords
 }
 
+// mapTopupResponseYearStatusFailed maps a TopupResponseYearStatusFailed to a TopupYearStatusFailedResponse.
+//
+// Args:
+//   - s: A pointer to TopupResponseYearStatusFailed that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupYearStatusFailedResponse containing the mapped yearly top-up failure data.
 func (t *topupProtoMapper) mapTopupResponseYearStatusFailed(s *response.TopupResponseYearStatusFailed) *pb.TopupYearStatusFailedResponse {
 	return &pb.TopupYearStatusFailedResponse{
 		Year:        s.Year,
@@ -242,6 +461,15 @@ func (t *topupProtoMapper) mapTopupResponseYearStatusFailed(s *response.TopupRes
 	}
 }
 
+// mapTopupResponsesYearStatusFailed maps a slice of TopupResponseYearStatusFailed
+// into a slice of TopupYearStatusFailedResponse protobuf messages.
+//
+// Args:
+//   - topups: A slice of TopupResponseYearStatusFailed to be converted.
+//
+// Returns:
+//   - A slice of TopupYearStatusFailedResponse containing the mapped yearly top-up failure data
+//     for each yearly top-up failure entry.
 func (t *topupProtoMapper) mapTopupResponsesYearStatusFailed(topups []*response.TopupResponseYearStatusFailed) []*pb.TopupYearStatusFailedResponse {
 	var topupRecords []*pb.TopupYearStatusFailedResponse
 
@@ -252,6 +480,13 @@ func (t *topupProtoMapper) mapTopupResponsesYearStatusFailed(topups []*response.
 	return topupRecords
 }
 
+// mapResponseTopupMonthlyMethod maps a TopupMonthMethodResponse to a TopupMonthMethodResponse protobuf message.
+//
+// Args:
+//   - s: A pointer to TopupMonthMethodResponse that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupMonthMethodResponse containing the mapped monthly top-up method data.
 func (t *topupProtoMapper) mapResponseTopupMonthlyMethod(s *response.TopupMonthMethodResponse) *pb.TopupMonthMethodResponse {
 	return &pb.TopupMonthMethodResponse{
 		Month:       s.Month,
@@ -261,6 +496,14 @@ func (t *topupProtoMapper) mapResponseTopupMonthlyMethod(s *response.TopupMonthM
 	}
 }
 
+// mapResponseTopupMonthlyMethods maps a slice of TopupMonthMethodResponse to a slice of
+// TopupMonthMethodResponse protobuf messages.
+//
+// Args:
+//   - s: A slice of TopupMonthMethodResponse that needs to be converted.
+//
+// Returns:
+//   - A slice of TopupMonthMethodResponse containing the mapped monthly top-up method data.
 func (t *topupProtoMapper) mapResponseTopupMonthlyMethods(s []*response.TopupMonthMethodResponse) []*pb.TopupMonthMethodResponse {
 	var topupProtos []*pb.TopupMonthMethodResponse
 	for _, topup := range s {
@@ -269,6 +512,13 @@ func (t *topupProtoMapper) mapResponseTopupMonthlyMethods(s []*response.TopupMon
 	return topupProtos
 }
 
+// mapResponseTopupYearlyMethod maps a TopupYearlyMethodResponse to a TopupYearlyMethodResponse protobuf message.
+//
+// Args:
+//   - s: A pointer to TopupYearlyMethodResponse that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupYearlyMethodResponse containing the mapped yearly top-up method data.
 func (t *topupProtoMapper) mapResponseTopupYearlyMethod(s *response.TopupYearlyMethodResponse) *pb.TopupYearlyMethodResponse {
 	return &pb.TopupYearlyMethodResponse{
 		Year:        s.Year,
@@ -278,6 +528,14 @@ func (t *topupProtoMapper) mapResponseTopupYearlyMethod(s *response.TopupYearlyM
 	}
 }
 
+// mapResponseTopupYearlyMethods maps a slice of TopupYearlyMethodResponse to a slice of
+// TopupYearlyMethodResponse protobuf messages.
+//
+// Args:
+//   - s: A slice of TopupYearlyMethodResponse that needs to be converted.
+//
+// Returns:
+//   - A slice of TopupYearlyMethodResponse containing the mapped yearly top-up method data.
 func (t *topupProtoMapper) mapResponseTopupYearlyMethods(s []*response.TopupYearlyMethodResponse) []*pb.TopupYearlyMethodResponse {
 	var topupProtos []*pb.TopupYearlyMethodResponse
 	for _, topup := range s {
@@ -286,6 +544,13 @@ func (t *topupProtoMapper) mapResponseTopupYearlyMethods(s []*response.TopupYear
 	return topupProtos
 }
 
+// mapResponseTopupMonthlyAmount maps a TopupMonthAmountResponse to a TopupMonthAmountResponse protobuf message.
+//
+// Args:
+//   - s: A pointer to TopupMonthAmountResponse that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupMonthAmountResponse containing the mapped monthly top-up amount data.
 func (t *topupProtoMapper) mapResponseTopupMonthlyAmount(s *response.TopupMonthAmountResponse) *pb.TopupMonthAmountResponse {
 	return &pb.TopupMonthAmountResponse{
 		Month:       s.Month,
@@ -293,6 +558,14 @@ func (t *topupProtoMapper) mapResponseTopupMonthlyAmount(s *response.TopupMonthA
 	}
 }
 
+// mapResponseTopupMonthlyAmounts maps a slice of TopupMonthAmountResponse to a slice of
+// TopupMonthAmountResponse protobuf messages.
+//
+// Args:
+//   - s: A slice of TopupMonthAmountResponse that needs to be converted.
+//
+// Returns:
+//   - A slice of TopupMonthAmountResponse containing the mapped monthly top-up amount data.
 func (t *topupProtoMapper) mapResponseTopupMonthlyAmounts(s []*response.TopupMonthAmountResponse) []*pb.TopupMonthAmountResponse {
 	var topupProtos []*pb.TopupMonthAmountResponse
 	for _, topup := range s {
@@ -301,6 +574,13 @@ func (t *topupProtoMapper) mapResponseTopupMonthlyAmounts(s []*response.TopupMon
 	return topupProtos
 }
 
+// mapResponseTopupYearlyAmount maps a TopupYearlyAmountResponse to a TopupYearlyAmountResponse protobuf message.
+//
+// Args:
+//   - s: A pointer to TopupYearlyAmountResponse that needs to be converted.
+//
+// Returns:
+//   - A pointer to TopupYearlyAmountResponse containing the mapped yearly top-up amount data.
 func (t *topupProtoMapper) mapResponseTopupYearlyAmount(s *response.TopupYearlyAmountResponse) *pb.TopupYearlyAmountResponse {
 	return &pb.TopupYearlyAmountResponse{
 		Year:        s.Year,
@@ -308,6 +588,14 @@ func (t *topupProtoMapper) mapResponseTopupYearlyAmount(s *response.TopupYearlyA
 	}
 }
 
+// mapResponseTopupYearlyAmounts maps a slice of TopupYearlyAmountResponse to a slice of
+// TopupYearlyAmountResponse protobuf messages.
+//
+// Args:
+//   - s: A slice of TopupYearlyAmountResponse that needs to be converted.
+//
+// Returns:
+//   - A slice of TopupYearlyAmountResponse containing the mapped yearly top-up amount data.
 func (t *topupProtoMapper) mapResponseTopupYearlyAmounts(s []*response.TopupYearlyAmountResponse) []*pb.TopupYearlyAmountResponse {
 	var topupProtos []*pb.TopupYearlyAmountResponse
 	for _, topup := range s {

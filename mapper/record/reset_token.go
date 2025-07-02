@@ -5,13 +5,22 @@ import (
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/record"
 )
 
+// resetTokenRecordMapper provides methods to map ResetToken database rows to ResetTokenRecord domain models.
 type resetTokenRecordMapper struct {
 }
 
+// NewResetTokenRecordMapper returns a new instance of resetTokenRecordMapper which provides methods to map ResetToken database rows to ResetTokenRecord domain models.
 func NewResetTokenRecordMapper() *resetTokenRecordMapper {
 	return &resetTokenRecordMapper{}
 }
 
+// ToResetTokenRecord maps a ResetToken database row to a ResetTokenRecord domain model.
+//
+// Args:
+//   - resetToken: A pointer to a ResetToken representing the database row.
+//
+// Returns:
+//   - A pointer to a ResetTokenRecord containing the mapped data, including ID, UserID, Token, and ExpiredAt.
 func (r *resetTokenRecordMapper) ToResetTokenRecord(resetToken *db.ResetToken) *record.ResetTokenRecord {
 	return &record.ResetTokenRecord{
 		ID:        int64(resetToken.ID),

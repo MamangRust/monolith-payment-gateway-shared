@@ -1,5 +1,9 @@
 package recordmapper
 
+// RecordMapper provides a set of mapping functions between database rows and
+// domain models for records related to the user, role, user role, refresh
+// token, reset token, saldo, topup, transfer, withdraw, card, transaction,
+// merchant, and merchant document.
 type RecordMapper struct {
 	UserRecordMapper             UserRecordMapping
 	RoleRecordMapper             RoleRecordMapping
@@ -16,6 +20,8 @@ type RecordMapper struct {
 	MerchantDocumentRecordMapper MerchantDocumentMapping
 }
 
+// NewRecordMapper creates a new RecordMapper instance with all the sub-mappers
+// properly initialized.
 func NewRecordMapper() *RecordMapper {
 	return &RecordMapper{
 		UserRecordMapper:             NewUserRecordMapper(),

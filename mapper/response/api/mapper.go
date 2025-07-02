@@ -14,6 +14,8 @@ type ResponseApiMapper struct {
 	MerchantDocumentProMapper MerchantDocumentResponseMapper
 }
 
+// NewResponseApiMapper creates a new instance of ResponseApiMapper with all the
+// other response mappers initialized.
 func NewResponseApiMapper() *ResponseApiMapper {
 	return &ResponseApiMapper{
 		AuthResponseMapper:        NewAuthResponseMapper(),

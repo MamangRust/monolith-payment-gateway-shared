@@ -5,13 +5,23 @@ import (
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/record"
 )
 
+// userRecordMapper provides methods to map User database rows to UserRecord domain models.
 type userRecordMapper struct {
 }
 
+// NewUserRecordMapper creates a new UserRecordMapper instance.
 func NewUserRecordMapper() *userRecordMapper {
 	return &userRecordMapper{}
 }
 
+// ToUserRecord maps a User database row to a UserRecord domain model.
+//
+// Args:
+//   - user: A pointer to a User representing the database row.
+//
+// Returns:
+//   - A pointer to a UserRecord containing the mapped data, including
+//     ID, FirstName, LastName, VerifiedCode, IsVerified, Email, Password, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *userRecordMapper) ToUserRecord(user *db.User) *record.UserRecord {
 	var deletedAt *string
 
@@ -39,6 +49,14 @@ func (s *userRecordMapper) ToUserRecord(user *db.User) *record.UserRecord {
 	}
 }
 
+// ToUserRecordPagination maps a GetUsersWithPaginationRow database row to a UserRecord domain model.
+//
+// Args:
+//   - user: A pointer to a GetUsersWithPaginationRow representing the database row.
+//
+// Returns:
+//   - A pointer to a UserRecord containing the mapped data, including
+//     ID, FirstName, LastName, Email, Password, IsVerified, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *userRecordMapper) ToUserRecordPagination(user *db.GetUsersWithPaginationRow) *record.UserRecord {
 	var deletedAt *string
 
@@ -61,6 +79,14 @@ func (s *userRecordMapper) ToUserRecordPagination(user *db.GetUsersWithPaginatio
 	}
 }
 
+// ToUsersRecordPagination maps a slice of GetUsersWithPaginationRow database rows to a slice of UserRecord domain models.
+//
+// Args:
+//   - users: A slice of pointers to GetUsersWithPaginationRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to UserRecord containing the mapped data for each user, including
+//     ID, FirstName, LastName, Email, Password, IsVerified, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *userRecordMapper) ToUsersRecordPagination(users []*db.GetUsersWithPaginationRow) []*record.UserRecord {
 	var userRecords []*record.UserRecord
 
@@ -71,6 +97,14 @@ func (s *userRecordMapper) ToUsersRecordPagination(users []*db.GetUsersWithPagin
 	return userRecords
 }
 
+// ToUserRecordActivePagination maps a GetActiveUsersWithPaginationRow database row to a UserRecord domain model.
+//
+// Args:
+//   - user: A pointer to a GetActiveUsersWithPaginationRow representing the database row.
+//
+// Returns:
+//   - A pointer to a UserRecord containing the mapped data, including
+//     ID, FirstName, LastName, Email, Password, IsVerified, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *userRecordMapper) ToUserRecordActivePagination(user *db.GetActiveUsersWithPaginationRow) *record.UserRecord {
 	var deletedAt *string
 
@@ -93,6 +127,14 @@ func (s *userRecordMapper) ToUserRecordActivePagination(user *db.GetActiveUsersW
 	}
 }
 
+// ToUsersRecordActivePagination maps a slice of GetActiveUsersWithPaginationRow database rows to a slice of UserRecord domain models.
+//
+// Args:
+//   - users: A slice of pointers to GetActiveUsersWithPaginationRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to UserRecord containing the mapped data for each user, including
+//     ID, FirstName, LastName, Email, Password, IsVerified, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *userRecordMapper) ToUsersRecordActivePagination(users []*db.GetActiveUsersWithPaginationRow) []*record.UserRecord {
 	var userRecords []*record.UserRecord
 
@@ -103,6 +145,14 @@ func (s *userRecordMapper) ToUsersRecordActivePagination(users []*db.GetActiveUs
 	return userRecords
 }
 
+// ToUserRecordTrashedPagination maps a GetTrashedUsersWithPaginationRow database row to a UserRecord domain model.
+//
+// Args:
+//   - user: A pointer to a GetTrashedUsersWithPaginationRow representing the database row.
+//
+// Returns:
+//   - A pointer to a UserRecord containing the mapped data, including
+//     ID, FirstName, LastName, Email, Password, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *userRecordMapper) ToUserRecordTrashedPagination(user *db.GetTrashedUsersWithPaginationRow) *record.UserRecord {
 	var deletedAt *string
 
@@ -124,6 +174,15 @@ func (s *userRecordMapper) ToUserRecordTrashedPagination(user *db.GetTrashedUser
 	}
 }
 
+// ToUsersRecordTrashedPagination maps a slice of GetTrashedUsersWithPaginationRow database rows
+// to a slice of UserRecord domain models.
+//
+// Args:
+//   - users: A slice of pointers to GetTrashedUsersWithPaginationRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to UserRecord containing the mapped data for each user, including
+//     ID, FirstName, LastName, Email, Password, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *userRecordMapper) ToUsersRecordTrashedPagination(users []*db.GetTrashedUsersWithPaginationRow) []*record.UserRecord {
 	var userRecords []*record.UserRecord
 

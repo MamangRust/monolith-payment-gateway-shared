@@ -14,6 +14,9 @@ type ResponseServiceMapper struct {
 	MerchantDocumentResponseMapper MerchantDocumentResponseMapper
 }
 
+// NewResponseServiceMapper creates a new ResponseServiceMapper, which is a
+// collection of mappers that can be used to map the internal domain models
+// into structured API response objects.
 func NewResponseServiceMapper() *ResponseServiceMapper {
 	return &ResponseServiceMapper{
 		CardResponseMapper:             NewCardResponseMapper(),

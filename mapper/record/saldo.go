@@ -5,12 +5,22 @@ import (
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/record"
 )
 
+// saldoRecordMapper provides methods to map Saldo database rows to SaldoRecord domain models.
 type saldoRecordMapper struct{}
 
+// NewSaldoRecordMapper returns a new instance of saldoRecordMapper which provides methods to map Saldo database rows to SaldoRecord domain models.
 func NewSaldoRecordMapper() *saldoRecordMapper {
 	return &saldoRecordMapper{}
 }
 
+// ToSaldoRecord maps a Saldo database row to a SaldoRecord domain model.
+//
+// Args:
+//   - saldo: A pointer to a Saldo representing the database row.
+//
+// Returns:
+//   - A pointer to a SaldoRecord containing the mapped data, including
+//     ID, CardNumber, TotalBalance, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *saldoRecordMapper) ToSaldoRecord(saldo *db.Saldo) *record.SaldoRecord {
 	var deletedAt *string
 
@@ -31,6 +41,14 @@ func (s *saldoRecordMapper) ToSaldoRecord(saldo *db.Saldo) *record.SaldoRecord {
 	}
 }
 
+// ToSaldosRecord maps a slice of Saldo database rows to a slice of SaldoRecord domain models.
+//
+// Args:
+//   - saldos: A slice of pointers to Saldo representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to SaldoRecord containing the mapped data, including
+//     ID, CardNumber, TotalBalance, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *saldoRecordMapper) ToSaldosRecord(saldos []*db.Saldo) []*record.SaldoRecord {
 	var saldoRecords []*record.SaldoRecord
 	for _, saldo := range saldos {
@@ -39,6 +57,14 @@ func (s *saldoRecordMapper) ToSaldosRecord(saldos []*db.Saldo) []*record.SaldoRe
 	return saldoRecords
 }
 
+// ToSaldoRecordAll maps a GetSaldosRow database row to a SaldoRecord domain model.
+//
+// Args:
+//   - saldo: A pointer to a GetSaldosRow representing the database row.
+//
+// Returns:
+//   - A pointer to a SaldoRecord containing the mapped data, including
+//     ID, CardNumber, TotalBalance, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *saldoRecordMapper) ToSaldoRecordAll(saldo *db.GetSaldosRow) *record.SaldoRecord {
 	var deletedAt *string
 
@@ -59,6 +85,14 @@ func (s *saldoRecordMapper) ToSaldoRecordAll(saldo *db.GetSaldosRow) *record.Sal
 	}
 }
 
+// ToSaldosRecordAll maps a slice of GetSaldosRow database rows to a slice of SaldoRecord domain models.
+//
+// Args:
+//   - saldos: A slice of pointers to GetSaldosRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to SaldoRecord containing the mapped data, including
+//     ID, CardNumber, TotalBalance, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *saldoRecordMapper) ToSaldosRecordAll(saldos []*db.GetSaldosRow) []*record.SaldoRecord {
 	var saldoRecords []*record.SaldoRecord
 	for _, saldo := range saldos {
@@ -67,6 +101,14 @@ func (s *saldoRecordMapper) ToSaldosRecordAll(saldos []*db.GetSaldosRow) []*reco
 	return saldoRecords
 }
 
+// ToSaldoRecordActive maps a GetActiveSaldosRow database row to a SaldoRecord domain model.
+//
+// Args:
+//   - saldo: A pointer to a GetActiveSaldosRow representing the database row.
+//
+// Returns:
+//   - A pointer to a SaldoRecord containing the mapped data, including
+//     ID, CardNumber, TotalBalance, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *saldoRecordMapper) ToSaldoRecordActive(saldo *db.GetActiveSaldosRow) *record.SaldoRecord {
 	var deletedAt *string
 
@@ -87,6 +129,14 @@ func (s *saldoRecordMapper) ToSaldoRecordActive(saldo *db.GetActiveSaldosRow) *r
 	}
 }
 
+// ToSaldosRecordActive maps a slice of GetActiveSaldosRow database rows to a slice of SaldoRecord domain models.
+//
+// Args:
+//   - saldos: A slice of pointers to GetActiveSaldosRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to SaldoRecord containing the mapped data, including
+//     ID, CardNumber, TotalBalance, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *saldoRecordMapper) ToSaldosRecordActive(saldos []*db.GetActiveSaldosRow) []*record.SaldoRecord {
 	var saldoRecords []*record.SaldoRecord
 	for _, saldo := range saldos {
@@ -95,6 +145,14 @@ func (s *saldoRecordMapper) ToSaldosRecordActive(saldos []*db.GetActiveSaldosRow
 	return saldoRecords
 }
 
+// ToSaldoRecordTrashed maps a GetTrashedSaldosRow database row to a SaldoRecord domain model.
+//
+// Args:
+//   - saldo: A pointer to a GetTrashedSaldosRow representing the trashed saldo database row.
+//
+// Returns:
+//   - A pointer to a SaldoRecord containing the mapped data, including ID, CardNumber,
+//     TotalBalance, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *saldoRecordMapper) ToSaldoRecordTrashed(saldo *db.GetTrashedSaldosRow) *record.SaldoRecord {
 	var deletedAt *string
 
@@ -115,6 +173,14 @@ func (s *saldoRecordMapper) ToSaldoRecordTrashed(saldo *db.GetTrashedSaldosRow) 
 	}
 }
 
+// ToSaldosRecordTrashed maps a slice of GetTrashedSaldosRow database rows to a slice of SaldoRecord domain models.
+//
+// Args:
+//   - saldos: A slice of pointers to GetTrashedSaldosRow representing the trashed saldo database rows.
+//
+// Returns:
+//   - A slice of pointers to SaldoRecord containing the mapped data, including ID, CardNumber,
+//     TotalBalance, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *saldoRecordMapper) ToSaldosRecordTrashed(saldos []*db.GetTrashedSaldosRow) []*record.SaldoRecord {
 	var saldoRecords []*record.SaldoRecord
 	for _, saldo := range saldos {
@@ -123,6 +189,13 @@ func (s *saldoRecordMapper) ToSaldosRecordTrashed(saldos []*db.GetTrashedSaldosR
 	return saldoRecords
 }
 
+// ToSaldoMonthTotalBalance maps a GetMonthlyTotalSaldoBalanceRow database row to a SaldoMonthTotalBalance domain model.
+//
+// Args:
+//   - ss: A pointer to a GetMonthlyTotalSaldoBalanceRow representing the database row.
+//
+// Returns:
+//   - A pointer to a SaldoMonthTotalBalance containing the mapped data, including Month, Year, and TotalBalance.
 func (s *saldoRecordMapper) ToSaldoMonthTotalBalance(ss *db.GetMonthlyTotalSaldoBalanceRow) *record.SaldoMonthTotalBalance {
 	totalBalance := 0
 	if ss.TotalBalance != 0 {
@@ -136,6 +209,13 @@ func (s *saldoRecordMapper) ToSaldoMonthTotalBalance(ss *db.GetMonthlyTotalSaldo
 	}
 }
 
+// ToSaldoMonthTotalBalances maps a slice of GetMonthlyTotalSaldoBalanceRow database rows to a slice of SaldoMonthTotalBalance domain models.
+//
+// Args:
+//   - ss: A slice of pointers to GetMonthlyTotalSaldoBalanceRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to SaldoMonthTotalBalance containing the mapped data, including Month, Year, and TotalBalance.
 func (s *saldoRecordMapper) ToSaldoMonthTotalBalances(ss []*db.GetMonthlyTotalSaldoBalanceRow) []*record.SaldoMonthTotalBalance {
 	var saldoRecords []*record.SaldoMonthTotalBalance
 	for _, saldo := range ss {
@@ -144,6 +224,13 @@ func (s *saldoRecordMapper) ToSaldoMonthTotalBalances(ss []*db.GetMonthlyTotalSa
 	return saldoRecords
 }
 
+// ToSaldoYearTotalBalance maps a GetYearlyTotalSaldoBalancesRow database row to a SaldoYearTotalBalance domain model.
+//
+// Args:
+//   - ss: A pointer to a GetYearlyTotalSaldoBalancesRow representing the database row.
+//
+// Returns:
+//   - A pointer to a SaldoYearTotalBalance containing the mapped data, including Year, and TotalBalance.
 func (s *saldoRecordMapper) ToSaldoYearTotalBalance(ss *db.GetYearlyTotalSaldoBalancesRow) *record.SaldoYearTotalBalance {
 	totalBalance := 0
 	if ss.TotalBalance != 0 {
@@ -156,6 +243,13 @@ func (s *saldoRecordMapper) ToSaldoYearTotalBalance(ss *db.GetYearlyTotalSaldoBa
 	}
 }
 
+// ToSaldoYearTotalBalances maps a slice of GetYearlyTotalSaldoBalancesRow database rows to a slice of SaldoYearTotalBalance domain models.
+//
+// Args:
+//   - ss: A slice of pointers to GetYearlyTotalSaldoBalancesRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to SaldoYearTotalBalance containing the mapped data, including Year, and TotalBalance.
 func (s *saldoRecordMapper) ToSaldoYearTotalBalances(ss []*db.GetYearlyTotalSaldoBalancesRow) []*record.SaldoYearTotalBalance {
 	var saldoRecords []*record.SaldoYearTotalBalance
 	for _, saldo := range ss {
@@ -164,6 +258,13 @@ func (s *saldoRecordMapper) ToSaldoYearTotalBalances(ss []*db.GetYearlyTotalSald
 	return saldoRecords
 }
 
+// ToSaldoMonthBalance maps a MonthlySaldoBalancesRow database row to a SaldoMonthSaldoBalance domain model.
+//
+// Args:
+//   - ss: A pointer to a MonthlySaldoBalancesRow representing the database row.
+//
+// Returns:
+//   - A pointer to a SaldoMonthSaldoBalance containing the mapped data, including Month, and TotalBalance.
 func (s *saldoRecordMapper) ToSaldoMonthBalance(ss *db.GetMonthlySaldoBalancesRow) *record.SaldoMonthSaldoBalance {
 	return &record.SaldoMonthSaldoBalance{
 		Month:        ss.Month,
@@ -171,6 +272,13 @@ func (s *saldoRecordMapper) ToSaldoMonthBalance(ss *db.GetMonthlySaldoBalancesRo
 	}
 }
 
+// ToSaldoMonthBalances maps a slice of MonthlySaldoBalancesRow database rows to a slice of SaldoMonthSaldoBalance domain models.
+//
+// Args:
+//   - ss: A slice of pointers to MonthlySaldoBalancesRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to SaldoMonthSaldoBalance containing the mapped data, including Month, and TotalBalance.
 func (s *saldoRecordMapper) ToSaldoMonthBalances(ss []*db.GetMonthlySaldoBalancesRow) []*record.SaldoMonthSaldoBalance {
 	var saldoRecords []*record.SaldoMonthSaldoBalance
 	for _, saldo := range ss {
@@ -179,6 +287,13 @@ func (s *saldoRecordMapper) ToSaldoMonthBalances(ss []*db.GetMonthlySaldoBalance
 	return saldoRecords
 }
 
+// ToSaldoYearSaldoBalance maps a GetYearlySaldoBalancesRow database row to a SaldoYearSaldoBalance domain model.
+//
+// Args:
+//   - ss: A pointer to a GetYearlySaldoBalancesRow representing the database row.
+//
+// Returns:
+//   - A pointer to a SaldoYearSaldoBalance containing the mapped data, including Year and TotalBalance.
 func (s *saldoRecordMapper) ToSaldoYearSaldoBalance(ss *db.GetYearlySaldoBalancesRow) *record.SaldoYearSaldoBalance {
 	return &record.SaldoYearSaldoBalance{
 		Year:         ss.Year,
@@ -186,6 +301,13 @@ func (s *saldoRecordMapper) ToSaldoYearSaldoBalance(ss *db.GetYearlySaldoBalance
 	}
 }
 
+// ToSaldoYearSaldoBalances maps a slice of GetYearlySaldoBalancesRow database rows to a slice of SaldoYearSaldoBalance domain models.
+//
+// Args:
+//   - ss: A slice of pointers to GetYearlySaldoBalancesRow representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to SaldoYearSaldoBalance containing the mapped data, including Year and TotalBalance.
 func (s *saldoRecordMapper) ToSaldoYearSaldoBalances(ss []*db.GetYearlySaldoBalancesRow) []*record.SaldoYearSaldoBalance {
 	var saldoRecords []*record.SaldoYearSaldoBalance
 	for _, saldo := range ss {

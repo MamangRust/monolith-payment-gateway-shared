@@ -8,10 +8,19 @@ import (
 type cardResponseMapper struct {
 }
 
+// NewCardResponseMapper returns a new cardResponseMapper.
 func NewCardResponseMapper() *cardResponseMapper {
 	return &cardResponseMapper{}
 }
 
+// ToCardResponse converts a single card record into a CardResponse.
+//
+// Args:
+//   - card: A pointer to a CardRecord representing the card record.
+//
+// Returns:
+//   - A pointer to a CardResponse containing the mapped data, including ID, UserID, CardNumber,
+//     CardType, ExpireDate, CVV, CardProvider, CreatedAt, and UpdatedAt.
 func (s *cardResponseMapper) ToCardResponse(card *record.CardRecord) *response.CardResponse {
 	return &response.CardResponse{
 		ID:           card.ID,
@@ -26,6 +35,14 @@ func (s *cardResponseMapper) ToCardResponse(card *record.CardRecord) *response.C
 	}
 }
 
+// ToCardsResponse converts a list of card records into a list of CardResponse.
+//
+// Args:
+//   - cards: A pointer to a slice of CardRecord representing the card records.
+//
+// Returns:
+//   - A pointer to a slice of CardResponse containing the mapped data, including ID, UserID,
+//     CardNumber, CardType, ExpireDate, CVV, CardProvider, CreatedAt, and UpdatedAt.
 func (s *cardResponseMapper) ToCardsResponse(cards []*record.CardRecord) []*response.CardResponse {
 	var response []*response.CardResponse
 
@@ -36,6 +53,14 @@ func (s *cardResponseMapper) ToCardsResponse(cards []*record.CardRecord) []*resp
 	return response
 }
 
+// ToCardResponseDeleteAt converts a CardRecord into a CardResponseDeleteAt.
+//
+// Args:
+//   - card: A pointer to a CardRecord representing the card record.
+//
+// Returns:
+//   - A pointer to a CardResponseDeleteAt containing the mapped data, including ID, UserID,
+//     CardNumber, CardType, ExpireDate, CVV, CardProvider, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *cardResponseMapper) ToCardResponseDeleteAt(card *record.CardRecord) *response.CardResponseDeleteAt {
 	return &response.CardResponseDeleteAt{
 		ID:           card.ID,
