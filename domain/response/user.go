@@ -62,7 +62,7 @@ type ApiResponsePaginationUserDeleteAt struct {
 	Status     string                  `json:"status"`     // Response status
 	Message    string                  `json:"message"`    // Response message
 	Data       []*UserResponseDeleteAt `json:"data"`       // Array of user data with deletion info
-	Pagination PaginationMeta          `json:"pagination"` // Pagination metadata
+	Pagination *PaginationMeta         `json:"pagination"` // Pagination metadata
 }
 
 // ApiResponsePaginationUser is a paginated API response for active users
@@ -70,5 +70,5 @@ type ApiResponsePaginationUser struct {
 	Status     string          `json:"status"`     // Response status
 	Message    string          `json:"message"`    // Response message
 	Data       []*UserResponse `json:"data"`       // Array of user data
-	Pagination PaginationMeta  `json:"pagination"` // Pagination metadata
+	Pagination *PaginationMeta `json:"pagination"` // Pagination metadata
 }

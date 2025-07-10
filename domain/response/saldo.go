@@ -58,9 +58,9 @@ type SaldoYearBalanceResponse struct {
 
 // ApiResponseSaldo is the standard response format for single saldo requests.
 type ApiResponseSaldo struct {
-	Status  string        `json:"status"`  // Response status ("success" or "error")
-	Message string        `json:"message"` // Descriptive message
-	Data    SaldoResponse `json:"data"`    // Saldo data payload
+	Status  string         `json:"status"`  // Response status ("success" or "error")
+	Message string         `json:"message"` // Descriptive message
+	Data    *SaldoResponse `json:"data"`    // Saldo data payload
 }
 
 // ApiResponsesSaldo is the response format for multiple saldo records (non-paginated).

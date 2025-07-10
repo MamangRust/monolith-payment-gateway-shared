@@ -2,7 +2,7 @@
 
 The `shared/` directory contains reusable components, domain models, and utilities shared across all services in the system.
 
-This package helps maintain consistency, reduce duplication, and enforce domain contracts between microservices.
+This package helps maintain consistency, reduce duplication, and enforce domain contracts between monolith.
 
 ## Structure Overview
 

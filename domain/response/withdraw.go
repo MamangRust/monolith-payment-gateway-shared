@@ -139,7 +139,7 @@ type ApiResponsePaginationWithdraw struct {
 	Status     string              `json:"status"`     // Response status
 	Message    string              `json:"message"`    // Response message
 	Data       []*WithdrawResponse `json:"data"`       // Array of withdrawal records
-	Pagination PaginationMeta      `json:"pagination"` // Pagination metadata
+	Pagination *PaginationMeta     `json:"pagination"` // Pagination metadata
 }
 
 // ApiResponsePaginationWithdrawDeleteAt is paginated API response for soft-deleted withdrawals
@@ -147,5 +147,5 @@ type ApiResponsePaginationWithdrawDeleteAt struct {
 	Status     string                      `json:"status"`     // Response status
 	Message    string                      `json:"message"`    // Response message
 	Data       []*WithdrawResponseDeleteAt `json:"data"`       // Array of soft-deleted withdrawals
-	Pagination PaginationMeta              `json:"pagination"` // Pagination metadata
+	Pagination *PaginationMeta             `json:"pagination"` // Pagination metadata
 }
