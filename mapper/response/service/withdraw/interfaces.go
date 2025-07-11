@@ -15,15 +15,15 @@ type WithdrawQueryResponseMapper interface {
 	// Converts multiple WithdrawRecords into a slice of WithdrawResponse.
 	ToWithdrawsResponse(withdraws []*record.WithdrawRecord) []*response.WithdrawResponse
 
-	// Converts a soft-deleted WithdrawRecord into a WithdrawResponseDeleteAt.
-	ToWithdrawResponseDeleteAt(withdraw *record.WithdrawRecord) *response.WithdrawResponseDeleteAt
-
 	// Converts multiple soft-deleted WithdrawRecords into a slice of WithdrawResponseDeleteAt.
 	ToWithdrawsResponseDeleteAt(withdraws []*record.WithdrawRecord) []*response.WithdrawResponseDeleteAt
 }
 
 type WithdrawCommandResponseMapper interface {
 	WithdrawBaseResponseMapper
+
+	// Converts a soft-deleted WithdrawRecord into a WithdrawResponseDeleteAt.
+	ToWithdrawResponseDeleteAt(withdraw *record.WithdrawRecord) *response.WithdrawResponseDeleteAt
 }
 
 type WithdrawStatsStatusResponseMapper interface {

@@ -18,14 +18,16 @@ type MerchantDocumentQueryResponseMapper interface {
 
 	// Maps paginated soft-deleted merchant document responses to an HTTP API response.
 	ToApiResponsePaginationMerchantDocumentDeleteAt(docs *pb.ApiResponsePaginationMerchantDocumentAt) *response.ApiResponsePaginationMerchantDocumentDeleteAt
+}
+
+type MerchantDocumentCommandResponseMapper interface {
+	MerchantDocumentBaseResponseMapper
+
+	ToApiResponseMerchantDocumentDeleteAt(doc *pb.ApiResponseMerchantDocumentDeleteAt) *response.ApiResponseMerchantDocumentDeleteAt
 
 	// Maps all merchant documents to an API-compatible response.
 	ToApiResponseMerchantDocumentAll(resp *pb.ApiResponseMerchantDocumentAll) *response.ApiResponseMerchantDocumentAll
 
 	// Maps a soft-deleted single merchant document response to an API response.
-	ToApiResponseMerchantDocumentDeleteAt(resp *pb.ApiResponseMerchantDocumentDelete) *response.ApiResponseMerchantDocumentDelete
-}
-
-type MerchantDocumentCommandResponseMapper interface {
-	MerchantDocumentBaseResponseMapper
+	ToApiResponseMerchantDocumentDelete(resp *pb.ApiResponseMerchantDocumentDelete) *response.ApiResponseMerchantDocumentDelete
 }

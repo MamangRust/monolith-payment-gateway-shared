@@ -149,6 +149,12 @@ type ApiResponseTransaction struct {
 	Data    *TransactionResponse `json:"data"`    // Single transaction data
 }
 
+type ApiResponseTransactionDeleteAt struct {
+	Status  string                       `json:"status"`
+	Message string                       `json:"message"`
+	Data    *TransactionResponseDeleteAt `json:"data"`
+}
+
 // ApiResponseTransactions is API response for multiple transactions
 type ApiResponseTransactions struct {
 	Status  string                 `json:"status"`  // Response status

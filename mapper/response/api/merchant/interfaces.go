@@ -19,18 +19,20 @@ type MerchantQueryResponseMapper interface {
 	// Maps a paginated list of merchants to a paginated HTTP API response.
 	ToApiResponsesMerchant(merchants *pb.ApiResponsePaginationMerchant) *response.ApiResponsePaginationMerchant
 
-	// Maps a soft-deleted merchant response to an HTTP API format.
-	ToApiResponseMerchantDeleteAt(card *pb.ApiResponseMerchantDelete) *response.ApiResponseMerchantDelete
-
 	// Maps a paginated list of soft-deleted merchants to an HTTP API response.
 	ToApiResponsesMerchantDeleteAt(merchants *pb.ApiResponsePaginationMerchantDeleteAt) *response.ApiResponsePaginationMerchantDeleteAt
-
-	// Maps a response containing all merchants to an HTTP API format.
-	ToApiResponseMerchantAll(card *pb.ApiResponseMerchantAll) *response.ApiResponseMerchantAll
 }
 
 type MerchantCommandResponseMapper interface {
 	MerchantBaseResponseMapper
+
+	// Maps a soft-deleted merchant response to an HTTP API format.
+	ToApiResponseMerchantDeleteAt(card *pb.ApiResponseMerchantDeleteAt) *response.ApiResponseMerchantDeleteAt
+
+	// Maps a response containing all merchants to an HTTP API format.
+	ToApiResponseMerchantAll(card *pb.ApiResponseMerchantAll) *response.ApiResponseMerchantAll
+
+	ToApiResponseMerchantDelete(card *pb.ApiResponseMerchantDelete) *response.ApiResponseMerchantDelete
 }
 
 type MerchantTransactionResponseMapper interface {

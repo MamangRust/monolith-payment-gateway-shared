@@ -26,6 +26,45 @@ func (m *transferCommandResponseMapper) ToApiResponseTransfer(pbResponse *pb.Api
 	}
 }
 
+func (m *transferCommandResponseMapper) ToApiResponseTransferDeleteAt(pbResponse *pb.ApiResponseTransferDeleteAt) *response.ApiResponseTransferDeleteAt {
+	return &response.ApiResponseTransferDeleteAt{
+		Status:  pbResponse.Status,
+		Message: pbResponse.Message,
+		Data:    m.mapResponseTransferDeleteAt(pbResponse.Data),
+	}
+}
+
+// ToApiResponseTransferDelete maps a gRPC transfer delete response to an HTTP API response.
+// It constructs an ApiResponseTransferDelete by copying the status and message fields from
+// the gRPC response.
+//
+// Args:
+//   - pbResponse: A pointer to a pb.ApiResponseTransferDelete containing the gRPC response data.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseTransferDelete with the mapped status and message.
+func (m *transferCommandResponseMapper) ToApiResponseTransferDelete(pbResponse *pb.ApiResponseTransferDelete) *response.ApiResponseTransferDelete {
+	return &response.ApiResponseTransferDelete{
+		Status:  pbResponse.Status,
+		Message: pbResponse.Message,
+	}
+}
+
+// ToApiResponseTransferAll maps a gRPC response containing all transfer records into an HTTP API response.
+// It constructs an ApiResponseTransferAll by copying the status and message fields from the gRPC response.
+//
+// Args:
+//   - pbResponse: A pointer to a pb.ApiResponseTransferAll containing the gRPC response data.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseTransferAll with the mapped status and message.
+func (m *transferCommandResponseMapper) ToApiResponseTransferAll(pbResponse *pb.ApiResponseTransferAll) *response.ApiResponseTransferAll {
+	return &response.ApiResponseTransferAll{
+		Status:  pbResponse.Status,
+		Message: pbResponse.Message,
+	}
+}
+
 // mapResponseTransfer maps a TransferResponse from a protobuf message to a response.TransferResponse.
 //
 // Args:
@@ -43,5 +82,31 @@ func (t *transferCommandResponseMapper) mapResponseTransfer(transfer *pb.Transfe
 		TransferTime:   transfer.TransferTime,
 		CreatedAt:      transfer.CreatedAt,
 		UpdatedAt:      transfer.UpdatedAt,
+	}
+}
+
+// mapResponseTransferDeleteAt maps a TransferResponseDeleteAt from a protobuf message to a response.TransferResponseDeleteAt.
+//
+// Args:
+//   - transfer: A pointer to a pb.TransferResponseDeleteAt containing the data to be mapped.
+//
+// Returns:
+//   - A pointer to a response.TransferResponseDeleteAt containing the mapped data.
+func (t *transferCommandResponseMapper) mapResponseTransferDeleteAt(transfer *pb.TransferResponseDeleteAt) *response.TransferResponseDeleteAt {
+	var deletedAt string
+	if transfer.DeletedAt != nil {
+		deletedAt = transfer.DeletedAt.Value
+	}
+
+	return &response.TransferResponseDeleteAt{
+		ID:             int(transfer.Id),
+		TransferNo:     transfer.TransferNo,
+		TransferFrom:   transfer.TransferFrom,
+		TransferTo:     transfer.TransferTo,
+		TransferAmount: int(transfer.TransferAmount),
+		TransferTime:   transfer.TransferTime,
+		CreatedAt:      transfer.CreatedAt,
+		UpdatedAt:      transfer.UpdatedAt,
+		DeletedAt:      &deletedAt,
 	}
 }

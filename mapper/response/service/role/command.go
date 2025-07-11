@@ -32,3 +32,22 @@ func (s *roleCommandResponseMapper) ToRoleResponse(role *record.RoleRecord) *res
 		UpdatedAt: role.UpdatedAt,
 	}
 }
+
+// ToRoleResponseDeleteAt converts a RoleRecord with deletion information
+// into a RoleResponseDeleteAt structure.
+//
+// Args:
+//   - role: A pointer to the RoleRecord to be mapped.
+//
+// Returns:
+//   - A pointer to a RoleResponseDeleteAt containing the mapped data, with fields ID, Name,
+//     CreatedAt, UpdatedAt, and DeletedAt extracted from the RoleRecord.
+func (s *roleCommandResponseMapper) ToRoleResponseDeleteAt(role *record.RoleRecord) *response.RoleResponseDeleteAt {
+	return &response.RoleResponseDeleteAt{
+		ID:        role.ID,
+		Name:      role.Name,
+		CreatedAt: role.CreatedAt,
+		UpdatedAt: role.UpdatedAt,
+		DeletedAt: role.DeletedAt,
+	}
+}

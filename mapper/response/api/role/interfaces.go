@@ -23,19 +23,21 @@ type RoleQueryResponseMapper interface {
 	// into a paginated HTTP API response format.
 	ToApiResponsePaginationRole(pbResponse *pb.ApiResponsePaginationRole) *response.ApiResponsePaginationRole
 
-	// ToApiResponseRoleDelete maps a gRPC delete role response
-	// into an HTTP API response format.
-	ToApiResponseRoleDelete(pbResponse *pb.ApiResponseRoleDelete) *response.ApiResponseRoleDelete
-
 	// ToApiResponsePaginationRoleDeleteAt maps a paginated gRPC response
 	// of soft-deleted roles into a paginated HTTP API response format.
 	ToApiResponsePaginationRoleDeleteAt(pbResponse *pb.ApiResponsePaginationRoleDeleteAt) *response.ApiResponsePaginationRoleDeleteAt
-
-	// ToApiResponseRoleAll maps a gRPC response containing all roles
-	// into an HTTP API response format.
-	ToApiResponseRoleAll(pbResponse *pb.ApiResponseRoleAll) *response.ApiResponseRoleAll
 }
 
 type RoleCommandResponseMapper interface {
 	RoleBaseResponseMapper
+
+	ToApiResponseRoleDeleteAt(pbResponse *pb.ApiResponseRoleDeleteAt) *response.ApiResponseRoleDeleteAt
+
+	// ToApiResponseRoleDelete maps a gRPC delete role response
+	// into an HTTP API response format.
+	ToApiResponseRoleDelete(pbResponse *pb.ApiResponseRoleDelete) *response.ApiResponseRoleDelete
+
+	// ToApiResponseRoleAll maps a gRPC response containing all roles
+	// into an HTTP API response format.
+	ToApiResponseRoleAll(pbResponse *pb.ApiResponseRoleAll) *response.ApiResponseRoleAll
 }

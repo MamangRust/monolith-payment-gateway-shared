@@ -149,6 +149,12 @@ type ApiResponseMerchant struct {
 	Data    *MerchantResponse `json:"data"`    // Single merchant data
 }
 
+type ApiResponseMerchantDeleteAt struct {
+	Status  string                    `json:"status"`  // Response status
+	Message string                    `json:"message"` // Descriptive message
+	Data    *MerchantResponseDeleteAt `json:"data"`
+}
+
 // ApiResponseMerchantDelete wraps merchant deletion responses.
 type ApiResponseMerchantDelete struct {
 	Status  string `json:"status"`  // Operation status

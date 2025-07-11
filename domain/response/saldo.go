@@ -63,6 +63,12 @@ type ApiResponseSaldo struct {
 	Data    *SaldoResponse `json:"data"`    // Saldo data payload
 }
 
+type ApiResponseSaldoDeleteAt struct {
+	Status  string                 `json:"status"`  // Response status ("success" or "error")
+	Message string                 `json:"message"` // Descriptive message
+	Data    *SaldoResponseDeleteAt `json:"data"`    // Saldo data payload
+}
+
 // ApiResponsesSaldo is the response format for multiple saldo records (non-paginated).
 type ApiResponsesSaldo struct {
 	Status  string           `json:"status"`  // Response status

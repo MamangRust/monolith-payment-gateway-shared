@@ -17,21 +17,21 @@ type CardQueryResponseMapper interface {
 	// to a paginated HTTP API response.
 	ToApiResponsesCard(cards *pb.ApiResponsePaginationCard) *response.ApiResponsePaginationCard
 
-	// ToApiResponseCardDeleteAt maps a soft-deleted gRPC card response
-	// to an HTTP API response format.
-	ToApiResponseCardDeleteAt(card *pb.ApiResponseCardDelete) *response.ApiResponseCardDelete
-
 	// ToApiResponsesCardDeletedAt maps a paginated list of soft-deleted gRPC cards
 	// to a paginated HTTP API response.
 	ToApiResponsesCardDeletedAt(cards *pb.ApiResponsePaginationCardDeleteAt) *response.ApiResponsePaginationCardDeleteAt
-
-	// ToApiResponseCardAll maps a gRPC response containing all cards
-	// to an HTTP API response format.
-	ToApiResponseCardAll(card *pb.ApiResponseCardAll) *response.ApiResponseCardAll
 }
 
 type CardCommandResponseMapper interface {
 	CardBaseResponseMapper
+
+	ToApiResponseCardDeleteAt(card *pb.ApiResponseCardDeleteAt) *response.ApiResponseCardDeleteAt
+
+	ToApiResponseCardDelete(card *pb.ApiResponseCardDelete) *response.ApiResponseCardDelete
+
+	// ToApiResponseCardAll maps a gRPC response containing all cards
+	// to an HTTP API response format.
+	ToApiResponseCardAll(card *pb.ApiResponseCardAll) *response.ApiResponseCardAll
 }
 
 type CardDashboardResponseMapper interface {

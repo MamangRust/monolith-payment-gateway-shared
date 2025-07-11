@@ -18,9 +18,6 @@ type TransferQueryResponseMapper interface {
 	// Converts multiple transfer records into a slice of TransferResponse.
 	ToTransfersResponse(transfers []*record.TransferRecord) []*response.TransferResponse
 
-	// Converts a soft-deleted transfer record into a TransferResponseDeleteAt.
-	ToTransferResponseDeleteAt(transfer *record.TransferRecord) *response.TransferResponseDeleteAt
-
 	// Converts multiple soft-deleted transfer records into a slice of TransferResponseDeleteAt.
 	ToTransfersResponseDeleteAt(transfers []*record.TransferRecord) []*response.TransferResponseDeleteAt
 }
@@ -28,6 +25,9 @@ type TransferQueryResponseMapper interface {
 // TransferCommandResponseMapper provides methods to map TransferRecord domain models to TransferResponse API-compatible response types.
 type TransferCommandResponseMapper interface {
 	TransferBaseResponseMapper
+
+	// Converts a soft-deleted transfer record into a TransferResponseDeleteAt.
+	ToTransferResponseDeleteAt(transfer *record.TransferRecord) *response.TransferResponseDeleteAt
 }
 
 type TransferStatsStatusResponseMapper interface {

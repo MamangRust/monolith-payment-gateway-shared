@@ -46,19 +46,6 @@ func (m *transactionQueryResponseMapper) ToApiResponseTransactions(pbResponse *p
 	}
 }
 
-// ToApiResponseTransactionDelete maps a single gRPC transaction delete response to an HTTP API response.
-//
-// Args:
-//   - pbResponse: A pointer to a pb.ApiResponseTransactionDelete containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseTransactionDelete containing the mapped data, including status and message.
-func (m *transactionQueryResponseMapper) ToApiResponseTransactionDelete(pbResponse *pb.ApiResponseTransactionDelete) *response.ApiResponseTransactionDelete {
-	return &response.ApiResponseTransactionDelete{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
 // ToApiResponsePaginationTransaction maps a paginated gRPC response of transactions to an HTTP API response.
 // It constructs an ApiResponsePaginationTransaction by copying the status and message fields,
@@ -99,20 +86,6 @@ func (m *transactionQueryResponseMapper) ToApiResponsePaginationTransactionDelet
 		Message:    pbResponse.Message,
 		Data:       m.ToResponsesTransactionDeleteAt(pbResponse.Data),
 		Pagination: apimapper.MapPaginationMeta(pbResponse.Pagination),
-	}
-}
-
-// ToApiResponseTransactionAll maps a single gRPC transaction all response to an HTTP API response.
-//
-// Args:
-//   - pbResponse: A pointer to a pb.ApiResponseTransactionAll containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseTransactionAll containing the mapped data, including status and message.
-func (m *transactionQueryResponseMapper) ToApiResponseTransactionAll(pbResponse *pb.ApiResponseTransactionAll) *response.ApiResponseTransactionAll {
-	return &response.ApiResponseTransactionAll{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
 	}
 }
 

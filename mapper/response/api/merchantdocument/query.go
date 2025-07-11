@@ -74,23 +74,6 @@ func (m *merchantDocumentQueryResponseMapper) ToApiResponsePaginationMerchantDoc
 	}
 }
 
-// ToApiResponseMerchantDocumentAll maps a gRPC response containing all merchant documents
-// to an HTTP API response. It constructs an ApiResponseMerchantDocumentAll by copying
-// the status and message fields from the gRPC response.
-//
-// Args:
-//
-//	resp: A pointer to a pb.ApiResponseMerchantDocumentAll containing the gRPC response data.
-//
-// Returns:
-//
-//	A pointer to a response.ApiResponseMerchantDocumentAll with the status and message set.
-func (m *merchantDocumentQueryResponseMapper) ToApiResponseMerchantDocumentAll(resp *pb.ApiResponseMerchantDocumentAll) *response.ApiResponseMerchantDocumentAll {
-	return &response.ApiResponseMerchantDocumentAll{
-		Status:  resp.Status,
-		Message: resp.Message,
-	}
-}
 
 // ToApiResponseMerchantDocumentDeleteAt maps a soft-deleted gRPC merchant document response
 // to an HTTP API response. It constructs an ApiResponseMerchantDocumentDelete by copying
@@ -103,7 +86,7 @@ func (m *merchantDocumentQueryResponseMapper) ToApiResponseMerchantDocumentAll(r
 // Returns:
 //
 //	A pointer to a response.ApiResponseMerchantDocumentDelete with the status and message set.
-func (m *merchantDocumentQueryResponseMapper) ToApiResponseMerchantDocumentDeleteAt(resp *pb.ApiResponseMerchantDocumentDelete) *response.ApiResponseMerchantDocumentDelete {
+func (m *merchantDocumentQueryResponseMapper) ToApiResponseMerchantDocumentDelete(resp *pb.ApiResponseMerchantDocumentDelete) *response.ApiResponseMerchantDocumentDelete {
 	return &response.ApiResponseMerchantDocumentDelete{
 		Status:  resp.Status,
 		Message: resp.Message,

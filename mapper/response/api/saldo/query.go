@@ -71,38 +71,7 @@ func (s *saldoQueryResponseMapper) ToApiResponsePaginationSaldoDeleteAt(pbRespon
 	}
 }
 
-// ToApiResponseSaldoDelete maps a gRPC response containing a deleted saldo record to an HTTP API response.
-// It constructs an ApiResponseSaldoDelete by copying the status and message fields from the gRPC response.
-//
-// Args:
-//
-//	pbResponse: A pointer to a pb.ApiResponseSaldoDelete containing the gRPC response data.
-//
-// Returns:
-//
-//	A pointer to a response.ApiResponseSaldoDelete with mapped data.
-func (s *saldoQueryResponseMapper) ToApiResponseSaldoDelete(pbResponse *pb.ApiResponseSaldoDelete) *response.ApiResponseSaldoDelete {
-	return &response.ApiResponseSaldoDelete{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
-// ToApiResponseSaldoAll maps a gRPC response containing all saldo records to an HTTP API response. It constructs an ApiResponseSaldoAll by copying the status and message fields from the gRPC response.
-//
-// Args:
-//
-//	pbResponse: A pointer to a pb.ApiResponseSaldoAll containing the gRPC response data.
-//
-// Returns:
-//
-//	A pointer to a response.ApiResponseSaldoAll with mapped data.
-func (s *saldoQueryResponseMapper) ToApiResponseSaldoAll(pbResponse *pb.ApiResponseSaldoAll) *response.ApiResponseSaldoAll {
-	return &response.ApiResponseSaldoAll{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
 // mapResponseSaldo maps a gRPC SaldoResponse to an HTTP API SaldoResponse.
 // It constructs a SaldoResponse by converting and copying relevant fields

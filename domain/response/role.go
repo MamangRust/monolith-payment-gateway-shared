@@ -48,6 +48,12 @@ type ApiResponseRole struct {
 	Data    *RoleResponse `json:"data"`    // Role data payload
 }
 
+type ApiResponseRoleDeleteAt struct {
+	Status  string                `json:"status"`
+	Message string                `json:"message"`
+	Data    *RoleResponseDeleteAt `json:"data"`
+}
+
 // ApiResponsesRole is the response format for multiple role listings (non-paginated).
 type ApiResponsesRole struct {
 	Status  string          `json:"status"`  // Response status

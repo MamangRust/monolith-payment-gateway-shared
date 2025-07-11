@@ -84,40 +84,7 @@ func (m *merchantQueryResponseMapper) ToApiResponsesMerchantDeleteAt(merchants *
 	}
 }
 
-// ToApiResponseMerchantAll maps a gRPC response containing all merchants to an HTTP API response.
-// It constructs an ApiResponseMerchantAll by copying the status and message fields from the
-// gRPC response.
-//
-// Args:
-//
-//	card: A pointer to a pb.ApiResponseMerchantAll containing the gRPC response data.
-//
-// Returns:
-//
-//	A pointer to a response.ApiResponseMerchantAll with the status and message set.
-func (s *merchantQueryResponseMapper) ToApiResponseMerchantAll(card *pb.ApiResponseMerchantAll) *response.ApiResponseMerchantAll {
-	return &response.ApiResponseMerchantAll{
-		Status:  card.Status,
-		Message: card.Message,
-	}
-}
 
-// ToApiResponseMerchantDeleteAt maps a gRPC response for a deleted merchant to an HTTP API response. It
-// constructs an ApiResponseMerchantDelete by copying the status and message fields.
-//
-// Args:
-//
-//	card: A pointer to a pb.ApiResponseMerchantDelete containing the gRPC response data.
-//
-// Returns:
-//
-//	A pointer to a response.ApiResponseMerchantDelete with mapped data.
-func (s *merchantQueryResponseMapper) ToApiResponseMerchantDeleteAt(card *pb.ApiResponseMerchantDelete) *response.ApiResponseMerchantDelete {
-	return &response.ApiResponseMerchantDelete{
-		Status:  card.Status,
-		Message: card.Message,
-	}
-}
 
 // mapMerchantResponse maps a gRPC MerchantResponse to an HTTP API response. It
 // constructs an ApiResponseMerchant by copying the status, message, ID, name,

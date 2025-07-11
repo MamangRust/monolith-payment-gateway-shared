@@ -122,6 +122,12 @@ type ApiResponseWithdraw struct {
 	Data    *WithdrawResponse `json:"data"`    // Single withdrawal record
 }
 
+type ApiResponseWithdrawDeleteAt struct {
+	Status  string                    `json:"status"`  // Response status
+	Message string                    `json:"message"` // Response message
+	Data    *WithdrawResponseDeleteAt `json:"data"`
+}
+
 // ApiResponseWithdrawDelete is API response for withdrawal deletion
 type ApiResponseWithdrawDelete struct {
 	Status  string `json:"status"`  // Response status

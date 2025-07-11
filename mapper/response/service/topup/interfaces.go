@@ -16,15 +16,15 @@ type TopupQueryResponseMapper interface {
 	// Converts a slice of TopupRecord into a slice of TopupResponse.
 	ToTopupResponses(topups []*record.TopupRecord) []*response.TopupResponse
 
-	// Converts a soft-deleted TopupRecord into a TopupResponseDeleteAt.
-	ToTopupResponseDeleteAt(topup *record.TopupRecord) *response.TopupResponseDeleteAt
-
 	// Converts multiple soft-deleted TopupRecord into a slice of TopupResponseDeleteAt.
 	ToTopupResponsesDeleteAt(topups []*record.TopupRecord) []*response.TopupResponseDeleteAt
 }
 
 type TopupCommandResponseMapper interface {
 	TopupBaseResponseMapper
+
+	// Converts a soft-deleted TopupRecord into a TopupResponseDeleteAt.
+	ToTopupResponseDeleteAt(topup *record.TopupRecord) *response.TopupResponseDeleteAt
 }
 
 type TopupStatsStatusResponseMapper interface {

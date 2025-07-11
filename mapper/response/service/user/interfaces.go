@@ -18,9 +18,6 @@ type UserQueryResponseMapper interface {
 	// Converts a list of user records into a list of UserResponse.
 	ToUsersResponse(users []*record.UserRecord) []*response.UserResponse
 
-	// Converts a soft-deleted user record into a UserResponseDeleteAt.
-	ToUserResponseDeleteAt(user *record.UserRecord) *response.UserResponseDeleteAt
-
 	// Converts a list of soft-deleted user records into a list of UserResponseDeleteAt.
 	ToUsersResponseDeleteAt(users []*record.UserRecord) []*response.UserResponseDeleteAt
 }
@@ -28,4 +25,7 @@ type UserQueryResponseMapper interface {
 // UserCommandResponseMapper provides methods to map UserRecord domain models to UserResponse API-compatible response types.
 type UserCommandResponseMapper interface {
 	UserBaseResponseMapper
+
+	// Converts a soft-deleted user record into a UserResponseDeleteAt.
+	ToUserResponseDeleteAt(user *record.UserRecord) *response.UserResponseDeleteAt
 }

@@ -18,6 +18,10 @@ type UserQueryResponseMapper interface {
 
 	// Converts paginated soft-deleted users into an API response.
 	ToApiResponsePaginationUserDeleteAt(pbResponse *pb.ApiResponsePaginationUserDeleteAt) *response.ApiResponsePaginationUserDeleteAt
+}
+
+type UserCommandResponseMapper interface {
+	UserBaseResponseMapper
 
 	// Converts a soft-deleted user response into an API response.
 	ToApiResponseUserDeleteAt(pbResponse *pb.ApiResponseUserDeleteAt) *response.ApiResponseUserDeleteAt
@@ -27,8 +31,4 @@ type UserQueryResponseMapper interface {
 
 	// Converts all user records into an API response.
 	ToApiResponseUserAll(pbResponse *pb.ApiResponseUserAll) *response.ApiResponseUserAll
-}
-
-type UserCommandResponseMapper interface {
-	UserBaseResponseMapper
 }

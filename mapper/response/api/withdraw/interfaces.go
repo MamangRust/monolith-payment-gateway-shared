@@ -16,12 +16,6 @@ type WithdrawQueryResponseMapper interface {
 	// Converts a list of withdraw responses into a grouped API response.
 	ToApiResponsesWithdraw(pbResponse *pb.ApiResponsesWithdraw) *response.ApiResponsesWithdraw
 
-	// Converts a permanently deleted withdraw response into an API response.
-	ToApiResponseWithdrawDelete(pbResponse *pb.ApiResponseWithdrawDelete) *response.ApiResponseWithdrawDelete
-
-	// Converts all withdraw records into an API response.
-	ToApiResponseWithdrawAll(pbResponse *pb.ApiResponseWithdrawAll) *response.ApiResponseWithdrawAll
-
 	// Converts paginated withdraw records into an API response.
 	ToApiResponsePaginationWithdraw(pbResponse *pb.ApiResponsePaginationWithdraw) *response.ApiResponsePaginationWithdraw
 
@@ -31,6 +25,14 @@ type WithdrawQueryResponseMapper interface {
 
 type WithdrawCommandResponseMapper interface {
 	WithdrawBaseResponseMapper
+
+	ToApiResponseWithdrawDeleteAt(pbResponse *pb.ApiResponseWithdrawDeleteAt) *response.ApiResponseWithdrawDeleteAt
+
+	// Converts a permanently deleted withdraw response into an API response.
+	ToApiResponseWithdrawDelete(pbResponse *pb.ApiResponseWithdrawDelete) *response.ApiResponseWithdrawDelete
+
+	// Converts all withdraw records into an API response.
+	ToApiResponseWithdrawAll(pbResponse *pb.ApiResponseWithdrawAll) *response.ApiResponseWithdrawAll
 }
 
 type WithdrawStatsStatusResponseMapper interface {

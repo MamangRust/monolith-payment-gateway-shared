@@ -10,21 +10,21 @@ type MerchantBaseResponseMapper interface {
 	ToMerchantResponse(merchant *record.MerchantRecord) *response.MerchantResponse
 }
 
-type MerchantCommandResponseMapper interface {
-	MerchantBaseResponseMapper
-}
-
 type MerchantQueryResponseMapper interface {
 	MerchantBaseResponseMapper
 
 	// Converts multiple MerchantRecords to a slice of MerchantResponse.
 	ToMerchantsResponse(merchants []*record.MerchantRecord) []*response.MerchantResponse
 
-	// Converts a soft-deleted MerchantRecord into a MerchantResponseDeleteAt.
-	ToMerchantResponseDeleteAt(merchant *record.MerchantRecord) *response.MerchantResponseDeleteAt
-
 	// Converts multiple soft-deleted MerchantRecords into a slice of MerchantResponseDeleteAt.
 	ToMerchantsResponseDeleteAt(merchants []*record.MerchantRecord) []*response.MerchantResponseDeleteAt
+}
+
+type MerchantCommandResponseMapper interface {
+	MerchantBaseResponseMapper
+
+	// Converts a soft-deleted MerchantRecord into a MerchantResponseDeleteAt.
+	ToMerchantResponseDeleteAt(merchant *record.MerchantRecord) *response.MerchantResponseDeleteAt
 }
 
 type MerchantTransactionResponseMapper interface {

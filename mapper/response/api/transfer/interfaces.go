@@ -16,12 +16,6 @@ type TransferQueryResponseMapper interface {
 	// Converts a list of transfers into a grouped API response.
 	ToApiResponseTransfers(pbResponse *pb.ApiResponseTransfers) *response.ApiResponseTransfers
 
-	// Converts a deleted transfer response into an API response.
-	ToApiResponseTransferDelete(pbResponse *pb.ApiResponseTransferDelete) *response.ApiResponseTransferDelete
-
-	// Converts all transfer records into an API response.
-	ToApiResponseTransferAll(pbResponse *pb.ApiResponseTransferAll) *response.ApiResponseTransferAll
-
 	// Converts paginated transfer records into an API response.
 	ToApiResponsePaginationTransfer(pbResponse *pb.ApiResponsePaginationTransfer) *response.ApiResponsePaginationTransfer
 
@@ -31,6 +25,14 @@ type TransferQueryResponseMapper interface {
 
 type TransferCommandResponseMapper interface {
 	TransferBaseResponseMapper
+
+	ToApiResponseTransferDeleteAt(pbResponse *pb.ApiResponseTransferDeleteAt) *response.ApiResponseTransferDeleteAt
+
+	// Converts a deleted transfer response into an API response.
+	ToApiResponseTransferDelete(pbResponse *pb.ApiResponseTransferDelete) *response.ApiResponseTransferDelete
+
+	// Converts all transfer records into an API response.
+	ToApiResponseTransferAll(pbResponse *pb.ApiResponseTransferAll) *response.ApiResponseTransferAll
 }
 
 type TransferStatsStatusResponseMapper interface {

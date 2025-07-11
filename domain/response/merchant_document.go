@@ -42,6 +42,12 @@ type ApiResponseMerchantDocument struct {
 	Data    *MerchantDocumentResponse `json:"data"`    // Single document response
 }
 
+type ApiResponseMerchantDocumentDeleteAt struct {
+	Status  string                            `json:"status"`  // Response status
+	Message string                            `json:"message"` // Descriptive message
+	Data    *MerchantDocumentResponseDeleteAt `json:"data"`    // Single document response
+}
+
 // ApiResponseMerchantDocumentDelete is the response format for document deletion operations.
 type ApiResponseMerchantDocumentDelete struct {
 	Status  string `json:"status"`  // Operation status

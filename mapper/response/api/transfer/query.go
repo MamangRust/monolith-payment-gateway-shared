@@ -45,36 +45,7 @@ func (m *transferQueryResponseMapper) ToApiResponseTransfers(pbResponse *pb.ApiR
 	}
 }
 
-// ToApiResponseTransferDelete maps a gRPC transfer delete response to an HTTP API response.
-// It constructs an ApiResponseTransferDelete by copying the status and message fields from
-// the gRPC response.
-//
-// Args:
-//   - pbResponse: A pointer to a pb.ApiResponseTransferDelete containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseTransferDelete with the mapped status and message.
-func (m *transferQueryResponseMapper) ToApiResponseTransferDelete(pbResponse *pb.ApiResponseTransferDelete) *response.ApiResponseTransferDelete {
-	return &response.ApiResponseTransferDelete{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
-// ToApiResponseTransferAll maps a gRPC response containing all transfer records into an HTTP API response.
-// It constructs an ApiResponseTransferAll by copying the status and message fields from the gRPC response.
-//
-// Args:
-//   - pbResponse: A pointer to a pb.ApiResponseTransferAll containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseTransferAll with the mapped status and message.
-func (m *transferQueryResponseMapper) ToApiResponseTransferAll(pbResponse *pb.ApiResponseTransferAll) *response.ApiResponseTransferAll {
-	return &response.ApiResponseTransferAll{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
 // ToApiResponsePaginationTransfer maps a pagination meta, status, message, and a list of TransferResponse
 // to a response.ApiResponsePaginationTransfer proto message.

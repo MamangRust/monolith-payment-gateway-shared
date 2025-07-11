@@ -18,7 +18,6 @@ type CardBaseResponseMapper interface {
 	ToCardResponse(card *record.CardRecord) *response.CardResponse
 }
 
-// TODO: review dulu
 // CardQueryResponseMapper provides methods to map CardRecord domain models to CardResponse and CardResponseDeleteAt
 type CardQueryResponseMapper interface {
 	CardBaseResponseMapper

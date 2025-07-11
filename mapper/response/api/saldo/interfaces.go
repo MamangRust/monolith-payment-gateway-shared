@@ -13,12 +13,6 @@ type SaldoBaseResponseMapper interface {
 type SaldoQueryResponseMapper interface {
 	SaldoBaseResponseMapper
 
-	// Converts a deleted saldo response into an API response.
-	ToApiResponseSaldoDelete(pbResponse *pb.ApiResponseSaldoDelete) *response.ApiResponseSaldoDelete
-
-	// Converts all saldo records into a comprehensive API response.
-	ToApiResponseSaldoAll(pbResponse *pb.ApiResponseSaldoAll) *response.ApiResponseSaldoAll
-
 	// Converts paginated saldo responses into an API response.
 	ToApiResponsePaginationSaldo(pbResponse *pb.ApiResponsePaginationSaldo) *response.ApiResponsePaginationSaldo
 
@@ -28,6 +22,14 @@ type SaldoQueryResponseMapper interface {
 
 type SaldoCommandResponseMapper interface {
 	SaldoBaseResponseMapper
+
+	ToApiResponseSaldoDeleteAt(pbResponse *pb.ApiResponseSaldoDeleteAt) *response.ApiResponseSaldoDeleteAt
+
+	// Converts a deleted saldo response into an API response.
+	ToApiResponseSaldoDelete(pbResponse *pb.ApiResponseSaldoDelete) *response.ApiResponseSaldoDelete
+
+	// Converts all saldo records into a comprehensive API response.
+	ToApiResponseSaldoAll(pbResponse *pb.ApiResponseSaldoAll) *response.ApiResponseSaldoAll
 }
 
 type SaldoStatsTotalResponseMapper interface {

@@ -85,6 +85,12 @@ type ApiResponseCard struct {
 	Data    *CardResponse `json:"data"`    // Card data payload
 }
 
+type ApiResponseCardDeleteAt struct {
+	Status  string                `json:"status"`  // Response status ("success" or "error")
+	Message string                `json:"message"` // Descriptive message
+	Data    *CardResponseDeleteAt `json:"data"`    // Card data payload
+}
+
 // ApiResponseCardDelete is the response format for card deletion operations.
 type ApiResponseCardDelete struct {
 	Status  string `json:"status"`  // Operation status

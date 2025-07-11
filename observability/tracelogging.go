@@ -14,6 +14,22 @@ import (
 
 // TraceLoggerObservability provides tracing, logging, and request metrics.
 type TraceLoggerObservability interface {
+	// StartTracingAndLogging initializes tracing and logging for a given method.
+	// It starts a span with optional attributes and logs the method start.
+	// It returns the context with the span, the span, a function to end the span and record metrics,
+	// the initial status of the operation, and a function to log success messages.
+	//
+	// Parameters:
+	//   - ctx: The context for the traced method.
+	//   - method: The name of the method to trace and log.
+	//   - attrs: Optional attributes to add to the span.
+	//
+	// Returns:
+	//   - context.Context: The context with the span.
+	//   - trace.Span: The OpenTelemetry span for the traced method.
+	//   - func(string): Function to end the span with a given status, recording metrics.
+	//   - string: Initial status of the operation, defaulting to "success".
+	//   - func(string, ...zap.Field): Function to log success messages with optional fields.
 	StartTracingAndLogging(ctx context.Context, method string, attrs ...attribute.KeyValue) (
 		context.Context,
 		trace.Span,

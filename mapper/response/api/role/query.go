@@ -62,18 +62,7 @@ func (s *roleQueryResponseMapper) ToApiResponsePaginationRole(pbResponse *pb.Api
 	}
 }
 
-// ToApiResponseRoleDelete maps a gRPC delete role response to an HTTP API response format.
-// Args:
-//   - pbResponse: A pointer to a pb.ApiResponseRoleDelete containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseRoleDelete containing the mapped status and message.
-func (s *roleQueryResponseMapper) ToApiResponseRoleDelete(pbResponse *pb.ApiResponseRoleDelete) *response.ApiResponseRoleDelete {
-	return &response.ApiResponseRoleDelete{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
+
 
 // ToApiResponsePaginationRoleDeleteAt maps a paginated gRPC response of soft-deleted roles
 // into a paginated HTTP API response format.
@@ -93,18 +82,7 @@ func (s *roleQueryResponseMapper) ToApiResponsePaginationRoleDeleteAt(pbResponse
 	}
 }
 
-// ToApiResponseRoleAll maps a gRPC response containing all roles to an HTTP API response format.
-// Args:
-//   - pbResponse: A pointer to a pb.ApiResponseRoleAll containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseRoleAll containing the mapped data, including status and message.
-func (s *roleQueryResponseMapper) ToApiResponseRoleAll(pbResponse *pb.ApiResponseRoleAll) *response.ApiResponseRoleAll {
-	return &response.ApiResponseRoleAll{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
+
 
 // mapResponseRole maps a gRPC RoleResponse to an HTTP-compatible RoleResponse.
 //

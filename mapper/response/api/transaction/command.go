@@ -27,6 +27,42 @@ func (m *transactionCommandResponseMapper) ToApiResponseTransaction(pbResponse *
 	}
 }
 
+func (m *transactionCommandResponseMapper) ToApiResponseTransactionDeleteAt(pbResponse *pb.ApiResponseTransactionDeleteAt) *response.ApiResponseTransactionDeleteAt {
+	return &response.ApiResponseTransactionDeleteAt{
+		Status:  pbResponse.Status,
+		Message: pbResponse.Message,
+		Data:    m.mapResponseTransactionDeleteAt(pbResponse.Data),
+	}
+}
+
+// ToApiResponseTransactionAll maps a single gRPC transaction all response to an HTTP API response.
+//
+// Args:
+//   - pbResponse: A pointer to a pb.ApiResponseTransactionAll containing the gRPC response data.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseTransactionAll containing the mapped data, including status and message.
+func (m *transactionCommandResponseMapper) ToApiResponseTransactionAll(pbResponse *pb.ApiResponseTransactionAll) *response.ApiResponseTransactionAll {
+	return &response.ApiResponseTransactionAll{
+		Status:  pbResponse.Status,
+		Message: pbResponse.Message,
+	}
+}
+
+// ToApiResponseTransactionDelete maps a single gRPC transaction delete response to an HTTP API response.
+//
+// Args:
+//   - pbResponse: A pointer to a pb.ApiResponseTransactionDelete containing the gRPC response data.
+//
+// Returns:
+//   - A pointer to a response.ApiResponseTransactionDelete containing the mapped data, including status and message.
+func (m *transactionCommandResponseMapper) ToApiResponseTransactionDelete(pbResponse *pb.ApiResponseTransactionDelete) *response.ApiResponseTransactionDelete {
+	return &response.ApiResponseTransactionDelete{
+		Status:  pbResponse.Status,
+		Message: pbResponse.Message,
+	}
+}
+
 // mapResponseTransaction maps a single gRPC transaction response to an HTTP API response.
 //
 // Args:
@@ -45,5 +81,32 @@ func (m *transactionCommandResponseMapper) mapResponseTransaction(transaction *p
 		MerchantID:      int(transaction.MerchantId),
 		CreatedAt:       transaction.CreatedAt,
 		UpdatedAt:       transaction.UpdatedAt,
+	}
+}
+
+// mapResponseTransactionDeleteAt maps a single gRPC transaction delete response to an HTTP API response.
+//
+// Args:
+//   - transaction: A pointer to a pb.TransactionResponseDeleteAt containing the gRPC response data.
+//
+// Returns:
+//   - A pointer to a response.TransactionResponseDeleteAt containing the mapped data.
+func (m *transactionCommandResponseMapper) mapResponseTransactionDeleteAt(transaction *pb.TransactionResponseDeleteAt) *response.TransactionResponseDeleteAt {
+	var deletedAt string
+	if transaction.DeletedAt != nil {
+		deletedAt = transaction.DeletedAt.Value
+	}
+
+	return &response.TransactionResponseDeleteAt{
+		ID:              int(transaction.Id),
+		TransactionNo:   transaction.TransactionNo,
+		CardNumber:      transaction.CardNumber,
+		Amount:          int(transaction.Amount),
+		PaymentMethod:   transaction.PaymentMethod,
+		TransactionTime: transaction.TransactionTime,
+		MerchantID:      int(transaction.MerchantId),
+		CreatedAt:       transaction.CreatedAt,
+		UpdatedAt:       transaction.UpdatedAt,
+		DeletedAt:       &deletedAt,
 	}
 }

@@ -46,34 +46,6 @@ func (s *cardQueryResponseMapper) ToApiResponsesCard(cards *pb.ApiResponsePagina
 
 }
 
-// ToApiResponseCardDeleteAt maps the ApiResponseCardDelete from the domain to the ApiResponseCardDelete of the api.
-//
-// Args:
-//   - card: A pointer to a pb.ApiResponseCardDelete representing the ApiResponseCardDelete from the domain.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseCardDelete containing the mapped data, including status and message.
-func (s *cardQueryResponseMapper) ToApiResponseCardDeleteAt(card *pb.ApiResponseCardDelete) *response.ApiResponseCardDelete {
-	return &response.ApiResponseCardDelete{
-		Status:  card.Status,
-		Message: card.Message,
-	}
-}
-
-// ToApiResponseCardAll maps the ApiResponseCardAll from the domain to the ApiResponseCardAll of the api.
-//
-// Args:
-//   - card: A pointer to a pb.ApiResponseCardAll representing the ApiResponseCardAll from the domain.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseCardAll containing the mapped data, including status and message.
-func (s *cardQueryResponseMapper) ToApiResponseCardAll(card *pb.ApiResponseCardAll) *response.ApiResponseCardAll {
-	return &response.ApiResponseCardAll{
-		Status:  card.Status,
-		Message: card.Message,
-	}
-}
-
 // ToApiResponsesCardDeletedAt maps the ApiResponsePaginationCardDeleteAt from the domain to the
 // ApiResponsePaginationCardDeleteAt of the api.
 //

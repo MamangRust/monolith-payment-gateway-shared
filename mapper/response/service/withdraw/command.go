@@ -35,3 +35,24 @@ func (s *withdrawCommandResponseMapper) ToWithdrawResponse(withdraw *record.With
 		UpdatedAt:      withdraw.UpdatedAt,
 	}
 }
+
+// ToWithdrawResponseDeleteAt converts a single WithdrawRecord into a WithdrawResponseDeleteAt.
+//
+// Args:
+//   - withdraw: The WithdrawRecord that needs to be converted.
+//
+// Returns:
+//   - A pointer to a WithdrawResponseDeleteAt containing the mapped data, including ID, WithdrawNo,
+//     CardNumber, WithdrawAmount, WithdrawTime, CreatedAt, UpdatedAt, and DeletedAt.
+func (s *withdrawCommandResponseMapper) ToWithdrawResponseDeleteAt(withdraw *record.WithdrawRecord) *response.WithdrawResponseDeleteAt {
+	return &response.WithdrawResponseDeleteAt{
+		ID:             withdraw.ID,
+		WithdrawNo:     withdraw.WithdrawNo,
+		CardNumber:     withdraw.CardNumber,
+		WithdrawAmount: withdraw.WithdrawAmount,
+		WithdrawTime:   withdraw.WithdrawTime,
+		CreatedAt:      withdraw.CreatedAt,
+		UpdatedAt:      withdraw.UpdatedAt,
+		DeletedAt:      withdraw.DeletedAt,
+	}
+}

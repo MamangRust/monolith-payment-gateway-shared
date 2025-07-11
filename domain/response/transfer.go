@@ -14,16 +14,16 @@ type TransferResponse struct {
 
 // TransferResponseDeleteAt extends TransferResponse with soft delete capability
 type TransferResponseDeleteAt struct {
-	DeletedAt *string `json:"deleted_at"` // Timestamp when record was soft deleted (nil if active)
+	ID             int     `json:"id"`
+	TransferNo     string  `json:"transfer_no"`
+	TransferFrom   string  `json:"transfer_from"`
+	TransferTo     string  `json:"transfer_to"`
+	TransferAmount int     `json:"transfer_amount"`
+	TransferTime   string  `json:"transfer_time"`
+	CreatedAt      string  `json:"created_at"`
+	UpdatedAt      string  `json:"updated_at"`
+	DeletedAt      *string `json:"deleted_at"` // Timestamp when record was soft deleted (nil if active)
 	// Embedded TransferResponse fields
-	ID             int    `json:"id"`
-	TransferNo     string `json:"transfer_no"`
-	TransferFrom   string `json:"transfer_from"`
-	TransferTo     string `json:"transfer_to"`
-	TransferAmount int    `json:"transfer_amount"`
-	TransferTime   string `json:"transfer_time"`
-	CreatedAt      string `json:"created_at"`
-	UpdatedAt      string `json:"updated_at"`
 }
 
 // TransferResponseMonthStatusSuccess represents monthly successful transfer metrics
@@ -115,6 +115,13 @@ type ApiResponseTransfer struct {
 	Status  string            `json:"status"`  // Response status
 	Message string            `json:"message"` // Response message
 	Data    *TransferResponse `json:"data"`    // Single transfer data
+}
+
+// ApiResponseTransferDeleteAt is API response for soft-deleted transfer
+type ApiResponseTransferDeleteAt struct {
+	Status  string                    `json:"status"`  // Response status
+	Message string                    `json:"message"` // Response message
+	Data    *TransferResponseDeleteAt `json:"data"`
 }
 
 // ApiResponseTransfers is API response for multiple transfers

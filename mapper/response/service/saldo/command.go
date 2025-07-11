@@ -32,3 +32,23 @@ func (s *saldoCommandResponseMapper) ToSaldoResponse(saldo *record.SaldoRecord) 
 		UpdatedAt:      saldo.UpdatedAt,
 	}
 }
+
+// ToSaldoResponseDeleteAt maps a single SaldoRecord to a SaldoResponseDeleteAt.
+//
+// Args:
+//   - saldo: A pointer to a SaldoRecord containing the data to be mapped.
+//
+// Returns:
+//   - A pointer to a SaldoResponseDeleteAt containing the mapped data.
+func (s *saldoCommandResponseMapper) ToSaldoResponseDeleteAt(saldo *record.SaldoRecord) *response.SaldoResponseDeleteAt {
+	return &response.SaldoResponseDeleteAt{
+		ID:             saldo.ID,
+		CardNumber:     saldo.CardNumber,
+		TotalBalance:   saldo.TotalBalance,
+		WithdrawAmount: saldo.WithdrawAmount,
+		WithdrawTime:   saldo.WithdrawTime,
+		CreatedAt:      saldo.CreatedAt,
+		UpdatedAt:      saldo.UpdatedAt,
+		DeletedAt:      saldo.DeletedAt,
+	}
+}

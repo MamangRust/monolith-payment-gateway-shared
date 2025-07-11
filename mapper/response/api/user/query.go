@@ -82,33 +82,7 @@ func (u *userQueryResponseMapper) ToApiResponseUserDeleteAt(pbResponse *pb.ApiRe
 	}
 }
 
-// ToApiResponseUserDelete maps a permanently deleted user response to an API response.
-//
-// Args:
-//   - pbResponse: A pointer to a pb.ApiResponseUserDelete containing the user data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseUserDelete containing the mapped status and message.
-func (u *userQueryResponseMapper) ToApiResponseUserDelete(pbResponse *pb.ApiResponseUserDelete) *response.ApiResponseUserDelete {
-	return &response.ApiResponseUserDelete{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
-// ToApiResponseUserAll maps a pb.ApiResponseUserAll to a response.ApiResponseUserAll.
-//
-// Args:
-//   - pbResponse: A pointer to a pb.ApiResponseUserAll containing the status and message.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseUserAll containing the mapped status and message.
-func (u *userQueryResponseMapper) ToApiResponseUserAll(pbResponse *pb.ApiResponseUserAll) *response.ApiResponseUserAll {
-	return &response.ApiResponseUserAll{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
 // ToResponseUser maps a protobuf UserResponse to a domain UserResponse.
 //

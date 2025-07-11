@@ -16,12 +16,6 @@ type TransactionQueryResponseMapper interface {
 	// Converts multiple transaction responses into a grouped API response.
 	ToApiResponseTransactions(pbResponse *pb.ApiResponseTransactions) *response.ApiResponseTransactions
 
-	// Converts a deleted transaction response into an API response.
-	ToApiResponseTransactionDelete(pbResponse *pb.ApiResponseTransactionDelete) *response.ApiResponseTransactionDelete
-
-	// Converts all transaction records into a general API response.
-	ToApiResponseTransactionAll(pbResponse *pb.ApiResponseTransactionAll) *response.ApiResponseTransactionAll
-
 	// Converts paginated transaction results into an API response.
 	ToApiResponsePaginationTransaction(pbResponse *pb.ApiResponsePaginationTransaction) *response.ApiResponsePaginationTransaction
 
@@ -31,6 +25,14 @@ type TransactionQueryResponseMapper interface {
 
 type TransactionCommandResponseMapper interface {
 	TransactionBaseResponseMapper
+
+	ToApiResponseTransactionDeleteAt(pbResponse *pb.ApiResponseTransactionDeleteAt) *response.ApiResponseTransactionDeleteAt
+
+	// Converts a deleted transaction response into an API response.
+	ToApiResponseTransactionDelete(pbResponse *pb.ApiResponseTransactionDelete) *response.ApiResponseTransactionDelete
+
+	// Converts all transaction records into a general API response.
+	ToApiResponseTransactionAll(pbResponse *pb.ApiResponseTransactionAll) *response.ApiResponseTransactionAll
 }
 
 type TransactionStatsStatusResponseMapper interface {

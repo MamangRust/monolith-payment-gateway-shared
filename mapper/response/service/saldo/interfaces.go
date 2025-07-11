@@ -11,11 +11,6 @@ type SaldoBaseResponseMapper interface {
 	ToSaldoResponse(saldo *record.SaldoRecord) *response.SaldoResponse
 }
 
-// SaldoCommandResponseMapper provides methods to map SaldoRecord domain models to SaldoResponse API-compatible response types.
-type SaldoCommandResponseMapper interface {
-	SaldoBaseResponseMapper
-}
-
 // SaldoQueryResponseMapper provides methods to map SaldoRecord domain models to SaldoResponse API-compatible response types.
 type SaldoQueryResponseMapper interface {
 	SaldoBaseResponseMapper
@@ -23,11 +18,16 @@ type SaldoQueryResponseMapper interface {
 	// Converts a list of SaldoRecord into SaldoResponse list.
 	ToSaldoResponses(saldos []*record.SaldoRecord) []*response.SaldoResponse
 
-	// Converts a soft-deleted SaldoRecord into SaldoResponseDeleteAt.
-	ToSaldoResponseDeleteAt(saldo *record.SaldoRecord) *response.SaldoResponseDeleteAt
-
 	// Converts multiple soft-deleted SaldoRecords into SaldoResponseDeleteAt list.
 	ToSaldoResponsesDeleteAt(saldos []*record.SaldoRecord) []*response.SaldoResponseDeleteAt
+}
+
+// SaldoCommandResponseMapper provides methods to map SaldoRecord domain models to SaldoResponse API-compatible response types.
+type SaldoCommandResponseMapper interface {
+	SaldoBaseResponseMapper
+
+	// Converts a soft-deleted SaldoRecord into SaldoResponseDeleteAt.
+	ToSaldoResponseDeleteAt(saldo *record.SaldoRecord) *response.SaldoResponseDeleteAt
 }
 
 type SaldoStatisticTotalBalanceResponseMapper interface {

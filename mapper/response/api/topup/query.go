@@ -28,21 +28,7 @@ func (t *topupQueryResponseMapper) ToApiResponseTopup(s *pb.ApiResponseTopup) *r
 	}
 }
 
-// ToApiResponseTopupDeleteAt maps a single gRPC soft-deleted top-up response to an HTTP API response.
-//
-// Args:
-//   - s: A pointer to a pb.ApiResponseTopupDeleteAt containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseTopupDeleteAt containing the mapped data, including status, message, and a single
-//     mapped soft-deleted top-up response.
-func (t *topupQueryResponseMapper) ToApiResponseTopupDeleteAt(s *pb.ApiResponseTopupDeleteAt) *response.ApiResponseTopupDeleteAt {
-	return &response.ApiResponseTopupDeleteAt{
-		Status:  s.Status,
-		Message: s.Message,
-		Data:    t.mapResponseTopupDeleteAt(s.Data),
-	}
-}
+
 
 // ToApiResponsePaginationTopup maps a paginated gRPC top-up response to an HTTP API response. It constructs an
 // ApiResponsePaginationTopup by copying the status and message fields, mapping the top-up data slice to a slice
@@ -81,33 +67,7 @@ func (t *topupQueryResponseMapper) ToApiResponsePaginationTopupDeleteAt(s *pb.Ap
 	}
 }
 
-// ToApiResponseTopupAll maps a gRPC response containing all top-up records to an HTTP API response.
-//
-// Args:
-//   - s: A pointer to a pb.ApiResponseTopupAll containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseTopupAll containing the mapped data, including status and message.
-func (t *topupQueryResponseMapper) ToApiResponseTopupAll(s *pb.ApiResponseTopupAll) *response.ApiResponseTopupAll {
-	return &response.ApiResponseTopupAll{
-		Status:  s.Status,
-		Message: s.Message,
-	}
-}
 
-// ToApiResponseTopupDelete maps a single gRPC top-up delete response to an HTTP API response.
-//
-// Args:
-//   - s: A pointer to a pb.ApiResponseTopupDelete containing the gRPC response data.
-//
-// Returns:
-//   - A pointer to a response.ApiResponseTopupDelete containing the mapped data, including status and message.
-func (t *topupQueryResponseMapper) ToApiResponseTopupDelete(s *pb.ApiResponseTopupDelete) *response.ApiResponseTopupDelete {
-	return &response.ApiResponseTopupDelete{
-		Status:  s.Status,
-		Message: s.Message,
-	}
-}
 
 // mapResponseTopup maps a single gRPC top-up response to an HTTP API response.
 // It constructs a TopupResponse by copying the fields from the gRPC response.

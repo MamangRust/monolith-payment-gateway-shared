@@ -46,33 +46,7 @@ func (m *withdrawQueryResponseMapper) ToApiResponsesWithdraw(pbResponse *pb.ApiR
 	}
 }
 
-// ToApiResponseWithdrawDelete maps a gRPC response indicating a withdraw has been deleted to an API response.
-//
-// Args:
-//   - pbResponse: The gRPC response that needs to be converted.
-//
-// Returns:
-//   - A pointer to an ApiResponseWithdrawDelete containing the mapped data.
-func (m *withdrawQueryResponseMapper) ToApiResponseWithdrawDelete(pbResponse *pb.ApiResponseWithdrawDelete) *response.ApiResponseWithdrawDelete {
-	return &response.ApiResponseWithdrawDelete{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
-// ToApiResponseWithdrawAll maps a gRPC response containing all withdraw records to an API response.
-//
-// Args:
-//   - pbResponse: The gRPC response that needs to be converted.
-//
-// Returns:
-//   - A pointer to an ApiResponseWithdrawAll containing the mapped data.
-func (m *withdrawQueryResponseMapper) ToApiResponseWithdrawAll(pbResponse *pb.ApiResponseWithdrawAll) *response.ApiResponseWithdrawAll {
-	return &response.ApiResponseWithdrawAll{
-		Status:  pbResponse.Status,
-		Message: pbResponse.Message,
-	}
-}
 
 // ToApiResponsePaginationWithdraw maps a pagination meta, status, message, and a list of WithdrawResponse
 // to a response.ApiResponsePaginationWithdraw proto message.

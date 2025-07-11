@@ -37,6 +37,14 @@ func (s *cardCommandResponseMapper) ToCardResponse(card *record.CardRecord) *res
 	}
 }
 
+// ToCardResponseDeleteAt converts a single card record into a CardResponseDeleteAt.
+//
+// Parameters:
+//   - card: A pointer to a CardRecord representing the card record.
+//
+// Returns:
+//   - A pointer to a CardResponseDeleteAt containing the mapped data, including ID, UserID,
+//     CardNumber, CardType, ExpireDate, CVV, CardProvider, CreatedAt, UpdatedAt, and DeletedAt.
 func (s *cardCommandResponseMapper) ToCardResponseDeleteAt(card *record.CardRecord) *response.CardResponseDeleteAt {
 	return &response.CardResponseDeleteAt{
 		ID:           card.ID,

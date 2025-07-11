@@ -13,15 +13,6 @@ type TopupBaseResponseMapper interface {
 type TopupQueryResponseMapper interface {
 	TopupBaseResponseMapper
 
-	// Converts a soft-deleted top-up response into an API format.
-	ToApiResponseTopupDeleteAt(s *pb.ApiResponseTopupDeleteAt) *response.ApiResponseTopupDeleteAt
-
-	// Converts all top-up records into a general API response.
-	ToApiResponseTopupAll(s *pb.ApiResponseTopupAll) *response.ApiResponseTopupAll
-
-	// Converts a permanently deleted top-up response into an API format.
-	ToApiResponseTopupDelete(s *pb.ApiResponseTopupDelete) *response.ApiResponseTopupDelete
-
 	// Converts a paginated list of top-ups into an API response.
 	ToApiResponsePaginationTopup(s *pb.ApiResponsePaginationTopup) *response.ApiResponsePaginationTopup
 
@@ -31,6 +22,15 @@ type TopupQueryResponseMapper interface {
 
 type TopupCommandResponseMapper interface {
 	TopupBaseResponseMapper
+
+	// Converts a soft-deleted top-up response into an API format.
+	ToApiResponseTopupDeleteAt(s *pb.ApiResponseTopupDeleteAt) *response.ApiResponseTopupDeleteAt
+
+	// Converts all top-up records into a general API response.
+	ToApiResponseTopupAll(s *pb.ApiResponseTopupAll) *response.ApiResponseTopupAll
+
+	// Converts a permanently deleted top-up response into an API format.
+	ToApiResponseTopupDelete(s *pb.ApiResponseTopupDelete) *response.ApiResponseTopupDelete
 }
 
 type TopupStatsStatusResponseMapper interface {

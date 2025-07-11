@@ -16,15 +16,15 @@ type TransactionQueryResponseMapper interface {
 	// Converts multiple transaction records into a slice of TransactionResponse.
 	ToTransactionsResponse(transactions []*record.TransactionRecord) []*response.TransactionResponse
 
-	// Converts a soft-deleted transaction record into a TransactionResponseDeleteAt.
-	ToTransactionResponseDeleteAt(transaction *record.TransactionRecord) *response.TransactionResponseDeleteAt
-
 	// Converts multiple soft-deleted transaction records into a slice of TransactionResponseDeleteAt.
 	ToTransactionsResponseDeleteAt(transactions []*record.TransactionRecord) []*response.TransactionResponseDeleteAt
 }
 
 type TransactionCommandResponseMapper interface {
 	TransactionBaseResponseMapper
+
+	// Converts a soft-deleted transaction record into a TransactionResponseDeleteAt.
+	ToTransactionResponseDeleteAt(transaction *record.TransactionRecord) *response.TransactionResponseDeleteAt
 }
 
 type TransactionStatsStatusResponseMapper interface {

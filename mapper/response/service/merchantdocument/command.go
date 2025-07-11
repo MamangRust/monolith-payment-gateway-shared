@@ -31,3 +31,24 @@ func (s *merchantDocumentCommandResponseMapper) ToMerchantDocumentResponse(doc *
 		UpdatedAt:    doc.UpdatedAt,
 	}
 }
+
+// ToMerchantDocumentResponseDeleteAt maps a soft-deleted MerchantDocumentRecord to its corresponding response.
+// Args:
+//   - doc: A pointer to a MerchantDocumentRecord containing the data to be mapped.
+//
+// Returns:
+//   - A pointer to a MerchantDocumentResponseDeleteAt containing the mapped data, including
+//     ID, MerchantID, DocumentType, DocumentURL, Status, Note, CreatedAt, UpdatedAt, and DeletedAt.
+func (s *merchantDocumentCommandResponseMapper) ToMerchantDocumentResponseDeleteAt(doc *record.MerchantDocumentRecord) *response.MerchantDocumentResponseDeleteAt {
+	return &response.MerchantDocumentResponseDeleteAt{
+		ID:           doc.ID,
+		MerchantID:   doc.MerchantID,
+		DocumentType: doc.DocumentType,
+		DocumentURL:  doc.DocumentURL,
+		Status:       doc.Status,
+		Note:         doc.Note,
+		CreatedAt:    doc.CreatedAt,
+		UpdatedAt:    doc.UpdatedAt,
+		DeletedAt:    doc.DeletedAt,
+	}
+}
