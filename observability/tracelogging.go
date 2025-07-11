@@ -14,20 +14,8 @@ import (
 
 // TraceLoggerObservability provides tracing, logging, and request metrics.
 type TraceLoggerObservability interface {
-	// StartTracingAndLogging starts tracing for a method, logs that the method has started,
-	// and returns a span, a function to end the span with a status, the initial status of the span,
-	// and a function to log success messages.
-	//
-	// Parameters:
-	//   - method: The name of the method to trace and log.
-	//   - attrs: Optional attributes to add to the span.
-	//
-	// Returns:
-	//   - trace.Span: The OpenTelemetry span for the traced method.
-	//   - func(string): Function to end the span with a given status, recording metrics.
-	//   - string: Initial status of the operation, defaulting to "success".
-	//   - func(string, ...zap.Field): Function to log success messages with optional fields.
-	StartTracingAndLogging(method string, attrs ...attribute.KeyValue) (
+	StartTracingAndLogging(ctx context.Context, method string, attrs ...attribute.KeyValue) (
+		context.Context,
 		trace.Span,
 		func(string),
 		string,
@@ -40,9 +28,6 @@ type TraceLoggerObservability interface {
 
 // traceLoggerObservability provides tracing, logging, and request metrics.
 type traceLoggerObservability struct {
-	// Ctx is the context for tracing and logging lifecycle.
-	Ctx context.Context
-
 	// Trace is the tracer used to create spans.
 	Trace trace.Tracer
 
@@ -65,9 +50,8 @@ type traceLoggerObservability struct {
 // can be used to start tracing and logging, as well as recording metrics.
 //
 // If the input context is canceled, the tracing and logging will be stopped.
-func NewTraceLoggerObservability(ctx context.Context, trace trace.Tracer, logger logger.LoggerInterface, counter *prometheus.CounterVec, duration *prometheus.HistogramVec) *traceLoggerObservability {
+func NewTraceLoggerObservability(trace trace.Tracer, logger logger.LoggerInterface, counter *prometheus.CounterVec, duration *prometheus.HistogramVec) *traceLoggerObservability {
 	return &traceLoggerObservability{
-		Ctx:             ctx,
 		Trace:           trace,
 		Logger:          logger,
 		RequestCounter:  counter,
@@ -75,20 +59,24 @@ func NewTraceLoggerObservability(ctx context.Context, trace trace.Tracer, logger
 	}
 }
 
-// StartTracingAndLogging starts tracing for a method, logs that the method has started,
-// and returns a span, a function to end the span with a status, the initial status of the span,
-// and a function to log success messages.
+// StartTracingAndLogging initializes tracing and logging for a given method.
+// It starts a span with optional attributes and logs the method start.
+// It returns the context with the span, the span, a function to end the span and record metrics,
+// the initial status of the operation, and a function to log success messages.
 //
 // Parameters:
+//   - ctx: The context for the traced method.
 //   - method: The name of the method to trace and log.
 //   - attrs: Optional attributes to add to the span.
 //
 // Returns:
+//   - context.Context: The context with the span.
 //   - trace.Span: The OpenTelemetry span for the traced method.
 //   - func(string): Function to end the span with a given status, recording metrics.
 //   - string: Initial status of the operation, defaulting to "success".
 //   - func(string, ...zap.Field): Function to log success messages with optional fields.
-func (h *traceLoggerObservability) StartTracingAndLogging(method string, attrs ...attribute.KeyValue) (
+func (h *traceLoggerObservability) StartTracingAndLogging(ctx context.Context, method string, attrs ...attribute.KeyValue) (
+	context.Context,
 	trace.Span,
 	func(string),
 	string,
@@ -97,7 +85,7 @@ func (h *traceLoggerObservability) StartTracingAndLogging(method string, attrs .
 	start := time.Now()
 	status := "success"
 
-	_, span := h.Trace.Start(h.Ctx, method)
+	ctx, span := h.Trace.Start(ctx, method)
 
 	if len(attrs) > 0 {
 		span.SetAttributes(attrs...)
@@ -121,7 +109,7 @@ func (h *traceLoggerObservability) StartTracingAndLogging(method string, attrs .
 		h.Logger.Info(msg, fields...)
 	}
 
-	return span, end, status, logSuccess
+	return ctx, span, end, status, logSuccess
 }
 
 // RecordMetrics records a Prometheus metric for the given method and status.

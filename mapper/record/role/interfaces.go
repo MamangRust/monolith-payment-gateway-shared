@@ -22,6 +22,16 @@ type RoleBaseRecordMapper interface {
 type RoleQueryRecordMapping interface {
 	RoleBaseRecordMapper
 
+	// ToRolesRecord maps a slice of Role database rows to a slice of RoleRecord domain models.
+	//
+	// Parameters:
+	//   - roles: A slice of pointers to Role structs representing the database rows.
+	//
+	// Returns:
+	//   - A slice of pointers to RoleRecord structs containing the mapped data, including
+	//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
+	ToRolesRecord(roles []*db.Role) []*record.RoleRecord
+
 	// ToRoleRecordAll maps a GetRolesRow to a RoleRecord domain model.
 	//
 	// Parameters:

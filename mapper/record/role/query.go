@@ -35,6 +35,24 @@ func (s *roleQueryRecordMapper) ToRoleRecord(role *db.Role) *record.RoleRecord {
 	}
 }
 
+// ToRolesRecord maps a slice of Role database rows to a slice of RoleRecord domain models.
+//
+// Parameters:
+//   - roles: A slice of pointers to Role structs representing the database rows.
+//
+// Returns:
+//   - A slice of pointers to RoleRecord structs containing the mapped data, including
+//     ID, Name, CreatedAt, UpdatedAt, and DeletedAt.
+func (s *roleQueryRecordMapper) ToRolesRecord(roles []*db.Role) []*record.RoleRecord {
+	var result []*record.RoleRecord
+
+	for _, role := range roles {
+		result = append(result, s.ToRoleRecord(role))
+	}
+
+	return result
+}
+
 // ToRoleRecordAll maps a GetRolesRow to a RoleRecord domain model.
 //
 // Parameters:
