@@ -1,4 +1,4 @@
-package refreshtokenerrors
+package refreshtokenrepositoryerrors
 
 import "errors"
 
