@@ -7,7 +7,7 @@ type merchantResponseMapper struct {
 	MerchantTransactionResponseMapper      MerchantTransactionResponseMapper
 	MerchantStatsMethodResponseMapper      MerchantStatsMethodResponseMapper
 	MerchantStatsAmountResponseMapper      MerchantStatsAmountResponseMapper
-	merchantStatsTotalAmountResponseMapper MerchantStatsTotalAmountResponseMapper
+	MerchantStatsTotalAmountResponseMapper MerchantStatsTotalAmountResponseMapper
 }
 
 // NewMerchantResponseMapper returns a new instance of merchantResponseMapper, which provides methods to map MerchantRecord domain models to their corresponding API-compatible response types.
@@ -18,6 +18,6 @@ func NewMerchantResponseMapper() *merchantResponseMapper {
 		MerchantTransactionResponseMapper:      NewMerchantTransactionResponseMapper(),
 		MerchantStatsMethodResponseMapper:      NewMerchantStatsMethodResponseMapper(),
 		MerchantStatsAmountResponseMapper:      NewMerchantStatsAmountResponseMapper(),
-		merchantStatsTotalAmountResponseMapper: NewMerchantStatsTotalAmountResponseMapper(),
+		MerchantStatsTotalAmountResponseMapper: NewMerchantStatsTotalAmountResponseMapper(),
 	}
 }

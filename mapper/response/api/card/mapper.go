@@ -5,6 +5,7 @@ type cardResponseMapper struct {
 	CardCommandResponseMapper      CardCommandResponseMapper
 	CardStatsAmountResponseMapper  CardStatsAmountResponseMapper
 	CardStatsBalanceResponseMapper CardStatsBalanceResponseMapper
+	CardDashboardResponseMapper    CardDashboardResponseMapper
 }
 
 func NewCardResponseMapper() *cardResponseMapper {
@@ -13,5 +14,6 @@ func NewCardResponseMapper() *cardResponseMapper {
 		CardCommandResponseMapper:      NewCardCommandResponseMapper(),
 		CardStatsAmountResponseMapper:  NewCardStatsAmountResponseMapper(),
 		CardStatsBalanceResponseMapper: NewCardStatsBalanceResponseMapper(),
+		CardDashboardResponseMapper:    NewCardDashboardResponseMapper(),
 	}
 }
