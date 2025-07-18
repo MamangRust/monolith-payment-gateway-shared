@@ -6,6 +6,7 @@ type merchantProtoMapper struct {
 	MerchantStatsAmountProtoMapper      MerchantStatsAmountProtoMapper
 	MerchantStatsMethodProtoMapper      MerchantStatsMethodProtoMapper
 	MerchantStatsTotalAmountProtoMapper MerchantStatsTotalAmountProtoMapper
+	MerchantTransactionProtoMapper      MerchantTransactionProtoMapper
 }
 
 func NewMerchantProtoMapper() *merchantProtoMapper {
@@ -15,5 +16,6 @@ func NewMerchantProtoMapper() *merchantProtoMapper {
 		MerchantStatsAmountProtoMapper:      NewMerchantStatsAmountProtoMapper(),
 		MerchantStatsMethodProtoMapper:      NewMerchantStatsMethodProtoMapper(),
 		MerchantStatsTotalAmountProtoMapper: NewMerchantStatsTotalAmount(),
+		MerchantTransactionProtoMapper:      NewMerchantTransactionProtoMapper(),
 	}
 }

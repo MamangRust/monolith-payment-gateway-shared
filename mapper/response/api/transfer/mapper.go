@@ -1,17 +1,40 @@
 package transferapimapper
 
-type transferResponseMapper struct {
-	TransferQueryResponseMapper       TransferQueryResponseMapper
-	TransferCommandResponseMapper     TransferCommandResponseMapper
-	TransferStatsStatusResponseMapper TransferStatsStatusResponseMapper
-	TransferStatsAmountResponseMapper TransferStatsAmountResponseMapper
+type TransferResponseMapper interface {
+	QueryMapper() TransferQueryResponseMapper
+	CommandMapper() TransferCommandResponseMapper
+	StatusStatsMapper() TransferStatsStatusResponseMapper
+	AmountStatsMapper() TransferStatsAmountResponseMapper
 }
 
-func NewTransferResponseMapper() *transferResponseMapper {
+type transferResponseMapper struct {
+	queryMapper   TransferQueryResponseMapper
+	commandMapper TransferCommandResponseMapper
+	statusStats   TransferStatsStatusResponseMapper
+	amountStats   TransferStatsAmountResponseMapper
+}
+
+func NewTransferResponseMapper() TransferResponseMapper {
 	return &transferResponseMapper{
-		TransferQueryResponseMapper:       NewTransferQueryResponseMapper(),
-		TransferCommandResponseMapper:     NewTransferCommandResponseMapper(),
-		TransferStatsStatusResponseMapper: NewTransferStatsStatusResponseMapper(),
-		TransferStatsAmountResponseMapper: NewTransferStatsAmountResponseMapper(),
+		queryMapper:   NewTransferQueryResponseMapper(),
+		commandMapper: NewTransferCommandResponseMapper(),
+		statusStats:   NewTransferStatsStatusResponseMapper(),
+		amountStats:   NewTransferStatsAmountResponseMapper(),
 	}
+}
+
+func (t *transferResponseMapper) QueryMapper() TransferQueryResponseMapper {
+	return t.queryMapper
+}
+
+func (t *transferResponseMapper) CommandMapper() TransferCommandResponseMapper {
+	return t.commandMapper
+}
+
+func (t *transferResponseMapper) StatusStatsMapper() TransferStatsStatusResponseMapper {
+	return t.statusStats
+}
+
+func (t *transferResponseMapper) AmountStatsMapper() TransferStatsAmountResponseMapper {
+	return t.amountStats
 }

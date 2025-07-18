@@ -44,6 +44,14 @@ func (m *merchantQueryRecordMapper) ToMerchantRecord(merchant *db.Merchant) *rec
 	}
 }
 
+func (m *merchantQueryRecordMapper) ToMerchantsRecord(merchants []*db.Merchant) []*record.MerchantRecord {
+	var records []*record.MerchantRecord
+	for _, merchant := range merchants {
+		records = append(records, m.ToMerchantRecord(merchant))
+	}
+	return records
+}
+
 // ToMerchantGetAllRecord maps a GetMerchantsRow to a MerchantRecord domain model.
 //
 // Parameters:

@@ -28,6 +28,8 @@ type TransferCommandRecordMapper interface {
 type TransferQueryRecordMapper interface {
 	TransferBaseRecordMapper
 
+	ToTransfersRecord(transfers []*db.Transfer) []*record.TransferRecord
+
 	// ToTransferRecordAll maps a GetTransfersRow database row to a TransferRecord domain model.
 	//
 	// Parameters:

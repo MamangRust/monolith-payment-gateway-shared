@@ -22,6 +22,8 @@ type MerchantBaseRecordMapper interface {
 type MerchantQueryRecordMapper interface {
 	MerchantBaseRecordMapper
 
+	ToMerchantsRecord(merchants []*db.Merchant) []*record.MerchantRecord
+
 	// ToMerchantGetAllRecord maps a GetMerchantsRow to a MerchantRecord domain model.
 	//
 	// Parameters:
@@ -86,9 +88,12 @@ type MerchantQueryRecordMapper interface {
 	ToMerchantsTrashedRecord(merchants []*db.GetTrashedMerchantsRow) []*record.MerchantRecord
 }
 
+/// TODO: buatkan generate sqlc ada trashed nya 
+
 // MerchantCommandMapper provides methods to map Merchant database rows to MerchantRecord domain models for command operations.
 type MerchantCommandRecordMapper interface {
 	MerchantBaseRecordMapper
+
 }
 
 // MerchantTransactionRecordMapper provides methods to map Merchant database rows to MerchantRecord domain models for transaction operations.

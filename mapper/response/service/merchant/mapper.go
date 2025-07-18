@@ -1,19 +1,54 @@
 package merchantservicemapper
 
-// merchantResponseMapper is a struct that provides methods to map MerchantRecord domain models to their corresponding API-compatible response types.
-type merchantResponseMapper struct {
-	MerchantQueryResponseMapper       MerchantQueryResponseMapper
-	MerchantCommandResponseMapper     MerchantCommandResponseMapper
-	MerchantTotalAmountResponseMapper MerchantTotalAmountResponseMapper
-	MerchantAmountResponseMapper      MerchantAmountResponseMapper
+type MerchantResponseMapper interface {
+	QueryMapper() MerchantQueryResponseMapper
+	CommandMapper() MerchantCommandResponseMapper
+	TotalAmountMapper() MerchantTotalAmountResponseMapper
+	AmountMapper() MerchantAmountResponseMapper
+	MethodMapper() MerchantPaymentMethodResponseMapper
+	TransactionMapper() MerchantTransactionResponseMapper
 }
 
-// NewMerchantResponseMapper returns a new instance of merchantResponseMapper, which provides methods to map MerchantRecord domain models to their corresponding API-compatible response types.
-func NewMerchantResponseMapper() *merchantResponseMapper {
+type merchantResponseMapper struct {
+	queryMapper       MerchantQueryResponseMapper
+	commandMapper     MerchantCommandResponseMapper
+	totalAmountMapper MerchantTotalAmountResponseMapper
+	amountMapper      MerchantAmountResponseMapper
+	methodMapper      MerchantPaymentMethodResponseMapper
+	transactionMapper MerchantTransactionResponseMapper
+}
+
+func NewMerchantResponseMapper() MerchantResponseMapper {
 	return &merchantResponseMapper{
-		MerchantQueryResponseMapper:       NewMerchantQueryResponseMapper(),
-		MerchantCommandResponseMapper:     NewMerchantCommandResponseMapper(),
-		MerchantTotalAmountResponseMapper: NewMerchantTotalAmountResponseMapper(),
-		MerchantAmountResponseMapper:      NewMerchantAmountResponseMapper(),
+		queryMapper:       NewMerchantQueryResponseMapper(),
+		commandMapper:     NewMerchantCommandResponseMapper(),
+		totalAmountMapper: NewMerchantTotalAmountResponseMapper(),
+		amountMapper:      NewMerchantAmountResponseMapper(),
+		methodMapper:      NewMerchantPaymentMethodResponseMapper(),
+		transactionMapper: NewMerchantTransactionResponseMapper(),
 	}
+}
+
+func (m *merchantResponseMapper) QueryMapper() MerchantQueryResponseMapper {
+	return m.queryMapper
+}
+
+func (m *merchantResponseMapper) CommandMapper() MerchantCommandResponseMapper {
+	return m.commandMapper
+}
+
+func (m *merchantResponseMapper) TotalAmountMapper() MerchantTotalAmountResponseMapper {
+	return m.totalAmountMapper
+}
+
+func (m *merchantResponseMapper) AmountMapper() MerchantAmountResponseMapper {
+	return m.amountMapper
+}
+
+func (m *merchantResponseMapper) MethodMapper() MerchantPaymentMethodResponseMapper {
+	return m.methodMapper
+}
+
+func (m *merchantResponseMapper) TransactionMapper() MerchantTransactionResponseMapper {
+	return m.transactionMapper
 }

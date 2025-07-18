@@ -46,6 +46,22 @@ func (s *transactionQueryRecordMapper) ToTransactionRecord(transaction *db.Trans
 	}
 }
 
+// ToTransactionsRecord maps a slice of Transaction database rows to a slice of TransactionRecord domain models.
+//
+// Parameters:
+//   - transactions: A slice of pointers to Transaction representing the database rows.
+//
+// Returns:
+//   - A slice of TransactionRecord containing the mapped data, including ID, TransactionNo,
+//     CardNumber, Amount, PaymentMethod, MerchantID, TransactionTime, CreatedAt, UpdatedAt, and DeletedAt.
+func (s *transactionQueryRecordMapper) ToTransactionsRecord(transactions []*db.Transaction) []*record.TransactionRecord {
+	var records []*record.TransactionRecord
+	for _, transaction := range transactions {
+		records = append(records, s.ToTransactionRecord(transaction))
+	}
+	return records
+}
+
 // ToTransactionByCardNumberRecord maps a GetTransactionsByCardNumberRow database row to a TransactionRecord domain model.
 //
 // Parameters:

@@ -39,6 +39,16 @@ func (t *transferQueryRecordMapper) ToTransferRecord(transfer *db.Transfer) *rec
 	}
 }
 
+func (t *transferQueryRecordMapper) ToTransfersRecord(transfers []*db.Transfer) []*record.TransferRecord {
+	var transferRecords []*record.TransferRecord
+
+	for _, transfer := range transfers {
+		transferRecords = append(transferRecords, t.ToTransferRecord(transfer))
+	}
+
+	return transferRecords
+}
+
 // ToTransferRecordAll maps a GetTransfersRow database row to a TransferRecord domain model.
 //
 // Parameters:

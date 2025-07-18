@@ -1,13 +1,26 @@
 package userapimapper
 
-type userResponseMapper struct {
-	UserQueryResponseMapper   UserQueryResponseMapper
-	UserCommandResponseMapper UserCommandResponseMapper
+type UserResponseMapper interface {
+	QueryMapper() UserQueryResponseMapper
+	CommandMapper() UserCommandResponseMapper
 }
 
-func NewUserResponseMapper() *userResponseMapper {
+type userResponseMapper struct {
+	queryMapper   UserQueryResponseMapper
+	commandMapper UserCommandResponseMapper
+}
+
+func NewUserResponseMapper() UserResponseMapper {
 	return &userResponseMapper{
-		UserQueryResponseMapper:   NewUserQueryResponseMapper(),
-		UserCommandResponseMapper: NewUserCommandResponseMapper(),
+		queryMapper:   NewUserQueryResponseMapper(),
+		commandMapper: NewUserCommandResponseMapper(),
 	}
+}
+
+func (u *userResponseMapper) QueryMapper() UserQueryResponseMapper {
+	return u.queryMapper
+}
+
+func (u *userResponseMapper) CommandMapper() UserCommandResponseMapper {
+	return u.commandMapper
 }

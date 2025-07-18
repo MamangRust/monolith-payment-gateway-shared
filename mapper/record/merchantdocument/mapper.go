@@ -1,17 +1,28 @@
 package merchantdocumentrecordmapper
 
-// merchantDocumentRecordMapper provides methods to map MerchantDocument database rows to MerchantDocumentRecord domain models.
 type merchantDocumentRecordMapper struct {
-	MerchantDocumentQueryMapper   MerchantDocumentQueryMapper
-	MerchantDocumentCommandMapper MerchantDocumentCommandMapper
+	queryMapper   MerchantDocumentQueryMapper
+	commandMapper MerchantDocumentCommandMapper
 }
 
-// NewMerchantDocumentRecordMapper returns a new instance of merchantDocumentRecordMapper,
-// which provides methods to map MerchantDocument database rows to MerchantDocumentRecord domain models.
-// It initializes both the query and command mappers to facilitate a full range of mapping operations.
-func NewMerchantDocumentRecordMapper() *merchantDocumentRecordMapper {
+type MerchantDocumentMapper interface {
+	QueryMapper() MerchantDocumentQueryMapper
+	CommandMapper() MerchantDocumentCommandMapper
+}
+
+
+func NewMerchantDocumentRecordMapper() MerchantDocumentMapper {
 	return &merchantDocumentRecordMapper{
-		MerchantDocumentQueryMapper:   NewMerchantDocumentQueryMapper(),
-		MerchantDocumentCommandMapper: NewMerchantDocumentCommandMapper(),
+		queryMapper:   NewMerchantDocumentQueryMapper(),
+		commandMapper: NewMerchantDocumentCommandMapper(),
 	}
+}
+
+
+func (m *merchantDocumentRecordMapper) QueryMapper() MerchantDocumentQueryMapper {
+	return m.queryMapper
+}
+
+func (m *merchantDocumentRecordMapper) CommandMapper() MerchantDocumentCommandMapper {
+	return m.commandMapper
 }

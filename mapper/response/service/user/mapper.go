@@ -1,18 +1,26 @@
 package userservicemapper
 
-// userResponseMapper is a struct that implements the UserQueryResponseMapper and UserCommandResponseMapper interfaces.
-type userResponseMapper struct {
-	UserQueryResponseMapper   UserQueryResponseMapper
-	UserCommandResponseMapper UserCommandResponseMapper
+type UserResponseMapper interface {
+	QueryMapper() UserQueryResponseMapper
+	CommandMapper() UserCommandResponseMapper
 }
 
-// NewUserResponseMapper creates and returns a new instance of userResponseMapper.
-// This mapper combines both query and command response mappers to provide a
-// comprehensive tool for converting UserRecord domain models into various
-// API-compatible UserResponse and UserResponseDeleteAt types.
-func NewUserResponseMapper() *userResponseMapper {
+type userResponseMapper struct {
+	queryMapper   UserQueryResponseMapper
+	commandMapper UserCommandResponseMapper
+}
+
+func NewUserResponseMapper() UserResponseMapper {
 	return &userResponseMapper{
-		UserQueryResponseMapper:   NewUserQueryResponseMapper(),
-		UserCommandResponseMapper: NewUserCommandResponseMapper(),
+		queryMapper:   NewUserQueryResponseMapper(),
+		commandMapper: NewUserCommandResponseMapper(),
 	}
+}
+
+func (m *userResponseMapper) QueryMapper() UserQueryResponseMapper {
+	return m.queryMapper
+}
+
+func (m *userResponseMapper) CommandMapper() UserCommandResponseMapper {
+	return m.commandMapper
 }

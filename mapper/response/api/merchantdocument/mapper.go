@@ -1,13 +1,26 @@
 package merchantdocumentapimapper
 
-type merchantDocumentResponseMapper struct {
-	MerchantDocumentQueryResponseMapper   MerchantDocumentQueryResponseMapper
-	MerchantDocumentCommandResponseMapper MerchantDocumentCommandResponseMapper
+type MerchantDocumentResponseMapper interface {
+	QueryMapper() MerchantDocumentQueryResponseMapper
+	CommandMapper() MerchantDocumentCommandResponseMapper
 }
 
-func NewMerchantDocumentResponseMapper() *merchantDocumentResponseMapper {
+type merchantDocumentResponseMapper struct {
+	queryMapper   MerchantDocumentQueryResponseMapper
+	commandMapper MerchantDocumentCommandResponseMapper
+}
+
+func NewMerchantDocumentResponseMapper() MerchantDocumentResponseMapper {
 	return &merchantDocumentResponseMapper{
-		MerchantDocumentQueryResponseMapper:   NewMerchantDocumentQueryResponseMapper(),
-		MerchantDocumentCommandResponseMapper: NewMerchantDocumentCommandResponseMapper(),
+		queryMapper:   NewMerchantDocumentQueryResponseMapper(),
+		commandMapper: NewMerchantDocumentCommandResponseMapper(),
 	}
+}
+
+func (m *merchantDocumentResponseMapper) QueryMapper() MerchantDocumentQueryResponseMapper {
+	return m.queryMapper
+}
+
+func (m *merchantDocumentResponseMapper) CommandMapper() MerchantDocumentCommandResponseMapper {
+	return m.commandMapper
 }

@@ -1,17 +1,40 @@
 package saldoapimapper
 
 type saldoResponseMapper struct {
-	SaldoQueryResponseMapper        SaldoQueryResponseMapper
-	SaldoCommandResponseMapper      SaldoCommandResponseMapper
-	SaldoStatsBalanceResponseMapper SaldoStatsBalanceResponseMapper
-	SaldoStatsTotalResponseMapper   SaldoStatsTotalResponseMapper
+	queryMapper   SaldoQueryResponseMapper
+	commandMapper SaldoCommandResponseMapper
+	balanceStats  SaldoStatsBalanceResponseMapper
+	totalStats    SaldoStatsTotalResponseMapper
 }
 
-func NewSaldoResponseMapper() *saldoResponseMapper {
+type SaldoResponseMapper interface {
+	QueryMapper() SaldoQueryResponseMapper
+	CommandMapper() SaldoCommandResponseMapper
+	BalanceStatsMapper() SaldoStatsBalanceResponseMapper
+	TotalStatsMapper() SaldoStatsTotalResponseMapper
+}
+
+func NewSaldoResponseMapper() SaldoResponseMapper {
 	return &saldoResponseMapper{
-		SaldoQueryResponseMapper:        NewSaldoQueryResponseMapper(),
-		SaldoCommandResponseMapper:      NewSaldoCommandResponseMapper(),
-		SaldoStatsBalanceResponseMapper: NewSaldoStatsBalanceResponseMapper(),
-		SaldoStatsTotalResponseMapper:   NewSaldoStatsTotalResponseMapper(),
+		queryMapper:   NewSaldoQueryResponseMapper(),
+		commandMapper: NewSaldoCommandResponseMapper(),
+		balanceStats:  NewSaldoStatsBalanceResponseMapper(),
+		totalStats:    NewSaldoStatsTotalResponseMapper(),
 	}
+}
+
+func (s *saldoResponseMapper) QueryMapper() SaldoQueryResponseMapper {
+	return s.queryMapper
+}
+
+func (s *saldoResponseMapper) CommandMapper() SaldoCommandResponseMapper {
+	return s.commandMapper
+}
+
+func (s *saldoResponseMapper) BalanceStatsMapper() SaldoStatsBalanceResponseMapper {
+	return s.balanceStats
+}
+
+func (s *saldoResponseMapper) TotalStatsMapper() SaldoStatsTotalResponseMapper {
+	return s.totalStats
 }

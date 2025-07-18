@@ -1,15 +1,26 @@
 package roleservicemapper
 
-// roleResponseMapper provides methods to map RoleRecord domain models to RoleResponse API-compatible response types.
-type roleResponseMapper struct {
-	RoleQueryResponseMapper   RoleQueryResponseMapper
-	RoleCommandResponseMapper RoleCommandResponseMapper
+type RoleResponseMapper interface {
+	QueryMapper() RoleQueryResponseMapper
+	CommandMapper() RoleCommandResponseMapper
 }
 
-// NewRoleResponseMapper returns a new instance of roleResponseMapper, which provides methods to map RoleRecord domain models to RoleResponse API-compatible response types.
-func NewRoleResponseMapper() *roleResponseMapper {
+type roleResponseMapper struct {
+	queryMapper   RoleQueryResponseMapper
+	commandMapper RoleCommandResponseMapper
+}
+
+func NewRoleResponseMapper() RoleResponseMapper {
 	return &roleResponseMapper{
-		RoleQueryResponseMapper:   NewRoleQueryResponseMapper(),
-		RoleCommandResponseMapper: NewRoleCommandResponseMapper(),
+		queryMapper:   NewRoleQueryResponseMapper(),
+		commandMapper: NewRoleCommandResponseMapper(),
 	}
+}
+
+func (r *roleResponseMapper) QueryMapper() RoleQueryResponseMapper {
+	return r.queryMapper
+}
+
+func (r *roleResponseMapper) CommandMapper() RoleCommandResponseMapper {
+	return r.commandMapper
 }

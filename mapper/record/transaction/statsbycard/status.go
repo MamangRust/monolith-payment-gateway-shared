@@ -1,4 +1,4 @@
-package transactionstatbycard
+package transactionstatbycardrecordmapper
 
 import (
 	db "github.com/MamangRust/monolith-payment-gateway-pkg/database/schema"
@@ -14,7 +14,7 @@ type transactionStatisticStatusByCardMapper struct {
 // transactionStatisticStatusByCardMapper, which provides methods to map
 // database rows related to transaction status by card number to domain models.
 // It returns a pointer to transactionStatisticStatusByCardMapper.
-func NewTransactionStatisticStatusByCardMapper() *transactionStatisticStatusByCardMapper {
+func NewTransactionStatisticStatusByCardMapper() TransactionStatisticByCardStatusMapper {
 	return &transactionStatisticStatusByCardMapper{}
 }
 
@@ -27,7 +27,7 @@ func NewTransactionStatisticStatusByCardMapper() *transactionStatisticStatusByCa
 // Returns:
 //   - A pointer to TransactionRecordMonthStatusSuccess containing the mapped data, including Year,
 //     Month, TotalSuccess, and TotalAmount.
-func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordMonthStatusSuccessCardNumber(s *db.GetMonthTransactionStatusSuccessCardNumberRow) *record.TransactionRecordMonthStatusSuccess {
+func (t *transactionStatisticStatusByCardMapper) ToTransactionRecordMonthStatusSuccessCardNumber(s *db.GetMonthTransactionStatusSuccessCardNumberRow) *record.TransactionRecordMonthStatusSuccess {
 	return &record.TransactionRecordMonthStatusSuccess{
 		Year:         s.Year,
 		Month:        s.Month,
@@ -45,7 +45,7 @@ func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordMonthStatusS
 // Returns:
 //   - A slice of pointers to TransactionRecordMonthStatusSuccess containing the mapped data, including Year,
 //     Month, TotalSuccess, and TotalAmount.
-func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordsMonthStatusSuccessCardNumber(Transactions []*db.GetMonthTransactionStatusSuccessCardNumberRow) []*record.TransactionRecordMonthStatusSuccess {
+func (t *transactionStatisticStatusByCardMapper) ToTransactionRecordsMonthStatusSuccessCardNumber(Transactions []*db.GetMonthTransactionStatusSuccessCardNumberRow) []*record.TransactionRecordMonthStatusSuccess {
 	var TransactionRecords []*record.TransactionRecordMonthStatusSuccess
 
 	for _, Transaction := range Transactions {
@@ -64,7 +64,7 @@ func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordsMonthStatus
 // Returns:
 //   - A pointer to TransactionRecordYearStatusSuccess containing the mapped data, including Year,
 //     TotalSuccess, and TotalAmount.
-func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordYearStatusSuccessCardNumber(s *db.GetYearlyTransactionStatusSuccessCardNumberRow) *record.TransactionRecordYearStatusSuccess {
+func (t *transactionStatisticStatusByCardMapper) ToTransactionRecordYearStatusSuccessCardNumber(s *db.GetYearlyTransactionStatusSuccessCardNumberRow) *record.TransactionRecordYearStatusSuccess {
 	return &record.TransactionRecordYearStatusSuccess{
 		Year:         s.Year,
 		TotalSuccess: int(s.TotalSuccess),
@@ -81,7 +81,7 @@ func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordYearStatusSu
 // Returns:
 //   - A slice of pointers to TransactionRecordYearStatusSuccess containing the mapped data, including Year,
 //     TotalSuccess, and TotalAmount.
-func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordsYearStatusSuccessCardNumber(Transactions []*db.GetYearlyTransactionStatusSuccessCardNumberRow) []*record.TransactionRecordYearStatusSuccess {
+func (t *transactionStatisticStatusByCardMapper) ToTransactionRecordsYearStatusSuccessCardNumber(Transactions []*db.GetYearlyTransactionStatusSuccessCardNumberRow) []*record.TransactionRecordYearStatusSuccess {
 	var TransactionRecords []*record.TransactionRecordYearStatusSuccess
 
 	for _, Transaction := range Transactions {
@@ -100,7 +100,7 @@ func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordsYearStatusS
 // Returns:
 //   - A pointer to TransactionRecordMonthStatusFailed containing the mapped data, including Year,
 //     Month, TotalFailed, and TotalAmount.
-func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordMonthStatusFailedCardNumber(s *db.GetMonthTransactionStatusFailedCardNumberRow) *record.TransactionRecordMonthStatusFailed {
+func (t *transactionStatisticStatusByCardMapper) ToTransactionRecordMonthStatusFailedCardNumber(s *db.GetMonthTransactionStatusFailedCardNumberRow) *record.TransactionRecordMonthStatusFailed {
 	return &record.TransactionRecordMonthStatusFailed{
 		Year:        s.Year,
 		Month:       s.Month,
@@ -118,7 +118,7 @@ func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordMonthStatusF
 // Returns:
 //   - A slice of pointers to TransactionRecordMonthStatusFailed containing the mapped data, including Year,
 //     Month, TotalFailed, and TotalAmount.
-func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordsMonthStatusFailedCardNumber(Transactions []*db.GetMonthTransactionStatusFailedCardNumberRow) []*record.TransactionRecordMonthStatusFailed {
+func (t *transactionStatisticStatusByCardMapper) ToTransactionRecordsMonthStatusFailedCardNumber(Transactions []*db.GetMonthTransactionStatusFailedCardNumberRow) []*record.TransactionRecordMonthStatusFailed {
 	var TransactionRecords []*record.TransactionRecordMonthStatusFailed
 
 	for _, Transaction := range Transactions {
@@ -137,7 +137,7 @@ func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordsMonthStatus
 // Returns:
 //   - A pointer to TransactionRecordYearStatusFailed containing the mapped data, including Year,
 //     TotalFailed, and TotalAmount.
-func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordYearStatusFailedCardNumber(s *db.GetYearlyTransactionStatusFailedCardNumberRow) *record.TransactionRecordYearStatusFailed {
+func (t *transactionStatisticStatusByCardMapper) ToTransactionRecordYearStatusFailedCardNumber(s *db.GetYearlyTransactionStatusFailedCardNumberRow) *record.TransactionRecordYearStatusFailed {
 	return &record.TransactionRecordYearStatusFailed{
 		Year:        s.Year,
 		TotalFailed: int(s.TotalFailed),
@@ -155,7 +155,7 @@ func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordYearStatusFa
 // Returns:
 //   - A slice of pointers to TransactionRecordYearStatusFailed containing the mapped data, including Year,
 //     TotalFailed, and TotalAmount.
-func (t *transactionStatisticMethodByCardMapper) ToTransactionRecordsYearStatusFailedCardNumber(Transactions []*db.GetYearlyTransactionStatusFailedCardNumberRow) []*record.TransactionRecordYearStatusFailed {
+func (t *transactionStatisticStatusByCardMapper) ToTransactionRecordsYearStatusFailedCardNumber(Transactions []*db.GetYearlyTransactionStatusFailedCardNumberRow) []*record.TransactionRecordYearStatusFailed {
 	var TransactionRecords []*record.TransactionRecordYearStatusFailed
 
 	for _, Transaction := range Transactions {

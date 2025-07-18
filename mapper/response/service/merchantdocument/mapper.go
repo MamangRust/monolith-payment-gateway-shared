@@ -1,17 +1,26 @@
 package merchantdocumentservicemapper
 
-// merchantDocumentResponseMapper provides methods to map MerchantDocumentRecord domain models to MerchantDocumentResponse API-compatible responses.
-type merchantDocumentResponseMapper struct {
-	MerchantDocumentQueryResponseMapper   MerchantDocumentQueryResponseMapper
-	MerchantDocumentCommandResponseMapper MerchantDocumentCommandResponseMapper
+type MerchantDocumentResponseMapper interface {
+	QueryMapper() MerchantDocumentQueryResponseMapper
+	CommandMapper() MerchantDocumentCommandResponseMapper
 }
 
-// NewMerchantDocumentResponseMapper creates a new instance of merchantDocumentResponseMapper.
-//
-// It initializes both the query and command mappers to facilitate a full range of mapping operations.
-func NewMerchantDocumentResponseMapper() *merchantDocumentResponseMapper {
+type merchantDocumentResponseMapper struct {
+	queryMapper   MerchantDocumentQueryResponseMapper
+	commandMapper MerchantDocumentCommandResponseMapper
+}
+
+func NewMerchantDocumentResponseMapper() MerchantDocumentResponseMapper {
 	return &merchantDocumentResponseMapper{
-		MerchantDocumentQueryResponseMapper:   NewMerchantDocumentQueryResponseMapper(),
-		MerchantDocumentCommandResponseMapper: NewMerchantDocumentCommandResponseMapper(),
+		queryMapper:   NewMerchantDocumentQueryResponseMapper(),
+		commandMapper: NewMerchantDocumentCommandResponseMapper(),
 	}
+}
+
+func (m *merchantDocumentResponseMapper) QueryMapper() MerchantDocumentQueryResponseMapper {
+	return m.queryMapper
+}
+
+func (m *merchantDocumentResponseMapper) CommandMapper() MerchantDocumentCommandResponseMapper {
+	return m.commandMapper
 }

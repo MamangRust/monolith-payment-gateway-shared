@@ -1,17 +1,45 @@
 package topuprecordmapper
 
-// topupRecordMapper provides methods to map Topup database rows to TopupRecord domain models for both query and command operations.
-type topupRecordMapper struct {
-	TopupQueryRecordMapping   TopupQueryRecordMapping
-	TopupCommandRecordMapping TopupCommandRecordMapping
+import (
+	topupstatsrecordmapper "github.com/MamangRust/monolith-payment-gateway-shared/mapper/record/topup/stats"
+	topupstatsbycardrecordmapper "github.com/MamangRust/monolith-payment-gateway-shared/mapper/record/topup/statsbycard"
+)
+
+type TopupRecordMapper interface {
+	QueryMapper() TopupQueryRecordMapping
+	CommandMapper() TopupCommandRecordMapping
+	StatsMapper() topupstatsrecordmapper.TopupStatisticRecordMapper
+	StatsByCardMapper() topupstatsbycardrecordmapper.TopupStatisticByCardRecordMapper
 }
 
-// NewTopupRecordMapper returns a new instance of topupRecordMapper,
-// for both query and command operations. It initializes the TopupQueryRecordMapping
-// and TopupCommandRecordMapping fields using their respective constructor functions.
-func NewTopupRecordMapper() *topupRecordMapper {
+type topupRecordMapper struct {
+	queryMapper       TopupQueryRecordMapping
+	commandMapper     TopupCommandRecordMapping
+	statsMapper       topupstatsrecordmapper.TopupStatisticRecordMapper
+	statsByCardMapper topupstatsbycardrecordmapper.TopupStatisticByCardRecordMapper
+}
+
+func NewTopupRecordMapper() TopupRecordMapper {
 	return &topupRecordMapper{
-		TopupQueryRecordMapping:   NewTopupQueryRecordMapper(),
-		TopupCommandRecordMapping: NewTopupCommandRecordMapper(),
+		queryMapper:       NewTopupQueryRecordMapper(),
+		commandMapper:     NewTopupCommandRecordMapper(),
+		statsMapper:       topupstatsrecordmapper.NewTopupStatisticRecordMapper(),
+		statsByCardMapper: topupstatsbycardrecordmapper.NewTopupStatisticByCardRecordMapper(),
 	}
+}
+
+func (t *topupRecordMapper) QueryMapper() TopupQueryRecordMapping {
+	return t.queryMapper
+}
+
+func (t *topupRecordMapper) CommandMapper() TopupCommandRecordMapping {
+	return t.commandMapper
+}
+
+func (t *topupRecordMapper) StatsMapper() topupstatsrecordmapper.TopupStatisticRecordMapper {
+	return t.statsMapper
+}
+
+func (t *topupRecordMapper) StatsByCardMapper() topupstatsbycardrecordmapper.TopupStatisticByCardRecordMapper {
+	return t.statsByCardMapper
 }

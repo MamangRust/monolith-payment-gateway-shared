@@ -1,19 +1,46 @@
 package cardrecordmapper
 
-// cardRecordMapper provides methods to map Card database rows to CardRecord domain models.
+import (
+	cardstatsrecordmapper "github.com/MamangRust/monolith-payment-gateway-shared/mapper/record/card/stats"
+	cardstatsbycardrecordmapper "github.com/MamangRust/monolith-payment-gateway-shared/mapper/record/card/statsbycard"
+)
+
 type cardRecordMapper struct {
-	CardQueryRecordMapper   CardQueryRecordMapper
-	CardCommandRecordMapper CardCommandRecordMapper
+	queryMapper   CardQueryRecordMapper
+	commandMapper CardCommandRecordMapper
+
+	statsMapper  cardstatsrecordmapper.CardStatsRecordMapper
+	byCardMapper cardstatsbycardrecordmapper.CardStatsByCardRecordMapper
 }
 
-// NewCardRecordMapper creates a new instance of cardRecordMapper, initializing both
-// the CardQueryRecordMapper and CardCommandRecordMapper with their respective
-// dependencies. This function returns a pointer to cardRecordMapper, which provides
-// methods to map Card database rows to CardRecord domain models for both query and
-// command operations.
-func NewCardRecordMapper() *cardRecordMapper {
+type CardRecordMapper interface {
+	QueryMapper() CardQueryRecordMapper
+	CommandMapper() CardCommandRecordMapper
+	StatsMapper() cardstatsrecordmapper.CardStatsRecordMapper
+	StatsByCardMapper() cardstatsbycardrecordmapper.CardStatsByCardRecordMapper
+}
+
+func NewCardRecordMapper() CardRecordMapper {
 	return &cardRecordMapper{
-		CardQueryRecordMapper:   NewCardQueryRecordMapper(),
-		CardCommandRecordMapper: NewCardCommandRecordMapper(),
+		queryMapper:   NewCardQueryRecordMapper(),
+		commandMapper: NewCardCommandRecordMapper(),
+		statsMapper:   cardstatsrecordmapper.NewCardStatisticRecordMapper(),
+		byCardMapper:  cardstatsbycardrecordmapper.NewCardStatisticByCardRecordMapper(),
 	}
+}
+
+func (c *cardRecordMapper) QueryMapper() CardQueryRecordMapper {
+	return c.queryMapper
+}
+
+func (c *cardRecordMapper) CommandMapper() CardCommandRecordMapper {
+	return c.commandMapper
+}
+
+func (c *cardRecordMapper) StatsMapper() cardstatsrecordmapper.CardStatsRecordMapper {
+	return c.statsMapper
+}
+
+func (c *cardRecordMapper) StatsByCardMapper() cardstatsbycardrecordmapper.CardStatsByCardRecordMapper {
+	return c.byCardMapper
 }

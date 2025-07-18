@@ -22,6 +22,8 @@ type TransactionBaseRecordMapper interface {
 type TransactionQueryRecordMapper interface {
 	TransactionBaseRecordMapper
 
+	ToTransactionsRecord(transactions []*db.Transaction) []*record.TransactionRecord
+
 	// ToTransactionByCardNumberRecord maps a GetTransactionsByCardNumberRow database row to a TransactionRecord domain model.
 	//
 	// Parameters:

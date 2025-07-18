@@ -1,19 +1,47 @@
 package cardapimapper
 
-type cardResponseMapper struct {
-	CardQueryResponseMapper        CardQueryResponseMapper
-	CardCommandResponseMapper      CardCommandResponseMapper
-	CardStatsAmountResponseMapper  CardStatsAmountResponseMapper
-	CardStatsBalanceResponseMapper CardStatsBalanceResponseMapper
-	CardDashboardResponseMapper    CardDashboardResponseMapper
+type CardResponseMapper interface {
+	QueryMapper() CardQueryResponseMapper
+	CommandMapper() CardCommandResponseMapper
+	AmountStatsMapper() CardStatsAmountResponseMapper
+	BalanceStatsMapper() CardStatsBalanceResponseMapper
+	DashboardMapper() CardDashboardResponseMapper
 }
 
-func NewCardResponseMapper() *cardResponseMapper {
+type cardResponseMapper struct {
+	queryMapper        CardQueryResponseMapper
+	commandMapper      CardCommandResponseMapper
+	amountStatsMapper  CardStatsAmountResponseMapper
+	balanceStatsMapper CardStatsBalanceResponseMapper
+	dashboardMapper    CardDashboardResponseMapper
+}
+
+func NewCardResponseMapper() CardResponseMapper {
 	return &cardResponseMapper{
-		CardQueryResponseMapper:        NewCardQueryResponseMapper(),
-		CardCommandResponseMapper:      NewCardCommandResponseMapper(),
-		CardStatsAmountResponseMapper:  NewCardStatsAmountResponseMapper(),
-		CardStatsBalanceResponseMapper: NewCardStatsBalanceResponseMapper(),
-		CardDashboardResponseMapper:    NewCardDashboardResponseMapper(),
+		queryMapper:        NewCardQueryResponseMapper(),
+		commandMapper:      NewCardCommandResponseMapper(),
+		amountStatsMapper:  NewCardStatsAmountResponseMapper(),
+		balanceStatsMapper: NewCardStatsBalanceResponseMapper(),
+		dashboardMapper:    NewCardDashboardResponseMapper(),
 	}
+}
+
+func (c *cardResponseMapper) QueryMapper() CardQueryResponseMapper {
+	return c.queryMapper
+}
+
+func (c *cardResponseMapper) CommandMapper() CardCommandResponseMapper {
+	return c.commandMapper
+}
+
+func (c *cardResponseMapper) AmountStatsMapper() CardStatsAmountResponseMapper {
+	return c.amountStatsMapper
+}
+
+func (c *cardResponseMapper) BalanceStatsMapper() CardStatsBalanceResponseMapper {
+	return c.balanceStatsMapper
+}
+
+func (c *cardResponseMapper) DashboardMapper() CardDashboardResponseMapper {
+	return c.dashboardMapper
 }

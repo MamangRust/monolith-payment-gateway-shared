@@ -1,19 +1,40 @@
 package saldoservicemapper
 
-// saldoResponseMapper provides methods to map SaldoRecord domain models to SaldoResponse API-compatible response types for query, command, and statistic operations.
-type saldoResponseMapper struct {
-	SaldoQueryResponseMapper                 SaldoQueryResponseMapper
-	SaldoCommandResponseMapper               SaldoCommandResponseMapper
-	SaldoStatisticBalanceResponseMapper      SaldoStatisticBalanceResponseMapper
-	SaldoStatisticTotalBalanceResponseMapper SaldoStatisticTotalBalanceResponseMapper
+type SaldoResponseMapper interface {
+	QueryMapper() SaldoQueryResponseMapper
+	CommandMapper() SaldoCommandResponseMapper
+	StatisticBalanceMapper() SaldoStatisticBalanceResponseMapper
+	TotalBalanceMapper() SaldoStatisticTotalBalanceResponseMapper
 }
 
-// NewSaldoResponseMapper returns a new instance of SaldoResponseMapper which provides methods to map SaldoRecord domain models to SaldoResponse API-compatible response types for query, command, and statistic operations.
-func NewSaldoResponseMapper() *saldoResponseMapper {
+type saldoResponseMapper struct {
+	queryMapper           SaldoQueryResponseMapper
+	commandMapper         SaldoCommandResponseMapper
+	statisticBalance      SaldoStatisticBalanceResponseMapper
+	statisticTotalBalance SaldoStatisticTotalBalanceResponseMapper
+}
+
+func NewSaldoResponseMapper() SaldoResponseMapper {
 	return &saldoResponseMapper{
-		SaldoQueryResponseMapper:                 NewSaldoQueryResponseMapper(),
-		SaldoCommandResponseMapper:               NewSaldoCommandResponseMapper(),
-		SaldoStatisticBalanceResponseMapper:      NewSaldoStatsBalanceResponseMapper(),
-		SaldoStatisticTotalBalanceResponseMapper: NewSaldoTotalBalanceResponseMapper(),
+		queryMapper:           NewSaldoQueryResponseMapper(),
+		commandMapper:         NewSaldoCommandResponseMapper(),
+		statisticBalance:      NewSaldoStatsBalanceResponseMapper(),
+		statisticTotalBalance: NewSaldoTotalBalanceResponseMapper(),
 	}
+}
+
+func (s *saldoResponseMapper) QueryMapper() SaldoQueryResponseMapper {
+	return s.queryMapper
+}
+
+func (s *saldoResponseMapper) CommandMapper() SaldoCommandResponseMapper {
+	return s.commandMapper
+}
+
+func (s *saldoResponseMapper) StatisticBalanceMapper() SaldoStatisticBalanceResponseMapper {
+	return s.statisticBalance
+}
+
+func (s *saldoResponseMapper) TotalBalanceMapper() SaldoStatisticTotalBalanceResponseMapper {
+	return s.statisticTotalBalance
 }

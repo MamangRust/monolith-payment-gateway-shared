@@ -1,12 +1,18 @@
-package transactionstats
+package transactionstatsrecordmapper
 
-type transactionStatisticsRecordMapper struct {
-	TransactionStatisticStatusRecordMapper TransactionStatisticStatusRecordMapper
-	TransactionStatisticAmountRecordMapper TransactionStatisticAmountRecordMapper
-	TransactionStatisticMethodRecordMapper TransactionStatisticMethodRecordMapper
+type TransactonStatisticsRecordMapper interface {
+	TransactionStatisticStatusRecordMapper
+	TransactionStatisticAmountRecordMapper
+	TransactionStatisticMethodRecordMapper
 }
 
-func NewTransactionStatisticsRecordMapper() *transactionStatisticsRecordMapper {
+type transactionStatisticsRecordMapper struct {
+	TransactionStatisticStatusRecordMapper
+	TransactionStatisticAmountRecordMapper
+	TransactionStatisticMethodRecordMapper
+}
+
+func NewTransactionStatisticsRecordMapper() TransactonStatisticsRecordMapper {
 	return &transactionStatisticsRecordMapper{
 		TransactionStatisticStatusRecordMapper: NewTransactionStatisticStatusRecordMapper(),
 		TransactionStatisticAmountRecordMapper: NewTransactionStatisticAmountRecordMapper(),

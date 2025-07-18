@@ -1,4 +1,4 @@
-package transactionstatbycard
+package transactionstatbycardrecordmapper
 
 import (
 	db "github.com/MamangRust/monolith-payment-gateway-pkg/database/schema"

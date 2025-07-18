@@ -1,24 +1,40 @@
 package transferresponsemapper
 
-// transferResponseMapper provides methods to map TransferRecord, TransferResponseDeleteAt, TransferMonthAmount,  TransferYearAmount, TransferRecordMonthStatusSuccess, TransferRecordMonthStatusFailed, TransferRecordYearStatusSuccess, and TransferRecordYearStatusFailed domain models to API-compatible response types.
-type transferResponseMapper struct {
-	TransferQueryResponseMapper       TransferQueryResponseMapper
-	TransferCommandResponseMapper     TransferCommandResponseMapper
-	TransferStatsAmountResponseMapper TransferAmountResponseMapper
-	TransferStatsStatusResponseMapper TransferStatsStatusResponseMapper
+type TransferResponseMapper interface {
+	QueryMapper() TransferQueryResponseMapper
+	CommandMapper() TransferCommandResponseMapper
+	AmountStatsMapper() TransferAmountResponseMapper
+	StatusStatsMapper() TransferStatsStatusResponseMapper
 }
 
-// NewTransferBaseResponseMapper returns a new instance of transferResponseMapper,
-// which provides methods to map TransferRecord, TransferResponseDeleteAt,
-// TransferMonthAmount, TransferYearAmount, TransferRecordMonthStatusSuccess,
-// TransferRecordMonthStatusFailed, TransferRecordYearStatusSuccess, and
-// TransferRecordYearStatusFailed domain models to API-compatible response
-// types.
-func NewTransferBaseResponseMapper() *transferResponseMapper {
+type transferResponseMapper struct {
+	queryMapper       TransferQueryResponseMapper
+	commandMapper     TransferCommandResponseMapper
+	amountStatsMapper TransferAmountResponseMapper
+	statusStatsMapper TransferStatsStatusResponseMapper
+}
+
+func NewTransferResponseMapper() TransferResponseMapper {
 	return &transferResponseMapper{
-		TransferQueryResponseMapper:       NewTransferQueryResponseMapper(),
-		TransferCommandResponseMapper:     NewTransferCommandResponseMapper(),
-		TransferStatsAmountResponseMapper: NewTransferStatsAmountResponseMapper(),
-		TransferStatsStatusResponseMapper: NewTransferStatsStatusResponseMapper(),
+		queryMapper:       NewTransferQueryResponseMapper(),
+		commandMapper:     NewTransferCommandResponseMapper(),
+		amountStatsMapper: NewTransferStatsAmountResponseMapper(),
+		statusStatsMapper: NewTransferStatsStatusResponseMapper(),
 	}
+}
+
+func (m *transferResponseMapper) QueryMapper() TransferQueryResponseMapper {
+	return m.queryMapper
+}
+
+func (m *transferResponseMapper) CommandMapper() TransferCommandResponseMapper {
+	return m.commandMapper
+}
+
+func (m *transferResponseMapper) AmountStatsMapper() TransferAmountResponseMapper {
+	return m.amountStatsMapper
+}
+
+func (m *transferResponseMapper) StatusStatsMapper() TransferStatsStatusResponseMapper {
+	return m.statusStatsMapper
 }

@@ -1,25 +1,47 @@
 package transactionservicemapper
 
-// transactionResponseMapper provides methods to map TransactionRecord domain models to API-compatible
-// TransactionResponse types.
-type transactionResponseMapper struct {
-	TransactionQueryResponseMapper       TransactionQueryResponseMapper
-	TransactionCommandResponseMapper     TransactionCommandResponseMapper
-	TransactionStatsAmountResponseMapper TransactionStatsAmountResponseMapper
-	TransactionStatsMethodResponseMapper TransactionStatsMethodResponseMapper
-	TransactionStatsStatusResponseMapper TransactionStatsStatusResponseMapper
+type TransactionResponseMapper interface {
+	QueryMapper() TransactionQueryResponseMapper
+	CommandMapper() TransactionCommandResponseMapper
+	AmountStatsMapper() TransactionStatsAmountResponseMapper
+	MethodStatsMapper() TransactionStatsMethodResponseMapper
+	StatusStatsMapper() TransactionStatsStatusResponseMapper
 }
 
-// NewTransactionResponseMapper constructs and returns a new instance of transactionResponseMapper.
-// This function initializes the mapper with various sub-mappers responsible for converting
-// different aspects of transaction records into their corresponding API-compatible response types.
-// The sub-mappers include query, command, stats for amount, method, and status.
-func NewTransactionResponseMapper() *transactionResponseMapper {
+type transactionResponseMapper struct {
+	queryMapper       TransactionQueryResponseMapper
+	commandMapper     TransactionCommandResponseMapper
+	amountStatsMapper TransactionStatsAmountResponseMapper
+	methodStatsMapper TransactionStatsMethodResponseMapper
+	statusStatsMapper TransactionStatsStatusResponseMapper
+}
+
+func NewTransactionResponseMapper() TransactionResponseMapper {
 	return &transactionResponseMapper{
-		TransactionQueryResponseMapper:       NewTransactionQueryResponseMapper(),
-		TransactionCommandResponseMapper:     NewTransactionCommandResponseMapper(),
-		TransactionStatsAmountResponseMapper: NewTransactionStatsAmountResponseMapper(),
-		TransactionStatsMethodResponseMapper: NewTransactionStatsMethodResponseMapper(),
-		TransactionStatsStatusResponseMapper: NewTransactionStatsStatusResponseMapper(),
+		queryMapper:       NewTransactionQueryResponseMapper(),
+		commandMapper:     NewTransactionCommandResponseMapper(),
+		amountStatsMapper: NewTransactionStatsAmountResponseMapper(),
+		methodStatsMapper: NewTransactionStatsMethodResponseMapper(),
+		statusStatsMapper: NewTransactionStatsStatusResponseMapper(),
 	}
+}
+
+func (m *transactionResponseMapper) QueryMapper() TransactionQueryResponseMapper {
+	return m.queryMapper
+}
+
+func (m *transactionResponseMapper) CommandMapper() TransactionCommandResponseMapper {
+	return m.commandMapper
+}
+
+func (m *transactionResponseMapper) AmountStatsMapper() TransactionStatsAmountResponseMapper {
+	return m.amountStatsMapper
+}
+
+func (m *transactionResponseMapper) MethodStatsMapper() TransactionStatsMethodResponseMapper {
+	return m.methodStatsMapper
+}
+
+func (m *transactionResponseMapper) StatusStatsMapper() TransactionStatsStatusResponseMapper {
+	return m.statusStatsMapper
 }

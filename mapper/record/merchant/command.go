@@ -5,15 +5,15 @@ import (
 	"github.com/MamangRust/monolith-payment-gateway-shared/domain/record"
 )
 
-// merchantDocumentCommandMapper provides methods to map MerchantDocument database rows to MerchantDocumentRecord domain models.
-type merchantDocumentCommandMapper struct {
+// merchantCommandMapper provides methods to map Merchant database rows to MerchantRecord domain models.
+type merchantCommandMapper struct {
 }
 
-// NewMerchantDocumentCommandMapper returns a new instance of
-// merchantDocumentCommandMapper which provides methods to map
-// MerchantDocument database rows to MerchantDocumentRecord domain models.
-func NewMerchantDocumentCommandMapper() MerchantCommandRecordMapper {
-	return &merchantDocumentCommandMapper{}
+// NewMerchantCommandMapper returns a new instance of
+// merchantCommandMapper which provides methods to map
+// Merchant database rows to MerchantRecord domain models.
+func NewMerchantCommandMapper() MerchantCommandRecordMapper {
+	return &merchantCommandMapper{}
 }
 
 // ToMerchantRecord maps a Merchant to a MerchantRecord domain model.
@@ -24,7 +24,7 @@ func NewMerchantDocumentCommandMapper() MerchantCommandRecordMapper {
 // Returns:
 //   - A pointer to a MerchantRecord containing the mapped data, including
 //     ID, Name, ApiKey, UserID, Status, CreatedAt, UpdatedAt, and DeletedAt.
-func (m *merchantDocumentCommandMapper) ToMerchantRecord(merchant *db.Merchant) *record.MerchantRecord {
+func (m *merchantCommandMapper) ToMerchantRecord(merchant *db.Merchant) *record.MerchantRecord {
 	var deletedAt *string
 
 	if merchant.DeletedAt.Valid {

@@ -1,15 +1,26 @@
 package rolerecord
 
-// roleRecordMapper provides methods to map Role database rows to RoleRecord domain models.
 type roleRecordMapper struct {
-	RoleQueryRecordMapping   RoleQueryRecordMapping
-	RoleCommandRecordMapping RoleCommandRecordMapping
+	queryMapper   RoleQueryRecordMapping
+	commandMapper RoleCommandRecordMapping
 }
 
-// NewRoleRecordMapper returns a new instance of roleRecordMapper which provides methods to map Role database rows to RoleRecord domain models.
-func NewRoleRecordMapper() *roleRecordMapper {
+type RoleRecordMapper interface {
+	QueryMapper() RoleQueryRecordMapping
+	CommandMapper() RoleCommandRecordMapping
+}
+
+func NewRoleRecordMapper() RoleRecordMapper {
 	return &roleRecordMapper{
-		RoleQueryRecordMapping:   NewRoleQueryRecordMapping(),
-		RoleCommandRecordMapping: NewRoleCommandRecordMapping(),
+		queryMapper:   NewRoleQueryRecordMapping(),
+		commandMapper: NewRoleCommandRecordMapping(),
 	}
+}
+
+func (r *roleRecordMapper) QueryMapper() RoleQueryRecordMapping {
+	return r.queryMapper
+}
+
+func (r *roleRecordMapper) CommandMapper() RoleCommandRecordMapping {
+	return r.commandMapper
 }

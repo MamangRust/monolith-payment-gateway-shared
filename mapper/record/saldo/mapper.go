@@ -1,17 +1,33 @@
 package saldorecordmapper
 
-// SaldoRecordMapper provides methods to map Saldo database rows to SaldoRecord domain models.
-type saldoRecordMapepr struct {
-	SaldoQueryRecordMapping     SaldoQueryRecordMapping
-	SaldoCommandRecordMapping   SaldoCommandRecordMapping
-	SaldoStatisticRecordMapping SaldoStatisticRecordMapping
+type saldoRecordMapper struct {
+	queryMapper     SaldoQueryRecordMapping
+	commandMapper   SaldoCommandRecordMapping
+	statisticMapper SaldoStatisticRecordMapping
 }
 
-// NewSaldoRecordMapper returns a new instance of SaldoRecordMapper which provides methods to map Saldo database rows to SaldoRecord domain models.
-func NewSaldoRecordMapper() *saldoRecordMapepr {
-	return &saldoRecordMapepr{
-		SaldoQueryRecordMapping:     NewSaldoQueryRecordMapper(),
-		SaldoCommandRecordMapping:   NewSaldoCommandRecordMapper(),
-		SaldoStatisticRecordMapping: NewSaldoStatisticRecordMapper(),
+type SaldoRecordMapper interface {
+	QueryMapper() SaldoQueryRecordMapping
+	CommandMapper() SaldoCommandRecordMapping
+	StatisticMapper() SaldoStatisticRecordMapping
+}
+
+func NewSaldoRecordMapper() SaldoRecordMapper {
+	return &saldoRecordMapper{
+		queryMapper:     NewSaldoQueryRecordMapper(),
+		commandMapper:   NewSaldoCommandRecordMapper(),
+		statisticMapper: NewSaldoStatisticRecordMapper(),
 	}
+}
+
+func (s *saldoRecordMapper) QueryMapper() SaldoQueryRecordMapping {
+	return s.queryMapper
+}
+
+func (s *saldoRecordMapper) CommandMapper() SaldoCommandRecordMapping {
+	return s.commandMapper
+}
+
+func (s *saldoRecordMapper) StatisticMapper() SaldoStatisticRecordMapping {
+	return s.statisticMapper
 }

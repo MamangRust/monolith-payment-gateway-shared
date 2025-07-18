@@ -1,18 +1,26 @@
 package userrecord
 
-// userRecordMapper provides methods to map User database rows to UserRecord domain models.
-type userRecordMapper struct {
-	UserQueryRecordMapper   UserQueryRecordMapper
-	UserCommandRecordMapper UserCommandRecordMapper
+type UserRecordMapper interface {
+	QueryMapper() UserQueryRecordMapper
+	CommandMapper() UserCommandRecordMapper
 }
 
-// NewUserRecordMapper creates a new instance of userRecordMapper with the provided
-// UserQueryRecordMapper and UserCommandRecordMapper. This mapper is responsible for
-// mapping User database rows to UserRecord domain models, and can be used for both
-// query and command operations.
-func NewUserRecordMapper() *userRecordMapper {
+type userRecordMapper struct {
+	queryMapper   UserQueryRecordMapper
+	commandMapper UserCommandRecordMapper
+}
+
+func NewUserRecordMapper() UserRecordMapper {
 	return &userRecordMapper{
-		UserQueryRecordMapper:   NewUserQueryRecordMapper(),
-		UserCommandRecordMapper: NewUserCommandRecordMapper(),
+		queryMapper:   NewUserQueryRecordMapper(),
+		commandMapper: NewUserCommandRecordMapper(),
 	}
+}
+
+func (u *userRecordMapper) QueryMapper() UserQueryRecordMapper {
+	return u.queryMapper
+}
+
+func (u *userRecordMapper) CommandMapper() UserCommandRecordMapper {
+	return u.commandMapper
 }
